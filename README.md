@@ -31,6 +31,7 @@
 
 ### 1.2. Obligation part
 | Programme's name | fdf |
+| --- | --- |
 | Files to be submitted | Makefile, *.h, *.c |
 | Makefile | NAME, all, clean, fclean, re|
 | Arguments | A file in *.fdf format|
