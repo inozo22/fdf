@@ -36,7 +36,10 @@
 | Files to be submitted | Makefile, *.h, *.c |
 | Makefile | NAME, all, clean, fclean, re|
 | Arguments | A file in *.fdf format|
-| Arguments | A file in *.fdf format|
+| Authorized function | - open, close, read, write, malloc, free, perror, strerror, exit<br> - All functions of the
+math library (-lm compiler option, man 3 math)<br> - all functions in the MiniLibX library<br> - ft_printf and all of functions that you have programmed|
+| libft | It's permitted to use|
+| Description | This project is about the creation of a simple model of a landscape.|
 
 ### 1.3. The programme
 - You must write a program called push_swap that will receive as argument the stack a in the format of a list of integers. The first argument must be the one on top of the stack(be careful with the order).
