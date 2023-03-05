@@ -1,7 +1,7 @@
 # fdf
 ## Table of contents (Índice)
 1. [Subject](#1-subject)
-    - [1.1. The rules](#11-the-rules)
+    - [1.1. The Instruction](#11-The-Instruction)
     - [1.2. blank](#12-blank)
     - [1.3. The programme](#13-the-programme)
 2. [Cryptic subject](#2-cryptic-subject)
@@ -21,28 +21,21 @@
 
 ## 1. Subject
 ### 1.1. The Instruction
-- The game consists of two stacks, called a and b.
-- To start with:
-    - In a you will have positive and/or negative numbers, never duplicated.
-    - There will be nothing in b.
-- The purpose of this game is that order stack a's numbers in ascending order.
-- The following operations are available:
-    - sa :**swap a** Swaps the first two elements on top of stack **a**. It does nothing if there are one or fewer elements.
-    - sb :**swap b** Swaps the first two elements on top of stack **b**. It does nothing if there are one or fewer elements.
-    - ss :**Swap both** at the same time.
-    - pa :**push a** Takes the first element of stack **b** and puts it on top of stack **a**. It does nothing if **b** is empty.
-    - pb :**push b** Takes the first element of stack **a** and puts it on top of stack **b**. It does nothing if **a** is empty.
-    - ra :**rotate a** Moves all the elements of the stack **a** up one position, so that the first element becomes the last.
-    - rb :**rotate b** Moves all the elements of the stack **b** up one position, so that the first element becomes the last.
-    - rr :**rotate both** Moves all the elements of stack **a** and stack **b** up one position at the same time, so that the first element becomes the last one.
-    - rra :**reverse rotate a** Shifts all the elements of the stack **a** down one position, so that the last element becomes the first.
-    - rrb :**reverse rotate b** Shifts all the elements of the stack **b** down one position, so that the last element becomes the first.
-    - rrr :**reverse rotate both** Moves all the elements of stack **a** and **b** down one position at the same time, so that the last element becomes the first.
-    ![42 Push_swap-15](https://user-images.githubusercontent.com/119419194/217055325-aa2a728e-9a83-4ad5-8ae9-129ca5459d2f.jpg)
-    ![42 Push_swap-16](https://user-images.githubusercontent.com/119419194/217055394-9670ef55-5b93-489b-82b8-ce6862a5a2e9.jpg)
-    ![42 Push_swap-17](https://user-images.githubusercontent.com/119419194/217055484-5345209b-93f0-4be4-9387-709debf892bb.jpg)
+- Functions should not finish unexpectedly (segfault, bus error, double free, etc) or have undefined behaviour.
+- All memory allocated on the heap shall be released appropriately when necessary. No memory leaks shall be allowed. 
+- If the statement requires it, you must deliver a Makefile that will compile your source files to the required output with the -Wall, -Werror and -Wextra flags, and of course your Makefile must not relink.
+- Your Makefile has to be included at least the norm $(NAME), all, clean, fclean and re.
+- To deliver the bonus of your project you must include a bonus rule in your Makefile, in which you add all the headers, libraries or functions that are forbidden in the main part of the project. The bonus must be in separate_bonus. {c/h} files. The mandatory part and the bonus are evaluated separately.
+- If your project allows the use of libft, you should copy its source and its associated Makefile into a libft directory with a corresponding Makefile. Your project's Makefile of your project should first compile the library using its Makefile, and then compile the project.
+- It's recommended to create test programmes for your project, although this work will not be handed in or evaluated. It will give you the opportunity to verify that your software works correctly during your evaluation and that of your peers. And yes, you are allowed to use these tests during your evaluation or that of your peers.
 
-### 1.2. 
+### 1.2. Obligation part
+| Programme's name | fdf |
+| Files to be submitted | Makefile, *.h, *.c |
+| Makefile | NAME, all, clean, fclean, re|
+| Arguments | A file in *.fdf format|
+| Arguments | A file in *.fdf format|
+
 ### 1.3. The programme
 - You must write a program called push_swap that will receive as argument the stack a in the format of a list of integers. The first argument must be the one on top of the stack(be careful with the order).
 - The program must display the list of instructions(shortest)
