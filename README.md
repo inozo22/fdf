@@ -30,12 +30,13 @@
 - It's recommended to create test programmes for your project, although this work will not be handed in or evaluated. It will give you the opportunity to verify that your software works correctly during your evaluation and that of your peers. And yes, you are allowed to use these tests during your evaluation or that of your peers.
 
 ### 1.2. Obligation part
- Programme's name | fdf 
- --- | --- 
- Files to be submitted | Makefile, *.h, *.c 
- Makefile | NAME, all, clean, fclean, re
- Arguments | A file in *.fdf format
- Arguments | A file in *.fdf format
+|  | Detail |
+| --- | --- |
+| Programme's name | fdf |
+| Files to be submitted | Makefile, *.h, *.c |
+| Makefile | NAME, all, clean, fclean, re|
+| Arguments | A file in *.fdf format|
+| Arguments | A file in *.fdf format|
 
 ### 1.3. The programme
 - You must write a program called push_swap that will receive as argument the stack a in the format of a list of integers. The first argument must be the one on top of the stack(be careful with the order).
