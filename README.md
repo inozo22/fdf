@@ -40,6 +40,13 @@
 | libft | It's permitted to use|
 | Description | This project is about the creation of a simple model of a landscape.|
 
+This project is about the creation of a simple wireframe model with a 3D representation of a landscape by linking several points (x, y, z) thank to line segments (edge).
+
+#### Rule
+- You must use the MiniLibX. Either the version available on the campus computers, or by installing it using the source.
+- You have to submit a Makefile which compile your files. Of course it should not allow relink.
+- The use of global variables is prohibited.
+
 ### 1.3. The programme
 - You must write a program called push_swap that will receive as argument the stack a in the format of a list of integers. The first argument must be the one on top of the stack(be careful with the order).
 - The program must display the list of instructions(shortest)
