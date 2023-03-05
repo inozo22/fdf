@@ -2,8 +2,8 @@
 ## Table of contents (Índice)
 1. [Subject](#1-subject)
     - [1.1. The Instruction](#11-The-Instruction)
-    - [1.2. blank](#12-blank)
-    - [1.3. The programme](#13-the-programme)
+    - [1.2. Obligation part](#12-Obligation-part)
+<!--     - [1.3. The programme](#13-the-programme)
 2. [Cryptic subject](#2-cryptic-subject)
     - [2.1. How many arguments are required?](#21-how-many-arguments-are-required)
     - [2.2. How many times I can sort?](#22-how-many-times-i-can-sort)
@@ -17,7 +17,7 @@
     - [4.5. Binary search](#45-binary-search)
     - [4.6. Ternary search](#46-ternary-search)
     - [4.7. Backtracking method (Depth-first search)](#47-backtracking-method-depth-first-search) 
-5. [Reference](#5-reference)     
+5. [Reference](#5-reference)      -->
 
 ## 1. Subject
 ### 1.1. The Instruction
@@ -47,7 +47,7 @@ This project is about the creation of a simple wireframe model with a 3D represe
 - You have to submit a Makefile which compile your files. Of course it should not allow relink.
 - The use of global variables is prohibited.
 
-### 1.3. The programme
+<!-- ### 1.3. The programme
 - You must write a program called push_swap that will receive as argument the stack a in the format of a list of integers. The first argument must be the one on top of the stack(be careful with the order).
 - The program must display the list of instructions(shortest)
 to sort the stack a, from smallest to largest where the smallest is at the top of the stack.
@@ -122,3 +122,4 @@ This will be simpler than memo, maybe do it simply first, and then if there is p
 - in general  
 (EN)https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
 
+ -->
