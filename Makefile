@@ -34,6 +34,8 @@ OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
 LIBDIR = ./libft
 
+MLXDIR = ./mlx
+
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g1
 #if add "-fsanitize=address", give me "0xbebebebebebebebe" instead of null
@@ -46,6 +48,15 @@ YELLOW		:= \033[1;33m
 BLUE		:= \033[1;34m
 CYAN 		:= \033[1;36m
 
+define fdf
+$(YELLOW) _____$(GREEN) _____ $(YELLOW)_____ $(YELLOW)
+$(YELLOW)|| F ||$(GREEN)| D ||$(YELLOW)| F ||$(YELLOW)
+$(YELLOW)||___||$(GREEN)|___||$(YELLOW)|___||$(YELLOW)
+$(YELLOW)|/___\|$(GREEN)/___\|$(YELLOW)/___\|$(YELLOW)
+
+endef
+export fdf
+
 all: $(OBJDIR) $(NAME)
 
 $(OBJDIR):
@@ -56,9 +67,13 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 $(NAME): $(OBJ)
 	@echo "$(BLUE)--Compiling ${CLR_RMV} ${YELLOW}$(NAME) ${CLR_RMV}..."
+
+#	@make --directory $(MLXDIR)
+#	$(CC) $(CFLAGS) -I../includes -o $@ $^ -L $(MLXDIR) -lmlx
 	@make --directory $(LIBDIR)
 	$(CC) $(CFLAGS) -I../includes -o $@ $^ -L $(LIBDIR) -lft
 	@echo "$(GREEN)$(NAME) created[0m ✔️"
+	@echo "$$fdf"
 #Name the static library with -lft#
 
 clean:

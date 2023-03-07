@@ -1,21 +1,20 @@
-==42621== Memcheck, a memory error detector
-==42621== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==42621== Using Valgrind-3.21.0.GIT-lbmacos and LibVEX; rerun with -h for copyright info
-==42621== Command: ./fdf 42.fdf
-==42621== Parent PID: 39499
-==42621== 
---42621-- run: /usr/bin/dsymutil "./fdf"
-==42621== 
-==42621== HEAP SUMMARY:
-==42621==     in use at exit: 18,072 bytes in 162 blocks
-==42621==   total heap usage: 274 allocs, 112 frees, 25,979 bytes allocated
-==42621== 
-==42621== LEAK SUMMARY:
-==42621==    definitely lost: 0 bytes in 0 blocks
-==42621==    indirectly lost: 0 bytes in 0 blocks
-==42621==      possibly lost: 0 bytes in 0 blocks
-==42621==    still reachable: 0 bytes in 0 blocks
-==42621==         suppressed: 18,072 bytes in 162 blocks
-==42621== 
-==42621== For lists of detected and suppressed errors, rerun with: -s
-==42621== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 7 from 7)
+==52706== Memcheck, a memory error detector
+==52706== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==52706== Using Valgrind-3.21.0.GIT-lbmacos and LibVEX; rerun with -h for copyright info
+==52706== Command: ./fdf test_maps/elem.fdf test_maps/basictest.fdf
+==52706== Parent PID: 39499
+==52706== 
+==52706== 
+==52706== HEAP SUMMARY:
+==52706==     in use at exit: 13,976 bytes in 161 blocks
+==52706==   total heap usage: 175 allocs, 14 frees, 18,720 bytes allocated
+==52706== 
+==52706== LEAK SUMMARY:
+==52706==    definitely lost: 0 bytes in 0 blocks
+==52706==    indirectly lost: 0 bytes in 0 blocks
+==52706==      possibly lost: 0 bytes in 0 blocks
+==52706==    still reachable: 0 bytes in 0 blocks
+==52706==         suppressed: 13,976 bytes in 161 blocks
+==52706== 
+==52706== For lists of detected and suppressed errors, rerun with: -s
+==52706== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 7 from 7)
