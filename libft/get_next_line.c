@@ -6,39 +6,11 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:16:20 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/07 12:21:24 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/07 13:12:46 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-size_t	gnl_strlen(char *s)
-{
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*gnl_strchr(char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (NULL);
-	while (s[i])
-	{
-		if (s[i] == (unsigned char)c)
-			return (&s[i]);
-		i++;
-	}
-	return (0);
-}
 
 char	*gnl_strjoin(char *memo, char *buff)
 {
@@ -53,7 +25,7 @@ char	*gnl_strjoin(char *memo, char *buff)
 	}
 	if (!memo || !buff)
 		return (NULL);
-	ret = malloc(gnl_strlen(memo) + gnl_strlen(buff) + 1);
+	ret = malloc(ft_strlen(memo) + ft_strlen(buff) + 1);
 	if (!ret)
 		return (NULL);
 	i = -1;
@@ -109,7 +81,7 @@ char	*crop_memo(char *memo)
 		free(memo);
 		return (NULL);
 	}
-	ret = (char *)malloc((gnl_strlen(memo) - i + 1) * sizeof(char));
+	ret = (char *)malloc((ft_strlen(memo) - i + 1) * sizeof(char));
 	if (!ret)
 		return (NULL);
 	i++;
@@ -121,7 +93,6 @@ char	*crop_memo(char *memo)
 	return (ret);
 }
 
-
 char	*read_memo(int fd, char *memo)
 {
 	char	*buff;
@@ -131,7 +102,7 @@ char	*read_memo(int fd, char *memo)
 	if (!buff)
 		return (NULL);
 	ret_read = 1;
-	while (ret_read > 0 && !gnl_strchr(memo, '\n'))
+	while (ret_read > 0 && ((!memo) || !ft_strchr(memo, '\n')))
 	{
 		ret_read = read(fd, buff, BUFFER_SIZE);
 		if (ret_read == -1)
