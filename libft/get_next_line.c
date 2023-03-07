@@ -12,6 +12,22 @@
 
 #include "libft.h"
 
+char	*gnl_strchr(char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	while (s[i])
+	{
+		if (s[i] == (unsigned char)c)
+			return (&s[i]);
+		i++;
+	}
+	return (0);
+}
+
 char	*get_ret(char *memo)
 {
 	size_t	i;
@@ -66,16 +82,12 @@ char	*crop_memo(char *memo)
 	return (ret);
 }
 
-char	*read_memo(int fd, char *memo)
+char	*read_memo(int fd, char *memo, char	*buff)
 {
-	char	*buff;
 	ssize_t	ret_read;
 
-	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
-		return (NULL);
 	ret_read = 1;
-	while (ret_read > 0 && !ft_strchr(memo, '\n'))
+	while (ret_read > 0 && !gnl_strchr(memo, '\n'))
 	{
 		ret_read = read(fd, buff, BUFFER_SIZE);
 		if (ret_read == -1)
@@ -85,6 +97,13 @@ char	*read_memo(int fd, char *memo)
 			return (NULL);
 		}
 		buff[ret_read] = '\0';
+		if (!memo)
+		{
+			memo = (char *)malloc(1 * sizeof(char));
+			memo[0] = '\0';
+		}
+		if (!memo || !buff)
+			return (NULL);
 		memo = ft_strjoin(memo, buff);
 	}
 	free(buff);
@@ -95,10 +114,14 @@ char	*get_next_line(int fd)
 {
 	static char	*memo[1024];
 	char		*ret;
+	char		*buff;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	memo[fd] = read_memo(fd, memo[fd]);
+	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buff)
+		return (NULL);
+	memo[fd] = read_memo(fd, memo[fd], buff);
 	if (!memo[fd])
 		return (NULL);
 	ret = get_ret(memo[fd]);

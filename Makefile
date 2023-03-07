@@ -13,7 +13,7 @@
 NAME = fdf
 
 SRCDIR = ./src/
-SRC = \
+SRC = main.c \
 #		all_free.c \
 		cmd1.c \
 		cmd2.c \
@@ -57,7 +57,6 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 $(NAME): $(OBJ)
 	@echo "$(BLUE)--Compiling ${CLR_RMV} ${YELLOW}$(NAME) ${CLR_RMV}..."
 	@make --directory $(LIBDIR)
-#	$(CC) $(CFLAGS) -I../includes -L $(LIBDIR) -lft -o $@ $^#with this line, doesn't work in codespase
 	$(CC) $(CFLAGS) -I../includes -o $@ $^ -L $(LIBDIR) -lft
 	@echo "$(GREEN)$(NAME) created[0m ✔️"
 #Name the static library with -lft#
