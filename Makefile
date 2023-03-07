@@ -68,7 +68,7 @@ clean:
 
 fclean: clean
 	@make fclean --directory $(LIBDIR)
-#	@rm -rf ./push_swap.dSYM
+	@rm -rf ./fdf.dSYM
 	@rm -f $(NAME)
 	@echo "$(RED)Deleted $(YELLOW)$(NAME) $(CLR_RMV)binary ✔️"
 
