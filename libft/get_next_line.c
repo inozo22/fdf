@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 19:28:44 by nimai             #+#    #+#             */
-/*   Updated: 2023/02/18 19:28:44 by nimai            ###   ########.fr       */
+/*   Created: 2023/03/07 12:16:20 by nimai             #+#    #+#             */
+/*   Updated: 2023/03/07 12:21:24 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+size_t	gnl_strlen(char *s)
+{
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+		i++;
+	return (i);
+}
 
 char	*gnl_strchr(char *s, int c)
 {
@@ -26,6 +38,33 @@ char	*gnl_strchr(char *s, int c)
 		i++;
 	}
 	return (0);
+}
+
+char	*gnl_strjoin(char *memo, char *buff)
+{
+	ssize_t	i;
+	ssize_t	c;
+	char	*ret;
+
+	if (!memo)
+	{
+		memo = (char *)malloc(1 * sizeof(char));
+		memo[0] = '\0';
+	}
+	if (!memo || !buff)
+		return (NULL);
+	ret = malloc(gnl_strlen(memo) + gnl_strlen(buff) + 1);
+	if (!ret)
+		return (NULL);
+	i = -1;
+	c = 0;
+	while (memo[++i] != '\0')
+		ret[i] = memo[i];
+	while (buff[c] != '\0')
+		ret[i++] = buff[c++];
+	ret[i] = '\0';
+	free(memo);
+	return (ret);
 }
 
 char	*get_ret(char *memo)
@@ -70,7 +109,7 @@ char	*crop_memo(char *memo)
 		free(memo);
 		return (NULL);
 	}
-	ret = (char *)malloc((ft_strlen(memo) - i + 1) * sizeof(char));
+	ret = (char *)malloc((gnl_strlen(memo) - i + 1) * sizeof(char));
 	if (!ret)
 		return (NULL);
 	i++;
@@ -82,10 +121,15 @@ char	*crop_memo(char *memo)
 	return (ret);
 }
 
-char	*read_memo(int fd, char *memo, char	*buff)
+
+char	*read_memo(int fd, char *memo)
 {
+	char	*buff;
 	ssize_t	ret_read;
 
+	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buff)
+		return (NULL);
 	ret_read = 1;
 	while (ret_read > 0 && !gnl_strchr(memo, '\n'))
 	{
@@ -97,14 +141,7 @@ char	*read_memo(int fd, char *memo, char	*buff)
 			return (NULL);
 		}
 		buff[ret_read] = '\0';
-		if (!memo)
-		{
-			memo = (char *)malloc(1 * sizeof(char));
-			memo[0] = '\0';
-		}
-		if (!memo || !buff)
-			return (NULL);
-		memo = ft_strjoin(memo, buff);
+		memo = gnl_strjoin(memo, buff);
 	}
 	free(buff);
 	return (memo);
@@ -114,14 +151,10 @@ char	*get_next_line(int fd)
 {
 	static char	*memo[1024];
 	char		*ret;
-	char		*buff;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
-		return (NULL);
-	memo[fd] = read_memo(fd, memo[fd], buff);
+	memo[fd] = read_memo(fd, memo[fd]);
 	if (!memo[fd])
 		return (NULL);
 	ret = get_ret(memo[fd]);
