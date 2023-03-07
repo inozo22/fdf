@@ -32,12 +32,12 @@ SRC = main.c \
 OBJDIR = ./obj/
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
-LIBDIR = ./libft
+LIBDIR = ./lib/libft
 
-MLXDIR = ./mlx
+MLXDIR = ./lib/mlx
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g1
+CFLAGS = -Wall -Wextra -Werror -g #-03
 #if add "-fsanitize=address", give me "0xbebebebebebebebe" instead of null
 #-g1 gives me a message like "Nothing to be done for 'all'"
 
