@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:50:40 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/07 16:12:43 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/07 17:12:23 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 	while (str)
 	{
 		str = get_next_line(fd);
-		printf("> %s", str);
+		printf("%s", str);
 		free(str);
 	}
 	close(fd);

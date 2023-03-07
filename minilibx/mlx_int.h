@@ -42,7 +42,7 @@
 #define	WARN_SHM_ATTACH		"MinilibX Warning : X server can't attach shared memory.\n"
 
 
-typedef	struct	s_xpm_col
+typedef struct s_xpm_col
 {
   int		name;
   int		col;
