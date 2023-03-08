@@ -38,8 +38,6 @@ MLXDIR = ./mlx_linux
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g #-03
-#if add "-fsanitize=address", give me "0xbebebebebebebebe" instead of null
-#-g1 gives me a message like "Nothing to be done for 'all'"
 
 CLR_RMV		:= \033[0m
 RED		    := \033[1;31m
@@ -48,14 +46,14 @@ YELLOW		:= \033[1;33m
 BLUE		:= \033[1;34m
 CYAN 		:= \033[1;36m
 
-define fdf
+define singn_fdf
 $(YELLOW) _____$(GREEN) _____ $(YELLOW)_____ $(YELLOW)
 $(YELLOW)|| F ||$(GREEN)| D ||$(YELLOW)| F ||$(YELLOW)
 $(YELLOW)||___||$(GREEN)|___||$(YELLOW)|___||$(YELLOW)
 $(YELLOW)|/___\|$(GREEN)/___\|$(YELLOW)/___\|$(YELLOW)
 
 endef
-export fdf
+export sign_fdf
 
 all: $(OBJDIR) $(NAME)
 
@@ -67,22 +65,29 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 $(NAME): $(OBJ)
 	@echo "$(BLUE)--Compiling ${CLR_RMV} ${YELLOW}$(NAME) ${CLR_RMV}..."
-	@make --directory $(MLXDIR)
-#	$(CC) $(CFLAGS) -I/usr/include -I$(MLXDIR) -03 -c $< -o $@
-	$(CC) $(CFLAGS) -L $(MLXDIR) -lmlx -L/usr/lib -I$(MLXDIR) -lXext -lX11 -lm -lz -o $(NAME) 
-	@make --directory $(LIBDIR)
+	make --directory $(LIBDIR)
+	@echo "$(GREEN)$(LIBDIR) did$(CLR_RMV)"
 	$(CC) $(CFLAGS) -I../includes -o $@ $^ -L $(LIBDIR) -lft
+	@echo "$(GREEN)$(LIBDIR) compiled$(CLR_RMV)"
+	make --directory $(MLXDIR)
+	@echo "$(GREEN)$(MLXDIR) did$(CLR_RMV)"
+#	$(CC) $(CFLAGS) -I/usr/include -I$(MLXDIR) -03 -c $< -o $@
+#	clang *.c -I$(MLX_DIR) -L$(MLX_DIR) -lmlx -lXext -lX11 -lbsd -lm -o cub3D
+	$(CC) $(CFLAGS) -I $(MLXDIR) -lmlx -L/usr/lib -L$(MLXDIR) -lXext -lX11 -lm -lz -o $(NAME) 
+
 	@echo "$(GREEN)$(NAME) created[0m ✔️"
-	@echo "$$fdf"
+	@echo "$$sign_fdf"
 #Name the static library with -lft#
 
 clean:
 	@rm -rf $(OBJDIR)
 	@make clean --directory $(LIBDIR)
+	@make clean --directory $(MLXDIR)
 	@ echo "$(RED)Deleted $(YELLOW)$(NAME) $(CLR_RMV)objs ✔️"
 
 fclean: clean
 	@make fclean --directory $(LIBDIR)
+	@make fclean --directory $(MLXDIR)
 	@rm -rf ./fdf.dSYM
 	@rm -f $(NAME)
 	@echo "$(RED)Deleted $(YELLOW)$(NAME) $(CLR_RMV)binary ✔️"

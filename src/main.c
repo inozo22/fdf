@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:50:40 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/08 11:12:39 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/08 14:00:52 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 //#include <stdlib.h>
 //#include <mlx.h>
 
-int main(void)
+/* int main(void)
 {
 	void	*mlx_ptr;
 
 	mlx_ptr = mlx_init();
 	mlx_destroy_display(mlx_ptr);
 	free(mlx_ptr);
-}
+} */
 
-/* int	main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	char	*str;
 	int		fd;
@@ -42,4 +42,3 @@ int main(void)
 	close(fd);
 	return (0);
 }
- */
