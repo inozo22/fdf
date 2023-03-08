@@ -34,7 +34,7 @@ OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
 LIBDIR = ./lib/libft
 
-MLXDIR = ./mlx_linux
+MLXDIR = ./lib/mlx
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g #-03

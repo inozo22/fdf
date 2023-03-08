@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/08 14:01:50 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/08 16:47:12 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
-# include "../mlx_linux/mlx.h"
+# include "../lib/mlx/mlx.h"
 
 int	main(int ac, char **av);
 
