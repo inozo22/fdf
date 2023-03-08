@@ -64,7 +64,7 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJ)
-#	@echo "$(BLUE)--Compiling $(RM_CL) ${YELLOW}$(NAME) $(RM_CL)..."
+	@echo "$(BLUE)--Compiling $(RM_CL) ${YELLOW}$(NAME) $(RM_CL)..."
 	make --directory $(LIBDIR)
 #	@echo "$(GREEN)$(LIBDIR) did$(RM_CL)"
 	$(CC) $(CFLAGS) -I../includes -o $@ $^ -L $(LIBDIR) -lft
