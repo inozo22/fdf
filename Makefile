@@ -34,7 +34,7 @@ OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
 LIBDIR = ./lib/libft
 
-MLXDIR = ./lib/mlx
+MLXDIR = ./mlx_linux
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g #-03
@@ -67,9 +67,9 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 $(NAME): $(OBJ)
 	@echo "$(BLUE)--Compiling ${CLR_RMV} ${YELLOW}$(NAME) ${CLR_RMV}..."
-
-#	@make --directory $(MLXDIR)
-#	$(CC) $(CFLAGS) -I../includes -o $@ $^ -L $(MLXDIR) -lmlx
+	@make --directory $(MLXDIR)
+#	$(CC) $(CFLAGS) -I/usr/include -I$(MLXDIR) -03 -c $< -o $@
+	$(CC) $(CFLAGS) -L $(MLXDIR) -lmlx -L/usr/lib -I$(MLXDIR) -lXext -lX11 -lm -lz -o $(NAME) 
 	@make --directory $(LIBDIR)
 	$(CC) $(CFLAGS) -I../includes -o $@ $^ -L $(LIBDIR) -lft
 	@echo "$(GREEN)$(NAME) created[0m ✔️"
