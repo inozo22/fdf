@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:50:40 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/09 14:02:22 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/09 14:23:06 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 	void	*mlx_win;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Kaixo!");
+	mlx_win = mlx_new_window(mlx, 10, 10, "Kaixo!");
 	mlx_loop(mlx);
 /* 	void	*mlx_ptr;
 
