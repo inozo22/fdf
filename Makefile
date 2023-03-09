@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/09 15:29:37 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/09 15:45:51 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OSRC		:= $(SRC:.c=.o)
 INC			:= /usr/include
 INCLIB		:= $(INC)/../lib
 LIBDIR		:= ./lib/
-MLXDIR		:= $(LIBDIR)minilibx_macos #/mlx_linux
+MLXDIR		:= $(LIBDIR)minilibx_macos#mlx_linux
 LIBFT		:= $(LIBDIR)libft
 
 LFLAGS		:= -L$(MLXDIR) -lmlx -L$(INCLIB) -I$(MLXDIR) -lXext -lX11 -lm -lz
