@@ -6,42 +6,45 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/09 11:41:53 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/09 13:19:53 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME		:= fdf
 
-SRC =	main.c \
+SRC			:= main.c \
 
-OSRC = $(SRC:.c=.o)
-INC = /usr/include
-INCLIB = $(INC)/../lib
+OSRC		:= $(SRC:.c=.o)
+INC			:= /usr/include
+INCLIB		:= $(INC)/../lib
+MLXDIR		:= minilibx_macos #/mlx_linux
+LIBDIR		:= libft
 
-LFLAGS = -Lmlx_linux -lmlx -L$(INCLIB) -Imlx_linux -lXext -lX11 -lm -lz
-SANITFLAG = -g3 -fsanitize=address
-CC = gcc
+LFLAGS		:= -L$(MLXDIR) -lmlx -L$(INCLIB) -I$(MLXDIR) -lXext -lX11 -lm -lz
+MFLAGS		:= -Lmlx -lmlx -framework OpenGL -framework AppKit
+SANITFLAG	:= -g3 -fsanitize=address
+CC			:= gcc
 
 all: $(NAME)
 
 $.o: %.c
-	make -C libft
-	make -C mlx_linux
-	cp libft/libft.a .
-	@$(CC) -I/usr/include/ -Imlx_linux -O3 -c $< -o $@
+	make -C $(LIBDIR)
+	make -C $(MLXDIR)
+	cp $(LIBDIR)/libft.a .
+	@$(CC) -I/usr/include/ -I$(MLXDIR) -O3 -c $< -o $@
 
 $(NAME): $(OSRC)
-	@make -C libft
-	@make -C mlx_linux
-	@$(CC) $(OSRC) ./libft/libft.a -Ifdf.h $(LFLAGS) -o $(NAME)
+	@make -C $(LIBDIR)
+	@make -C $(MLXDIR)
+	@$(CC) $(OSRC) $(LIBDIR)/libft.a -Ifdf.h $(LFLAGS) -o $(NAME)
 
 clean:
-	@make -C libft/ clean
-	@make -C mlx_linux/ clean
+	@make -C $(LIBDIR)/ clean
+	@make -C $(MLXDIR)/ clean
 	@rm -f $(OSRC)
 
 fclean: clean
-	@make -C libft/ fclean
+	@make -C $(LIBDIR)/ fclean
 	@rm -f $(NAME)
 
 re:
