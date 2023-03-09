@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/09 13:44:53 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/09 15:29:37 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ clean:
 
 fclean: clean
 	@make -C $(LIBFT) fclean
+	@rm -rf ./fdf.dSYM
 	@rm -f $(NAME)
 	@echo "$(RED)Deleted $(YELLOW)$(NAME) $(RM_COL)binary ✔️"
 re:
