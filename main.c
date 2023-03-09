@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:50:40 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/09 13:28:58 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/09 14:02:22 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,22 @@
 //#include <stdlib.h>
 //#include <mlx.h>
 
-/* int main(void)
+int	main(void)
 {
-	void	*mlx_ptr;
+	void	*mlx;
+	void	*mlx_win;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Kaixo!");
+	mlx_loop(mlx);
+/* 	void	*mlx_ptr;
 
 	mlx_ptr = mlx_init();
 	mlx_destroy_display(mlx_ptr);
-	free(mlx_ptr);
-} */
+	free(mlx_ptr); */
+}
 
-int	main(int ac, char **av)
+/* int	main(int ac, char **av)
 {
 	char	*str;
 	int		fd;
@@ -42,3 +48,4 @@ int	main(int ac, char **av)
 	close(fd);
 	return (0);
 }
+ */
