@@ -5,88 +5,46 @@
 #                                                     +:+ +:+         +:+      #
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/13 13:02:59 by nimai             #+#    #+#              #
-#    Updated: 2023/02/27 16:54:59 by nimai            ###   ########.fr        #
+#    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
+#    Updated: 2023/03/09 11:23:29 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SRCDIR = ./src/
-SRC = main.c \
-#		all_free.c \
-		cmd1.c \
-		cmd2.c \
-		errors.c \
-		init_ps.c \
-		ps_atoi.c \
-		push_swap.c \
-		quick_sort.c \
-		sort_less6.c \
-		sort_over5.c \
-		sort_over5_2.c \
-		order_cmd.c \
-		print_answer.c \
-		main.c#
+SRC =	main.c \
 
-OBJDIR = ./obj/
-OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
+OSRC = $(SRC:.c=.o)
+INC = /usr/include
+INCLIB = $(INC)/../lib
 
-LIBDIR = ./lib/libft
-
-MLXDIR = ./lib/mlx
-
+LFLAGS = -Lmlx_linux -lmlx -L$(INCLIB) -Imlx_linux -lXext -lX11 -lm -lz
+SANITFLAG = -g3 -fsanitize=address
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g #-03
-#if add "-fsanitize=address", give me "0xbebebebebebebebe" instead of null
-#-g1 gives me a message like "Nothing to be done for 'all'"
 
-CLR_RMV		:= \033[0m
-RED		    := \033[1;31m
-GREEN		:= \033[1;32m
-YELLOW		:= \033[1;33m
-BLUE		:= \033[1;34m
-CYAN 		:= \033[1;36m
+all: $(NAME)
 
-define fdf
-$(YELLOW) _____$(GREEN) _____ $(YELLOW)_____ $(YELLOW)
-$(YELLOW)|| F ||$(GREEN)| D ||$(YELLOW)| F ||$(YELLOW)
-$(YELLOW)||___||$(GREEN)|___||$(YELLOW)|___||$(YELLOW)
-$(YELLOW)|/___\|$(GREEN)/___\|$(YELLOW)/___\|$(YELLOW)
+$.o: %.c
+	make -C libft
+	make -C mlx_linux
+	cp libft/libft.a .
+	@$(CC) -I/usr/include/ -Imlx_linux -O3 -c $< -o $@
 
-endef
-export fdf
-
-all: $(OBJDIR) $(NAME)
-
-$(OBJDIR):
-	@mkdir -p $@
-
-$(OBJDIR)%.o : $(SRCDIR)%.c
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-$(NAME): $(OBJ)
-	@echo "$(BLUE)--Compiling ${CLR_RMV} ${YELLOW}$(NAME) ${CLR_RMV}..."
-
-#	@make --directory $(MLXDIR)
-#	$(CC) $(CFLAGS) -I../includes -o $@ $^ -L $(MLXDIR) -lmlx
-	@make --directory $(LIBDIR)
-	$(CC) $(CFLAGS) -I../includes -o $@ $^ -L $(LIBDIR) -lft
-	@echo "$(GREEN)$(NAME) created[0m ✔️"
-	@echo "$$fdf"
-#Name the static library with -lft#
+$(NAME): $(OSRC)
+	@make -C libft
+	@make -C mlx_linux
+	@$(CC) $(OSRC) ./libft/libft.a -Ifdf.h $(LFLAGS) -o $(NAME)
 
 clean:
-	@rm -rf $(OBJDIR)
-	@make clean --directory $(LIBDIR)
-	@ echo "$(RED)Deleted $(YELLOW)$(NAME) $(CLR_RMV)objs ✔️"
+	@make -C libft/ clean
+	@make -C mlx_linux/ clean
+	@rm -f $(OSRC)
 
 fclean: clean
-	@make fclean --directory $(LIBDIR)
-	@rm -rf ./fdf.dSYM
+	@make -C libft/ fclean
 	@rm -f $(NAME)
-	@echo "$(RED)Deleted $(YELLOW)$(NAME) $(CLR_RMV)binary ✔️"
 
-re: fclean all
+re:
+	@make fclean all
 
-.PHONY: all, clean, fclean, re
+.PHONY: all clean fclean re
