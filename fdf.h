@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/09 11:26:41 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/09 13:29:16 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include "mlx_linux/mlx.h"
 
-//int	main(int ac, char **av);
-int main(void);
+int	main(int ac, char **av);
+//int main(void);
 
 #endif

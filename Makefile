@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/09 13:19:53 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/09 13:27:24 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,12 @@ MLXDIR		:= minilibx_macos #/mlx_linux
 LIBDIR		:= libft
 
 LFLAGS		:= -L$(MLXDIR) -lmlx -L$(INCLIB) -I$(MLXDIR) -lXext -lX11 -lm -lz
-MFLAGS		:= -Lmlx -lmlx -framework OpenGL -framework AppKit
+MFLAGS		:= -L$(MLXDIR) -lmlx -framework OpenGL -framework AppKit
+LMFLAGS		:= $(MFLAGS)#$(LFLAGS)
 SANITFLAG	:= -g3 -fsanitize=address
 CC			:= gcc
+
+# To use both of linux and MacOS, I have to switch MLXDIR and LMFLAGS
 
 all: $(NAME)
 
@@ -36,7 +39,7 @@ $.o: %.c
 $(NAME): $(OSRC)
 	@make -C $(LIBDIR)
 	@make -C $(MLXDIR)
-	@$(CC) $(OSRC) $(LIBDIR)/libft.a -Ifdf.h $(LFLAGS) -o $(NAME)
+	@$(CC) $(OSRC) $(LIBDIR)/libft.a -Ifdf.h $(LMFLAGS) -o $(NAME)
 
 clean:
 	@make -C $(LIBDIR)/ clean
