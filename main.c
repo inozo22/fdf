@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:50:40 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/09 15:46:21 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/11 09:42:46 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 //#include <stdlib.h>
 //#include <mlx.h>
 
-/* int	main(void)
+int	main(void)
 {
 	void	*mlx;
-	void	*img;
+	void	*mlx_win;
 
-	mlx = mlx_init(); */
-//	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Kaixo!");
 //	img = mlx_new_image(mlx, 1920, 1080);
-//	mlx_loop(mlx);
-/* 	void	*mlx_ptr;
+ 	mlx_loop(mlx);
+/*	void	*mlx_ptr;
 
 	mlx_ptr = mlx_init();
 	mlx_destroy_display(mlx_ptr);
-	free(mlx_ptr); 
-} */
+	free(mlx_ptr);  */
+}
 
-typedef struct	s_data {
+/* typedef struct	s_data {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -62,7 +62,7 @@ int	main(void)
 	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
-}
+} */
 
 /* int	main(int ac, char **av)
 {

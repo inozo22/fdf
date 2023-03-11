@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/11 07:52:25 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/11 09:48:09 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ $.o: %.c
 	make -C $(LIBFT)
 	make -C $(MLXDIR)
 	cp $(LIBFT)/libft.a .
-	@$(CC) -I/usr/include/ -I$(MLXDIR) -O3 -c $< -o $@
+	@$(CC) -I/usr/include/ -I$(MLXDIR) -O3 -g  -c $< -o $@
 
 $(NAME): $(OSRC)
 	@echo "$(BLUE)--Compiling ${RM_COL} ${YELLOW}$(NAME) ${RM_COL}..."
