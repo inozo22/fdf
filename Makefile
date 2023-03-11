@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/11 10:59:44 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/11 15:11:20 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,9 @@ LIBFT		:= $(LIBDIR)libft
 LFLAGS		:= -L$(MLXDIR) -lmlx -L$(INCLIB) -I$(MLXDIR) -lXext -lX11 -lm -lz
 MFLAGS		:= -L$(MLXDIR) -lmlx -framework OpenGL -framework AppKit
 LMFLAGS		:= $(MFLAGS)#$(LFLAGS)
-SANITFLAG	:= -g3 -fsanitize=address
+#SANITFLAG	:= -fsanitize=address
 CC			:= gcc
+CFLAGS		:= -g3 -Wall -Wextra -Werror
 
 # To use both of linux and MacOS, I have to switch MLXDIR and LMFLAGS
 
@@ -48,7 +49,7 @@ $(NAME): $(OSRC)
 	@echo "$(BLUE)--Compiling ${RM_COL} ${YELLOW}$(NAME) ${RM_COL}..."
 	@make -C $(LIBFT)
 	@make -C $(MLXDIR)
-	@$(CC) $(OSRC) $(LIBFT)/libft.a -Ifdf.h $(LMFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OSRC) $(LIBFT)/libft.a -Ifdf.h $(LMFLAGS) -o $(NAME)
 	@echo "$(GREEN)$(NAME) created[0m ✔️"
 
 clean:
