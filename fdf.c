@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 16:36:39 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/11 21:16:07 by nimai            ###   ########.fr       */
+/*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
+/*   Updated: 2023/03/11 21:30:43 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	fdf_error(int type)
+//t_line	init_row
+
+t_fdf	*init_fdf(int fd, t_fdf *fdf)
 {
-	if (type == 1)//error memory release unnecessary
-	{
-		ft_putstr_fd("error without memory", STDERR);
-		return (0);
-	}
+	fdf = (t_fdf *)malloc(sizeof(t_fdf));
+	if (!fdf)
+		exit (fdf_error(1));//error without memory
+//	fdf->row = init_row(fd, fdf->row);
+//	fdf->column = init_column(fd, fdf->column);	
+}
+
+void	fdf(int fd)
+{
+	t_fdf	*fdf;
+
+	fdf = init_fdf(fd, fdf);
 
 }
