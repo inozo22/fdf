@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:50:40 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/11 12:50:36 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/11 13:10:40 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(void)
 	t_data	img;
 	int		x = 5;
 	int		y = 5;
+	long	color;
 
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Kaixo!");
@@ -89,18 +90,20 @@ int	main(void)
 //hexagons
 	x = 1000;
 	y = 250;
-	while (x++ < 1250 && y-- > 125)
-		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
+	color = 0x00FF0000;
+
+	while (x++ < 1250 && y-- > 125 && color)
+		my_mlx_pixel_put(&img, x, y, color);
 	while (x++ < 1500 && y++ < 250)
-		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
+		my_mlx_pixel_put(&img, x, y, color);
 	while (y++ < 375)
-		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
+		my_mlx_pixel_put(&img, x, y, color);
 	while (x-- > 1000 && y++ < 500)
-		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
+		my_mlx_pixel_put(&img, x, y, color);
 	while (x-- > 750 && y-- > 375)
-		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
+		my_mlx_pixel_put(&img, x, y, color);
 	while (y-- > 250)
-		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
+		my_mlx_pixel_put(&img, x, y, color);
 
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
