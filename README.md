@@ -3,6 +3,8 @@
 1. [Subject](#1-subject)
     - [1.1. The Instruction](#11-The-Instruction)
     - [1.2. Obligation part](#12-Obligation-part)
+2. [Error control](#2-error-control)
+3. [Simple plan](#3-simple-plan)
 
 ## 1. Subject
 ### 1.1. The Instruction
@@ -14,3 +16,27 @@
 - If your project allows the use of libft, you should copy its source and its associated Makefile into a libft directory with a corresponding Makefile. Your project's Makefile of your project should first compile the library using its Makefile, and then compile the project.
 - It's recommended to create test programmes for your project, although this work will not be handed in or evaluated. It will give you the opportunity to verify that your software works correctly during your evaluation and that of your peers. And yes, you are allowed to use these tests during your evaluation or that of your peers.
 
+## 2. Error control
+- Number of argument is not 2 (ac != 2)
+- Different number of rows or columns
+- Does it have to be enclosed by 0(?)(creo que si)
+- Numbers are not int(IDK)
+- Shouldn't accept characters
+- (How many numbers of rows or columns I have to accept?)
+- 
+
+## 3. Simple plan
+- Accept argument (ac, **av(fd)) I don't have to link to list, because it won't allocate any memory before enter main function
+    - Error check(ac != 2)
+    - pass to main function(fdf?)
+        - gnl
+            - error fail memory allocation (not necessary release memory)
+            - error not numbers (necessary release memory)
+            - error not int (necessary release memory)
+            - pass to initiation (x, y and (general?))<- if it's needed
+                - x = rows(列) - check all numbers of row, check the first row and the last row
+                - y = columns(行) - check all numbers of columns, check the first columns and the last columns
+                - general
+            - pass to function draw (x, y, z, and colour)
+                - x
+                - y
