@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/11 16:39:58 by nimai            ###   ########.fr       */
+/*   Created: 2023/03/11 16:36:39 by nimai             #+#    #+#             */
+/*   Updated: 2023/03/11 16:41:49 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "fdf.h"
 
-# include "./lib/libft/libft.h"
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <math.h>
-# include "./lib/mlx_linux/mlx.h"
-# include "./lib/minilibx_macos/mlx.h"
+int	fdf_error(int type)
+{
+	if (type == 1)//error memory release unnecessary
+	{
+		ft_putstr_fd("error without memory", 1);
+		return (0);
+	}
 
-int	main(int ac, char **av);
-//int main(void);
-
-#endif
+}
