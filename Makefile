@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/10 12:07:31 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/11 07:52:25 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ clean:
 	@make -C $(LIBFT) clean
 	@make -C $(MLXDIR) clean
 	@rm -f $(OSRC)
-	@ echo "$(RED)Deleted $(YELLOW)$(NAME) $(RM_COL)objs ✔️"
+	@echo "$(RED)Deleted $(YELLOW)$(NAME) $(RM_COL)objs ✔️"
 
 fclean: clean
 	@make -C $(LIBFT) fclean
