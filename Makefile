@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/11 09:48:09 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/11 10:59:44 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,12 @@ OSRC		:= $(SRC:.c=.o)
 INC			:= /usr/include
 INCLIB		:= $(INC)/../lib
 LIBDIR		:= ./lib/
-MLXDIR		:= $(LIBDIR)mlx_linux#minilibx_macos
+MLXDIR		:= $(LIBDIR)minilibx_macos#mlx_linux
 LIBFT		:= $(LIBDIR)libft
 
 LFLAGS		:= -L$(MLXDIR) -lmlx -L$(INCLIB) -I$(MLXDIR) -lXext -lX11 -lm -lz
 MFLAGS		:= -L$(MLXDIR) -lmlx -framework OpenGL -framework AppKit
-LMFLAGS		:= $(LFLAGS)#$(MFLAGS)
+LMFLAGS		:= $(MFLAGS)#$(LFLAGS)
 SANITFLAG	:= -g3 -fsanitize=address
 CC			:= gcc
 
