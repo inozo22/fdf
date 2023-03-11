@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/11 15:11:20 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/11 15:38:14 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ LIBDIR		:= ./lib/
 MLXDIR		:= $(LIBDIR)minilibx_macos#mlx_linux
 LIBFT		:= $(LIBDIR)libft
 
-LFLAGS		:= -L$(MLXDIR) -lmlx -L$(INCLIB) -I$(MLXDIR) -lXext -lX11 -lm -lz
+#LFLAGS		:= -L$(MLXDIR) -lmlx -L$(INCLIB) -I$(MLXDIR) -lXext -lX11 -lm -lz
+LFLAGS		:= -L$(MLXDIR) -lmlx -L$(INCLIB) -I$(MLXDIR) -lSDL2 -lXext -lX11 -lm -ldl
 MFLAGS		:= -L$(MLXDIR) -lmlx -framework OpenGL -framework AppKit
 LMFLAGS		:= $(MFLAGS)#$(LFLAGS)
 #SANITFLAG	:= -fsanitize=address
@@ -43,7 +44,7 @@ $.o: %.c
 	make -C $(LIBFT)
 	make -C $(MLXDIR)
 	cp $(LIBFT)/libft.a .
-	@$(CC) -I/usr/include/ -I$(MLXDIR) -O3 -g  -c $< -o $@
+	@$(CC) -I$(INC) -I$(MLXDIR)/ -O3 -g  -c $< -o $@
 
 $(NAME): $(OSRC)
 	@echo "$(BLUE)--Compiling ${RM_COL} ${YELLOW}$(NAME) ${RM_COL}..."
