@@ -29,15 +29,20 @@ int	count_word(char *str, int is_first, t_fdf *fdf)
 
 	i = -1;
 	ret = 0;
+	if (!str)
+		exit (hollow_error(3));
 	while (str[++i] == 32)
 		;
-	while (str[++i])
+	while (str[i])
 	{
 		while (str[i] == 32)
 			i++;
 		if (str[i] < '0' || str[i] > '9')
-			exit (hollow_error(1));
+			exit (hollow_error(2));
+		while (str[i] >= '0' && str[i] <= '9')
+			i++;
 		ret++;
+		i++;
 	}
 	if (is_first)// if this is the first row, record the number and then compare later
 		fdf->first_row = ret;
@@ -102,4 +107,21 @@ void	fdf(int fd)
 	fdf = init_fdf(fd, fdf);
 //	fdf->row = init_row(fdf);
 
+}
+
+//for test
+int	main(int ac, char **av)
+{
+	t_fdf	*test;
+	int		i;
+	char *str;
+
+	if (ac = 2)
+	{
+		str = av[1];
+		printf("%s\n", str);
+		i = count_word(str, 1, test);
+		printf("the word's number of the string is %d\n", i);
+	}
+	return (0);
 }
