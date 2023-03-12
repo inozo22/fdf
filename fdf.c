@@ -22,7 +22,7 @@
 	dummy->
 } */
 
-int	count_word(char *str, int is_first, t_fdf *fdf)
+int	count_word(char *str, t_fdf *fdf)
 {
 	int	ret;
 	int	i;
@@ -44,7 +44,7 @@ int	count_word(char *str, int is_first, t_fdf *fdf)
 		ret++;
 		i++;
 	}
-	if (is_first)// if this is the first row, record the number and then compare later
+	if (fdf->is_first)// if this is the first row, record the number and then compare later
 		fdf->first_row = ret;
 	return (ret);
 }
@@ -53,16 +53,16 @@ t_line	*get_first_row(char *str, t_line *ret, t_fdf *fdf)
 {
 	int	len;
 	int	i;
-	int	is_first;
 
 	is_first = 1;
-	len = count_word(str, is_first, fdf);
+	len = count_word(str, fdf);
 	ret = (t_line *)malloc(sizeof(t_line) * (len + 1));
 	if (!ret)
-		exit (hollow_error(1));//gigi ari
+		exit (hollow_error(1));//gigi ari, it's not necessary to release fdf memory?
 	i = -1;
 	while (++i < len)
 	{
+		
 		
 	}
 	
