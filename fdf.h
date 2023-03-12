@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/11 21:29:55 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/12 11:46:23 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,23 @@ typedef struct s_line
 {
 	void			*content;
 	struct s_line	*next;
-	struct s_line	*prev;
+//	struct s_line	*prev;
+	int				id_row[1024];
+	int				id_column[1024];
 }	t_line;
 
 typedef struct s_fdf
 {
 	void			*content;
-	struct s_line	*row[ARGLIMIT];//kore de ii ki ga suru no se
-	struct s_line	*column[ARGLIMIT];
-    int             row_size;
-    int             clm_size;
+	struct s_line	*row;//kore de ii ki ga suru no se
+//	struct s_line	*column[ARGLIMIT];
+    int             first_row;//length of the first row
+//    int             clm_size;
 }	t_fdf;
 
 int	main(int ac, char **av);
 //int main(void);
-int	fdf_error(int type);
+int	hollow_error(int type);
+int	fdf_error(int type, t_fdf *fdf);
 
 #endif
