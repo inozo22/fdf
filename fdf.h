@@ -41,7 +41,7 @@ typedef struct s_fdf
 //	struct s_line	*column[ARGLIMIT];
     int             first_row;//length of the first row
 //    int             clm_size;
-	int				is_first = 1;//check norm
+	int				is_first;//check norm
 }	t_fdf;
 
 int	main(int ac, char **av);

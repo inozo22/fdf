@@ -45,24 +45,29 @@ int	count_word(char *str, t_fdf *fdf)
 		i++;
 	}
 	if (fdf->is_first)// if this is the first row, record the number and then compare later
+	{
 		fdf->first_row = ret;
+		fdf->is_first = 0;
+	}
 	return (ret);
 }
 
 t_line	*get_first_row(char *str, t_line *ret, t_fdf *fdf)
 {
-	int	len;
-	int	i;
+	char	**strs;
+	int		len;
+	int		i;
 
-	is_first = 1;
+	fdf->is_first = 1;
 	len = count_word(str, fdf);
-	ret = (t_line *)malloc(sizeof(t_line) * (len + 1));
+/* 	ret = (t_line *)malloc(sizeof(t_line) * (len + 1));
 	if (!ret)
-		exit (hollow_error(1));//gigi ari, it's not necessary to release fdf memory?
+		exit (hollow_error(1));//gigi ari, it's not necessary to release fdf memory? */
+	strs = ft_split(str, 32);//separation is only spaces? but also tablation?
 	i = -1;
 	while (++i < len)
 	{
-		
+		add_column(fdf, strs[i]);//2023/03/12 kokomade 
 		
 	}
 	
