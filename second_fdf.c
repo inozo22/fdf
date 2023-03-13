@@ -12,6 +12,12 @@
 
 #include "fdf.h"
 
+
+// I have tried to work with lines, but maybe it's over-kill
+
+
+
+
 /* t_line	*add_column(t_line *row, t_fdf *fdf, char *str)
 {
 	t_line	*new;
@@ -54,11 +60,11 @@ int	count_word(char *str, t_fdf *fdf)
 		ret++;
 		i++;
 	}
-/* 	if (fdf->is_first)// if this is the first row, record the number and then compare later
+	if (fdf->is_first)// if this is the first row, record the number and then compare later
 	{
 		fdf->first_row = ret;
 		fdf->is_first = 0;
-	} */
+	}
 	return (ret);
 }
 
@@ -86,7 +92,7 @@ t_line	*get_first_row(char *str, t_line *row, t_fdf *fdf)
 t_line	*init_row(int fd, t_fdf *fdf)
 {
 	t_line	*row;
-
+	char	*str;
 
 //	ret = get_dummy();
 	str = get_next_line(fd);
@@ -103,20 +109,10 @@ t_line	*init_row(int fd, t_fdf *fdf)
 
 t_fdf	*init_fdf(int fd, t_fdf *fdf)
 {
-	char	*str;
-	int		size;
-
 	fdf = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!fdf)
 		exit (hollow_error(1));//error without memory
-//	fdf->row = init_row(fd, fdf);
-	str = get_next_line(fd);
-	fdf->row_len = count_word(str, fdf);
-	i = -1;
-	while (++i < size)
-	{
-
-	}
+	fdf->row = init_row(fd, fdf);
 
 //	fdf->column = init_column(fd, fdf->column);	
 	return (fdf);

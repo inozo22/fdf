@@ -25,6 +25,13 @@
 # define ARGLIMIT 1024
 
 
+typedef struct s_nmbs
+{
+	long	value;
+	long	id_x;
+	long	id_y;
+}	t_nmbs;
+
 typedef struct s_line
 {
 	void			*content;
@@ -39,9 +46,11 @@ typedef struct s_fdf
 	void			*content;
 	struct s_line	*row;//kore de ii ki ga suru no se
 //	struct s_line	*column[ARGLIMIT];
-    int             first_row;//length of the first row
-//    int             clm_size;
-	int				is_first;//check norm
+    int             row_len;//length of the first row
+	int				clm_len;
+	t_nmbs			n[ARGLIMIT];
+
+//	int				is_first;//check norm
 }	t_fdf;
 
 int	main(int ac, char **av);
