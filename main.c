@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:50:40 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/11 11:41:15 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/13 20:46:25 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,14 @@ int	main(void)
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
+
+
+/* int	main(int ac, char **av)
+{
+
+	printf("test, test!\n");
+	printf("ac: %d\nav: %s\n", ac, av[1]);
+
+	return (0);
+	
+} */
