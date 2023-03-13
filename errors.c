@@ -34,14 +34,20 @@ int	hollow_error(int type)
 }
 int	fdf_error(int type, t_fdf *fdf)
 {
-	if (type == 1)//error memory release unnecessary
+	if (type == 1)
 	{
 		ft_putstr_fd("error with memory\n", STDERR);
 		return (1);
 	}
-	if (type == 2)//error memory release unnecessary
+	if (type == 2)
 	{
 		ft_putstr_fd("map size error\n", STDERR);
+		return (1);
+	}
+		if (type == 3)//error memory release unnecessary
+	{
+		ft_putstr_fd("the map is not enclosed by 0\n", STDERR);
+		all_free(fdf);
 		return (1);
 	}
 }
