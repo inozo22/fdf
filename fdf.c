@@ -32,10 +32,10 @@
 	dummy->
 } */
 
-int	count_word(char *str, t_fdf *fdf)
+long	count_word(char *str, t_fdf *fdf)
 {
-	int	ret;
-	int	i;
+	long	ret;
+	long	i;
 
 	i = -1;
 	ret = 0;
@@ -46,6 +46,8 @@ int	count_word(char *str, t_fdf *fdf)
 	while (str[i])
 	{
 		while (str[i] == 32)
+			i++;
+		if (str[i] == '-' || str[i] == '+')
 			i++;
 		if (str[i] < '0' || str[i] > '9')
 			exit (hollow_error(2));
@@ -62,7 +64,7 @@ int	count_word(char *str, t_fdf *fdf)
 	return (ret);
 }
 
-t_line	*get_first_row(char *str, t_line *row, t_fdf *fdf)
+/* t_line	*get_first_row(char *str, t_line *row, t_fdf *fdf)
 {
 	char	**strs;
 	int		len;
@@ -70,9 +72,9 @@ t_line	*get_first_row(char *str, t_line *row, t_fdf *fdf)
 
 	fdf->is_first = 1;
 	len = count_word(str, fdf);
-/* 	ret = (t_line *)malloc(sizeof(t_line) * (len + 1));
+ 	ret = (t_line *)malloc(sizeof(t_line) * (len + 1));
 	if (!ret)
-		exit (hollow_error(1));//gigi ari, it's not necessary to release fdf memory? */
+		exit (hollow_error(1));//gigi ari, it's not necessary to release fdf memory? 
 	strs = ft_split(str, 32);//separation is only spaces? but also tablation?
 	i = -1;
 	while (++i < len)
@@ -81,9 +83,9 @@ t_line	*get_first_row(char *str, t_line *row, t_fdf *fdf)
 		
 	}
 	
-}
+} */
 
-t_line	*init_row(int fd, t_fdf *fdf)
+/* t_line	*init_row(int fd, t_fdf *fdf)
 {
 	t_line	*row;
 
@@ -91,32 +93,53 @@ t_line	*init_row(int fd, t_fdf *fdf)
 //	ret = get_dummy();
 	str = get_next_line(fd);
 	row = get_first_row(str, ret, fdf);
-/* 	str = get_next_line(fd);
+	str = get_next_line(fd);
 	while (str)
 	{
 		printf("%s", str);
 		free (str);
 		str = get_next_line(fd);
-	} */
+	}
 	return (row);
-}
+} */
 
+//the fd already has been opened
 t_fdf	*init_fdf(int fd, t_fdf *fdf)
 {
 	char	*str;
-	int		size;
+	char	**strs;
+	long	size;
+	long	i;
 
 	fdf = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!fdf)
 		exit (hollow_error(1));//error without memory
 //	fdf->row = init_row(fd, fdf);
 	str = get_next_line(fd);
-	fdf->row_len = count_word(str, fdf);
+	size = count_word(str, fdf);
+	strs = ft_split(str, 32);
+	fdf->column = 0;
 	i = -1;
 	while (++i < size)
 	{
-
+		fdf->n[fdf->column][i].value = ft_atoi(strs[i]);
+		fdf->n[fdf->column][i].id_x = i;
+		fdf->n[fdf->column][i].id_y = fdf->column;
 	}
+	while (i < ARGLIMIT)//check if it's ok leave this as empty
+	{
+		fdf->n[fdf->column][i].value = 0;//you kentou
+		fdf->n[fdf->column][i].id_x = i;
+		fdf->n[fdf->column][i].id_y = fdf->column;
+	}
+	printf("print the first row\n");
+	i = 0;
+	while (i < fdf->row_len)
+	{
+		printf("%ld ", fdf->n[0][i]);
+		i++;
+	}
+	printf("\n");
 
 //	fdf->column = init_column(fd, fdf->column);	
 	return (fdf);
@@ -137,10 +160,33 @@ void	fdf(int fd)
 //for test
 int	main(int ac, char **av)
 {
-	t_fdf	*test;
-	int		i;
+		char	*str;
+	int		fd;
+
+	if (ac != 2)
+	{
+		ft_putstr_fd("Usage : ./fdf <filename> [ case_size z_size ]", 1);
+		exit (hollow_error(1));
+	}
+	fd = open(av[1], O_RDONLY);
+	if (fd < 1)
+		exit (hollow_error(1));
+	fdf(fd);
+/* 	str = get_next_line(fd);
+	while (str)
+	{
+		printf("%s", str);
+		free (str);
+		str = get_next_line(fd);
+	} */
+	close(fd);
+	return (0);
+}
+/* 	t_fdf	*test;
+	long		i;
 	char *str;
 
+	fdf(fd);
 	if (ac = 2)
 	{
 		str = av[1];
@@ -149,4 +195,4 @@ int	main(int ac, char **av)
 		printf("the word's number of the string is %d\n", i);
 	}
 	return (0);
-}
+} */

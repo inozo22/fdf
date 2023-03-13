@@ -37,8 +37,8 @@ typedef struct s_line
 	void			*content;
 	struct s_line	*next;
 //	struct s_line	*prev;
-	int				id_row[1024];
-	int				id_column[1024];
+	long				id_row[1024];
+	long				id_column[1024];
 }	t_line;
 
 typedef struct s_fdf
@@ -46,9 +46,10 @@ typedef struct s_fdf
 	void			*content;
 	struct s_line	*row;//kore de ii ki ga suru no se
 //	struct s_line	*column[ARGLIMIT];
-    int             row_len;//length of the first row
-	int				clm_len;
-	t_nmbs			n[ARGLIMIT];
+    long			row_len;//length of the first row
+	long			clm_len;
+	t_nmbs			n[ARGLIMIT][ARGLIMIT];
+	long			column;
 
 //	int				is_first;//check norm
 }	t_fdf;
