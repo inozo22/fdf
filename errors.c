@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:36:39 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/13 15:11:09 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/13 21:00:02 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ int	hollow_error(int type)
 		ft_putstr_fd("count number error\n", STDERR);
 		return (1);
 	}
-		if (type == 3)//error memory release unnecessary
+	if (type == 3)//error memory release unnecessary
 	{
 		ft_putstr_fd("no argment\n", STDERR);
 		return (1);
 	}
-
+	return (0);
 }
+
 int	fdf_error(int type, t_fdf *fdf)
 {
 	if (type == 1)
@@ -50,4 +51,5 @@ int	fdf_error(int type, t_fdf *fdf)
 		all_free(fdf);
 		return (1);
 	}
+	return (0);
 }

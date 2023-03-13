@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/13 15:28:20 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/13 21:18:13 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ typedef struct s_fdf
 	long			is_first;//check norm
 }	t_fdf;
 
+void	fdf(int fd);
 int		main(int ac, char **av);
 //int main(void);
 int		hollow_error(int type);
 int		fdf_error(int type, t_fdf *fdf);
 void	all_free(t_fdf *fdf);
 char	**strs_clear(char **tab, long i);
+t_fdf	*init_fdf(int fd, t_fdf *fdf);
 
 #endif

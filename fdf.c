@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/13 15:39:48 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/13 21:20:31 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 bool	is_enclosed(t_fdf *fdf)
 {
-	int	i;
+	long	i;
 
 	i = -1;
 	printf("row_len: %ld\ncolumn: %ld\n", fdf->row_len, fdf->column);
@@ -157,6 +157,7 @@ void	fdf(int fd)
 {
 	t_fdf	*fdf;
 
+	fdf = NULL;
 	fdf = init_fdf(fd, fdf);
 	if (!(is_enclosed(fdf)))
 		exit (fdf_error(3, fdf));
@@ -165,7 +166,7 @@ void	fdf(int fd)
 }
 
 //for test
-int	main(int ac, char **av)
+/* int	main(int ac, char **av)
 {
 	char	*str;
 	int		fd;
@@ -182,5 +183,5 @@ int	main(int ac, char **av)
 
 	close(fd);
 	return (0);
-}
+} */
 

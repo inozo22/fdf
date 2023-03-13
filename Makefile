@@ -6,13 +6,18 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/11 20:50:28 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/13 21:16:16 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= fdf
 
-SRC			:= main.c \
+SRC			:=  \
+				main.c \
+				errors.c \
+				all_free.c \
+				fdf.c
+				
 
 OSRC		:= $(SRC:.c=.o)
 INC			:= /usr/include
@@ -41,10 +46,10 @@ CYAN 		:= \033[1;36m
 all: $(NAME)
 
 $.o: %.c
-	make -C $(LIBFT)
-	make -C $(MLXDIR)
-	cp $(LIBFT)/libft.a .
-	@$(CC) -I$(INC) -I$(MLXDIR)/ -O3 -g  -c $< -o $@
+	@make -C $(LIBFT)
+	@make -C $(MLXDIR)
+	@cp $(LIBFT)/libft.a .
+	@$(CC) -I$(INC) -I$(MLXDIR)/ -c $< -o $@
 
 $(NAME): $(OSRC)
 	@echo "$(BLUE)--Compiling ${RM_COL} ${YELLOW}$(NAME) ${RM_COL}..."
