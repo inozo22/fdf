@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/12 11:46:23 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/13 14:39:32 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_fdf
 	t_nmbs			n[ARGLIMIT][ARGLIMIT];
 	long			column;
 
-//	int				is_first;//check norm
+	long			is_first;//check norm
 }	t_fdf;
 
 int	main(int ac, char **av);

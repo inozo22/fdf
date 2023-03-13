@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/12 11:46:05 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/13 14:49:46 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,36 +110,55 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 	char	**strs;
 	long	size;
 	long	i;
+	long	j;
 
 	fdf = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!fdf)
 		exit (hollow_error(1));//error without memory
 //	fdf->row = init_row(fd, fdf);
 	str = get_next_line(fd);
-	size = count_word(str, fdf);
-	strs = ft_split(str, 32);
+/* 	size = count_word(str, fdf);
+	strs = ft_split(str, 32); */
 	fdf->column = 0;
-	i = -1;
-	while (++i < size)
+
+	while (str)
 	{
-		fdf->n[fdf->column][i].value = ft_atoi(strs[i]);
-		fdf->n[fdf->column][i].id_x = i;
-		fdf->n[fdf->column][i].id_y = fdf->column;
+		size = count_word(str, fdf);
+		strs = ft_split(str, 32);
+		i = -1;
+		while (++i < size)
+		{
+			fdf->n[fdf->column][i].value = ft_atoi(strs[i]);
+			printf("%ld\n", fdf->n[fdf->column][i].value);
+			fdf->n[fdf->column][i].id_x = i;
+			fdf->n[fdf->column][i].id_y = fdf->column;
+		}
+		while (i < ARGLIMIT)//check if it's ok leave this as empty
+		{
+			fdf->n[fdf->column][i].value = 0;//you kentou
+			fdf->n[fdf->column][i].id_x = i;
+			fdf->n[fdf->column][i].id_y = fdf->column;
+			i++;
+		}
+		free (str);
+		str = get_next_line(fd);
+		fdf->column++;
 	}
-	while (i < ARGLIMIT)//check if it's ok leave this as empty
-	{
-		fdf->n[fdf->column][i].value = 0;//you kentou
-		fdf->n[fdf->column][i].id_x = i;
-		fdf->n[fdf->column][i].id_y = fdf->column;
-	}
+	printf("fdf->column: %ld\n", fdf->column);	
 	printf("print the first row\n");
 	i = 0;
-	while (i < fdf->row_len)
+	j = -1;
+	while (++j < fdf->column)
 	{
-		printf("%ld ", fdf->n[0][i]);
-		i++;
+		while (i < size)
+		{
+			printf("%ld ", fdf->n[j][i].value);
+			i++;
+		}
+		printf("\n");
+		i = 0;
 	}
-	printf("\n");
+
 
 //	fdf->column = init_column(fd, fdf->column);	
 	return (fdf);
@@ -160,7 +179,7 @@ void	fdf(int fd)
 //for test
 int	main(int ac, char **av)
 {
-		char	*str;
+	char	*str;
 	int		fd;
 
 	if (ac != 2)
