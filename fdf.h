@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/13 15:21:33 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/13 15:28:20 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
+# include <stdbool.h>
 # include "./lib/mlx_linux/mlx.h"
 # include "./lib/minilibx_macos/mlx.h"
 
