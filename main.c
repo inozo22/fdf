@@ -25,13 +25,6 @@ int	main(int ac, char **av)
 	if (fd < 1)
 		exit (hollow_error(1));
 	fdf(fd);
-/* 	str = get_next_line(fd);
-	while (str)
-	{
-		printf("%s", str);
-		free (str);
-		str = get_next_line(fd);
-	} */
 	close(fd);
 	return (0);
 }

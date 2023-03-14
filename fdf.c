@@ -174,7 +174,7 @@ void	fill_data(int fd, t_fdf *fdf)
 		str = get_next_line(fd);
 		fdf->column++;
 	}
-//	strs_clear(fdf->strs, size);
+//	strs_clear(fdf->strs, size);//kore ireru to double free
 	free (str);
 }
 
@@ -204,13 +204,8 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 		printf("\n");
 		i = 0;
 	}
-
-
-//	fdf->column = init_column(fd, fdf->column);	
 	return (fdf);
 }
-
-
 
 void	fdf(int fd)
 {
@@ -218,32 +213,9 @@ void	fdf(int fd)
 
 	fdf = NULL;
 	fdf = init_fdf(fd, fdf);
-/* 	if (!(is_enclosed(fdf)))
-		exit (fdf_error(3, fdf)); */
 	printf("calculate the map size according to the fdf->row_len and fdf->column\n");
 	printf("start the map\n");
 	draw_map(fdf);
-	printf("is enclosed\n");
+	printf("map made\n");
 	all_free (fdf);
 }
-
-//for test
-/* int	main(int ac, char **av)
-{
-	char	*str;
-	int		fd;
-
-	if (ac != 2)
-	{
-		ft_putstr_fd("Usage : ./fdf <filename> [ case_size z_size ]", 1);
-		exit (hollow_error(1));
-	}
-	fd = open(av[1], O_RDONLY);
-	if (fd < 1)
-		exit (hollow_error(1));
-	fdf(fd);
-
-	close(fd);
-	return (0);
-} */
-
