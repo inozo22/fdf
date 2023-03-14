@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:36:39 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/14 09:17:08 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/14 16:37:43 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	fdf_error(int type, t_fdf *fdf)
 		all_free(fdf);
 		return (1);
 	}
-	if (type == 4)//error memory release necessary
+	if (type == 5)//error memory release necessary
 	{
 		ft_putstr_fd("the colour code is not hexa\n", STDERR);
 		all_free(fdf);
