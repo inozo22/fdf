@@ -84,21 +84,43 @@ long	count_word(char *str, t_fdf *fdf)
 	return (ret);
 }
 
-	
+
+void	fill_n(t_fdf *fdf, char *str, long size)
+{
+	long	i;
+
+	i = -1;
+	while (++i < size)
+	{
+		fdf->n[fdf->column][i].value = ft_atoi(fdf->strs[i]);
+		fdf->n[fdf->column][i].id_x = i;
+		fdf->n[fdf->column][i].id_y = fdf->column;
+	}
+	while (i < ARGLIMIT)//check if it's ok leave this as empty
+	{
+		fdf->n[fdf->column][i].value = 0;//you kentou
+		fdf->n[fdf->column][i].id_x = i;
+		fdf->n[fdf->column][i].id_y = fdf->column;
+		i++;
+	}
+}
+
 void	fill_data(int fd, t_fdf *fdf)
 {
 	char	*str;
 	long	size;
-	long	i;
+//	long	i;
 	
 	fdf->is_first = 1;
 	str = get_next_line(fd);
-	fdf->column = 0;
+
+ 	fdf->column = 0;
 	while (str)
 	{
 		size = count_word(str, fdf);
 		fdf->strs = ft_split(str, 32);
-		i = -1;
+		fill_n(fdf, str, size);
+		/*i = -1;
 		while (++i < size)
 		{
 			fdf->n[fdf->column][i].value = ft_atoi(fdf->strs[i]);
@@ -111,12 +133,13 @@ void	fill_data(int fd, t_fdf *fdf)
 			fdf->n[fdf->column][i].id_x = i;
 			fdf->n[fdf->column][i].id_y = fdf->column;
 			i++;
-		}
+		} */
 		strs_clear(fdf->strs, size);
 		free (str);
 		str = get_next_line(fd);
 		fdf->column++;
 	}
+	free (str);
 }
 
 //the fd already has been opened
