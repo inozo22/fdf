@@ -12,6 +12,25 @@
 
 #include "fdf.h"
 
+long	get_colour(char *str, long i, long row, t_fdf *fdf)
+{
+	char	*tmp;
+	long	j;
+
+	j = 0;
+	if (!(str[i] == '0' && (str[i + 1] == 'x' || str[i + 1] == 'X')))
+		exit (fdf_error(5, fdf));//koreha hexa janai error
+	i--;
+	while (str[++i] != 32)
+	{
+		tmp[j++] = str[i];
+	}
+	fdf->n[fdf->column][row].colour = tmp;
+	printf("print colour: %ld\nprint counter i:%ld\n", fdf->n[fdf->column][row].colour, i);
+	return (i);
+
+}
+
 void	draw_map(t_fdf *fdf)//check all rows
 {
 	long	i;
@@ -105,6 +124,8 @@ long	count_word(char *str, t_fdf *fdf)
 			exit (hollow_error(2));
 		while (str[i] >= '0' && str[i] <= '9')
 			i++;
+		if (str[i] == ',')
+			i = get_colour(str, i, ret, fdf);
 		ret++;
 		i++;
 		while (str[i] == 32)

@@ -31,6 +31,7 @@
 typedef struct s_nmbs
 {
 	long	value;
+	char	*colour;
 	long	id_x;
 	long	id_y;
 }	t_nmbs;

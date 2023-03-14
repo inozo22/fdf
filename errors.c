@@ -47,15 +47,21 @@ int	fdf_error(int type, t_fdf *fdf)
 		all_free(fdf);
 		return (1);
 	}
-		if (type == 3)//error memory release necessary
+	if (type == 3)//error memory release necessary
 	{
 		ft_putstr_fd("the map is not enclosed by 0\n", STDERR);
 		all_free(fdf);
 		return (1);
 	}
-		if (type == 4)//error memory release necessary
+	if (type == 4)//error memory release necessary
 	{
 		ft_putstr_fd("the number is out of int\n", STDERR);
+		all_free(fdf);
+		return (1);
+	}
+	if (type == 4)//error memory release necessary
+	{
+		ft_putstr_fd("the colour code is not hexa\n", STDERR);
 		all_free(fdf);
 		return (1);
 	}
