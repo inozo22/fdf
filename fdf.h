@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/14 16:46:08 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/14 17:06:57 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,5 @@ int		fdf_error(int type, t_fdf *fdf);
 void	all_free(t_fdf *fdf);
 char	**strs_clear(char **tab, long i);
 t_fdf	*init_fdf(int fd, t_fdf *fdf);
-long	fdf_atoi(const char *str);
 
 #endif

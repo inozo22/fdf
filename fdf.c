@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/14 16:57:19 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/14 17:52:26 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ long	get_colour(char *str, long i, long row, t_fdf *fdf)
 	long	j;
 
 	j = 0;
-	if (!(str[++i] == '0' && (str[i + 1] /* == 'x' || str[i + 1] == 'X' */)))
+	if (!(str[++i] == '0' && (str[i + 1]  == 'x'|| str[i + 1] == 'X')))
 		exit (fdf_error(5, fdf));//koreha hexa janai error
 	i++;
 	while (str[++i] != 32)
@@ -114,10 +114,8 @@ long	count_word(char *str, t_fdf *fdf)
 		exit (hollow_error(3));
 	while (str[++i] == 32)
 		;
-	while (str[i])
+	while (str[i] != '\0' && str[i] != 10)
 	{
-/* 		while (str[i] == 32)
-			i++; */
 		if (str[i] == '-' || str[i] == '+')
 			i++;
 		if (str[i] < '0' || str[i] > '9')
@@ -134,19 +132,18 @@ long	count_word(char *str, t_fdf *fdf)
 	printf("count_number ret: %ld\n", ret);
 	if (!check_amount(fdf, ret))
 		exit(fdf_error(2, fdf));
-
 	return (ret);
 }
 
 
-void	fill_n(t_fdf *fdf, char *str, long size)
+void	fill_n(t_fdf *fdf, long size)
 {
 	long	i;
 
 	i = -1;
 	while (++i < size)
 	{
-		fdf->n[fdf->column][i].value = fdf_atoi(fdf->strs[i]);
+		fdf->n[fdf->column][i].value = ft_atoi(fdf->strs[i]);
 		fdf->n[fdf->column][i].id_x = i;
 		fdf->n[fdf->column][i].id_y = fdf->column;
 	}
@@ -157,7 +154,6 @@ void	fill_n(t_fdf *fdf, char *str, long size)
 		fdf->n[fdf->column][i].id_y = fdf->column;
 		i++;
 	}
-	printf("check str: %s\ncheck counter: %ld\n", str, i);
 }
 
 void	fill_data(int fd, t_fdf *fdf)
@@ -172,11 +168,13 @@ void	fill_data(int fd, t_fdf *fdf)
 	{
 		size = count_word(str, fdf);
 		fdf->strs = ft_split(str, 32);
-		fill_n(fdf, str, size);
+		fill_n(fdf, size);
+		strs_clear(fdf->strs, size);
 		free (str);
 		str = get_next_line(fd);
 		fdf->column++;
 	}
+//	strs_clear(fdf->strs, size);
 	free (str);
 }
 
@@ -190,7 +188,6 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 	if (!fdf)
 		exit (hollow_error(1));//error without memory
 	fill_data(fd, fdf);
-	printf("where am I?\n");
 // koko made
 
 
