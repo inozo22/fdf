@@ -19,7 +19,8 @@
 ## 2. Error control
 - Number of argument is not 2 (ac != 2)
 - Different number of rows or columns
-- Does it have to be enclosed by 0(?)(creo que si)
+- Does it have to be enclosed by 0
+    - No, it can be any numbers
 - Numbers are not int(IDK)
 - Shouldn't accept characters
 - (How many numbers of rows or columns I have to accept?)

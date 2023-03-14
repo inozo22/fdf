@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/13 21:18:13 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/14 09:09:07 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 
 # define STDERR 2
 # define ARGLIMIT 1024
+# define INTMAX 2147483647
+# define INTMIN -2147483648
 
 
 typedef struct s_nmbs

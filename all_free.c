@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/13 15:18:01 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/14 08:52:56 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**strs_clear(char **tab, long i)
 
 void	all_free(t_fdf *fdf)
 {
-	if (fdf->strs)
+	if (fdf->strs)//maybe I can omit this, check when I finish all functions
 		strs_clear(fdf->strs, fdf->row_len);
 	
 	free (fdf);

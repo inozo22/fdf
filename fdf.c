@@ -6,14 +6,44 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/13 21:20:31 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/14 09:43:36 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void	draw_map(t_fdf *fdf)//check all rows
+{
+	long	i;
+	long	j;
 
-bool	is_enclosed(t_fdf *fdf)
+	i = -1;
+	j = -1;
+	while (++j < fdf->column)
+	{
+		while (++i < fdf->row_len)
+		{
+			if (fdf->n[j][i].value < INTMIN || fdf->n[j][i].value > INTMAX)//check the first row->OK
+				exit (fdf_error(4, fdf));
+			if (i != fdf->row_len - 1)
+			{
+				if (fdf->n[j][i].value == fdf->n[j][i + 1].value)//order to draw the line
+					printf("put a straight line to the right\n");
+				else
+					printf("calculate the slope\n");
+			}
+			if (i != fdf->column - 1)
+			{
+				if (fdf->n[j][i].value == fdf->n[j + 1][i].value)//order to draw the line
+					printf("put a straight line to the bottom\n");
+				else
+					printf("calculate the slope\n");
+			}
+		}
+	}
+}
+
+/* bool	is_enclosed(t_fdf *fdf)
 {
 	long	i;
 
@@ -37,8 +67,7 @@ bool	is_enclosed(t_fdf *fdf)
 		printf("first clm[%ld]: %ld\nlast clm[%ld]: %ld\n",i, fdf->n[i][0].value, i, fdf->n[i][fdf->row_len].value);
 	}
 	return (true);
-
-}
+} */
 
 bool check_amount(t_fdf *fdf, long ret)
 {
@@ -68,8 +97,8 @@ long	count_word(char *str, t_fdf *fdf)
 		;
 	while (str[i])
 	{
-		while (str[i] == 32)
-			i++;
+/* 		while (str[i] == 32)
+			i++; */
 		if (str[i] == '-' || str[i] == '+')
 			i++;
 		if (str[i] < '0' || str[i] > '9')
@@ -78,9 +107,13 @@ long	count_word(char *str, t_fdf *fdf)
 			i++;
 		ret++;
 		i++;
+		while (str[i] == 32)
+			i++;
 	}
+	printf("count_number ret: %ld\n", ret);
 	if (!check_amount(fdf, ret))
 		exit(fdf_error(2, fdf));
+
 	return (ret);
 }
 
@@ -103,42 +136,28 @@ void	fill_n(t_fdf *fdf, char *str, long size)
 		fdf->n[fdf->column][i].id_y = fdf->column;
 		i++;
 	}
+	printf("check str: %s\n", str);
 }
 
 void	fill_data(int fd, t_fdf *fdf)
 {
 	char	*str;
 	long	size;
-//	long	i;
 	
 	fdf->is_first = 1;
 	str = get_next_line(fd);
-
  	fdf->column = 0;
 	while (str)
 	{
 		size = count_word(str, fdf);
 		fdf->strs = ft_split(str, 32);
 		fill_n(fdf, str, size);
-		/*i = -1;
-		while (++i < size)
-		{
-			fdf->n[fdf->column][i].value = ft_atoi(fdf->strs[i]);
-			fdf->n[fdf->column][i].id_x = i;
-			fdf->n[fdf->column][i].id_y = fdf->column;
-		}
-		while (i < ARGLIMIT)//check if it's ok leave this as empty
-		{
-			fdf->n[fdf->column][i].value = 0;//you kentou
-			fdf->n[fdf->column][i].id_x = i;
-			fdf->n[fdf->column][i].id_y = fdf->column;
-			i++;
-		} */
 		strs_clear(fdf->strs, size);
 		free (str);
 		str = get_next_line(fd);
 		fdf->column++;
 	}
+	strs_clear(fdf->strs, size);
 	free (str);
 }
 
@@ -152,6 +171,7 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 	if (!fdf)
 		exit (hollow_error(1));//error without memory
 	fill_data(fd, fdf);
+
 // koko made
 
 
@@ -182,8 +202,11 @@ void	fdf(int fd)
 
 	fdf = NULL;
 	fdf = init_fdf(fd, fdf);
-	if (!(is_enclosed(fdf)))
-		exit (fdf_error(3, fdf));
+/* 	if (!(is_enclosed(fdf)))
+		exit (fdf_error(3, fdf)); */
+	printf("calculate the map size according to the fdf->row_len and fdf->column\n");
+	printf("start the map\n");
+	draw_map(fdf);
 	printf("is enclosed\n");
 	all_free (fdf);
 }
