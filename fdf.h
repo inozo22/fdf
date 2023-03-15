@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/15 12:39:43 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/15 15:15:04 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include <math.h>
 # include <stdbool.h>
 # include "./lib/mlx_linux/mlx.h"
-# include "./lib/minilibx_macos/mlx.h"
+
+//# include "./lib/minilibx_macos/mlx.h"
 
 # define STDERR 2
 # define ARGLIMIT 1024
@@ -76,8 +77,8 @@ typedef struct s_fdf
 }	t_fdf;
 
 void	fdf(int fd);
-int		main(int ac, char **av);
-//int main(void);
+//int		main(int ac, char **av);
+int main(void);
 int		hollow_error(int type);
 int		fdf_error(int type, t_fdf *fdf);
 void	all_free(t_fdf *fdf);

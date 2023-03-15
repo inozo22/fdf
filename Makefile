@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/15 12:04:50 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/15 15:09:26 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,13 @@ OBJ			:= $(addprefix $(OBJDIR), $(SRC:.c=.o))
 INC			:= /usr/include
 INCLIB		:= $(INC)/../lib
 LIBDIR		:= ./lib/
-MLXDIR		:= $(LIBDIR)minilibx_macos##mlx_linux#
+MLXDIR		:= $(LIBDIR)mlx_linux#minilibx_macos##
 LIBFT		:= $(LIBDIR)libft
 
 LFLAGS		:= -L$(MLXDIR) -lmlx -L$(INCLIB) -I$(MLXDIR) -lXext -lX11 -lm -lz
 #There is another graphic library named as SDL?
 MFLAGS		:= -L$(MLXDIR) -lmlx -framework OpenGL -framework AppKit
-LMFLAGS		:= $(MFLAGS)#$(LFLAGS)
+LMFLAGS		:= $(LFLAGS)#$(MFLAGS)
 #SANITFLAG	:= -fsanitize=address
 CC			:= gcc
 CFLAGS		:= -g3 -Wall -Wextra -Werror
@@ -58,8 +58,8 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 
 $(NAME): $(OBJ)
 	@echo "$(BLUE)--Compiling ${RM_COL} ${YELLOW}$(NAME) ${RM_COL}..."
-	@make -C $(LIBFT)
-	@make -C $(MLXDIR)
+	@make -sC $(LIBFT)
+	@make -sC $(MLXDIR)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT)/libft.a -Ifdf.h $(LMFLAGS) -o $(NAME)
 	@echo "$(GREEN)$(NAME) created[0m ✔️"
 
