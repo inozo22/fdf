@@ -6,11 +6,11 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:30:54 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/13 20:56:30 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/15 11:50:36 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 int	main(int ac, char **av)
 {

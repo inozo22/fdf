@@ -6,11 +6,11 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/14 17:01:45 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/15 11:50:21 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 char	**strs_clear(char **tab, long i)
 {

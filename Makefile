@@ -6,12 +6,13 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/15 10:00:35 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/15 11:57:58 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= fdf
 
+SRCDIR		:= ./src/
 SRC			:=  \
 				main.c \
 				errors.c \
@@ -20,8 +21,8 @@ SRC			:=  \
 				open_window.c
 
 				
-
-OSRC		:= $(SRC:.c=.o)
+OBJDIR		:= ./obj/
+OBJ			:= $(addprefix $(OBJDIR), $(SRC:.c=.o))
 INC			:= /usr/include
 INCLIB		:= $(INC)/../lib
 LIBDIR		:= ./lib/
@@ -45,25 +46,28 @@ YELLOW		:= \033[1;33m
 BLUE		:= \033[1;34m
 CYAN 		:= \033[1;36m
 
-all: $(NAME)
+all: $(OBJDIR) $(NAME)
 
-$.o: %.c
+$(OBJDIR):
+	@mkdir -p $@
+
+$(OBJDIR)%.o: $(SRCDIR)%.c
 	@make -C $(LIBFT)
 	@make -C $(MLXDIR)
 	@cp $(LIBFT)/libft.a .
 	@$(CC) -I$(INC) -I$(MLXDIR)/ -c $< -o $@
 
-$(NAME): $(OSRC)
+$(NAME): $(OBJ)
 	@echo "$(BLUE)--Compiling ${RM_COL} ${YELLOW}$(NAME) ${RM_COL}..."
 	@make -C $(LIBFT)
 	@make -C $(MLXDIR)
-	@$(CC) $(CFLAGS) $(OSRC) $(LIBFT)/libft.a -Ifdf.h $(LMFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT)/libft.a -Ifdf.h $(LMFLAGS) -o $(NAME)
 	@echo "$(GREEN)$(NAME) created[0m ✔️"
 
 clean:
 	@make -C $(LIBFT) clean
 	@make -C $(MLXDIR) clean
-	@rm -f $(OSRC)
+	@rm -rf $(OBJDIR)
 	@echo "$(RED)Deleted $(YELLOW)$(NAME) $(RM_COL)objs ✔️"
 
 fclean: clean

@@ -6,12 +6,13 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 09:56:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/15 11:06:39 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/15 11:50:40 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
+//I think I should use 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
