@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/15 09:27:43 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/15 10:00:35 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC			:=  \
 				errors.c \
 				all_free.c \
 				fdf.c \
+				open_window.c
 
 				
 

@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/15 09:33:50 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/15 10:00:34 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ void	fdf(int fd)
 
 	fdf = NULL;
 	fdf = init_fdf(fd, fdf);
+	open_window(fdf);
 	printf("calculate the map size according to the fdf->row_len and fdf->column\n");
 	printf("start the map\n");
 	draw_map(fdf);

@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/14 17:06:57 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/15 10:00:17 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@
 # define INTMAX 2147483647
 # define INTMIN -2147483648
 
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
 
 typedef struct s_nmbs
 {
@@ -67,5 +75,6 @@ int		fdf_error(int type, t_fdf *fdf);
 void	all_free(t_fdf *fdf);
 char	**strs_clear(char **tab, long i);
 t_fdf	*init_fdf(int fd, t_fdf *fdf);
+void	open_window(t_fdf *fdf);
 
 #endif
