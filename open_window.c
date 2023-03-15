@@ -6,11 +6,19 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 09:56:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/15 10:16:32 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/15 11:06:39 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
 
 void	open_window(t_fdf *fdf)
 {
@@ -18,7 +26,7 @@ void	open_window(t_fdf *fdf)
 	void	*mlx_win;
 	long	width;
 	long	height;
-//	t_data	img;
+	t_data	img;
 
 	if ((fdf->row_len * 50) > 1920)
 		width = 1920;
@@ -31,6 +39,10 @@ void	open_window(t_fdf *fdf)
 	printf("fdf->column: %ld\nfdf->row_len: %ld\n", fdf->column, fdf->row_len);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, width, height, "fdf");
+	img.img = mlx_new_image(mlx, 1920, 1080);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	my_mlx_pixel_put(&img, 5, 5, 0xfcbc48);//I think I should use function minilibX
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
 
