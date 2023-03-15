@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/15 10:00:17 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/15 12:39:43 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 # define ARGLIMIT 1024
 # define INTMAX 2147483647
 # define INTMIN -2147483648
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	/* data */
+}	t_mlx;
+
 
 typedef struct s_data
 {

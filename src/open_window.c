@@ -6,13 +6,14 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 09:56:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/15 11:50:40 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/15 12:50:21 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
 //I think I should use 
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -21,10 +22,16 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+int		close_win(int keycode, t_mlx *mlx)//if I don't have this, I will get segumentation fault
+{
+	mlx_destroy_window(mlx->mlx, mlx->win);
+	return (0);
+}
+
 void	open_window(t_fdf *fdf)
 {
-	void	*mlx;
-	void	*mlx_win;
+	t_mlx	*mlx;
+//	void	*mlx_win;
 	long	width;
 	long	height;
 	t_data	img;
@@ -38,13 +45,19 @@ void	open_window(t_fdf *fdf)
 	else
 		height = fdf->column * 50;
 	printf("fdf->column: %ld\nfdf->row_len: %ld\n", fdf->column, fdf->row_len);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, width, height, "fdf");
-	img.img = mlx_new_image(mlx, 1920, 1080);
+	mlx->mlx = mlx_init();
+	mlx->win = mlx_new_window(mlx->mlx, width, height, "fdf");
+	img.img = mlx_new_image(mlx->mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	my_mlx_pixel_put(&img, 5, 5, 0xfcbc48);//I think I should use function minilibX
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, img.img, 0, 0);
+/* 	if (condition)
+	{
+		mlx_destroy_window(mlx->mlx, mlx->win);
+	} */
+//	mlx_hook(mlx->win, 2, 1L<<0, mlx_destroy_window, mlx);//close the window with any key
+	mlx_hook(mlx->win, 2, 1L<<0, close_win, mlx);
+	mlx_loop(mlx->mlx);
 }
 
 /* void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
