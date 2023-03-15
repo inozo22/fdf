@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/15 11:57:58 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/15 12:04:50 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,6 @@ $(OBJDIR):
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	@make -C $(LIBFT)
 	@make -C $(MLXDIR)
-	@cp $(LIBFT)/libft.a .
 	@$(CC) -I$(INC) -I$(MLXDIR)/ -c $< -o $@
 
 $(NAME): $(OBJ)
