@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/14 17:52:26 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/15 09:33:50 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,32 +62,6 @@ void	draw_map(t_fdf *fdf)//check all rows
 	}
 }
 
-/* bool	is_enclosed(t_fdf *fdf)
-{
-	long	i;
-
-	i = -1;
-	printf("row_len: %ld\ncolumn: %ld\n", fdf->row_len, fdf->column);
-	while (++i < fdf->row_len)
-	{
-		if (fdf->n[0][i].value != 0)//check the first row->OK
-			return (false);
-		if (fdf->n[fdf->column - 1][i].value != 0)//check the last row->OK
-			return (false);
-		printf("first row[%ld]: %ld\nlast row[%ld]: %ld\n",i ,fdf->n[0][i].value, i, fdf->n[fdf->column][i].value);
-	}
-	i = -1;
-	while (++i < fdf->column)
-	{
-		if (fdf->n[i][0].value != 0)//check the first column->OK
-			return (false);
-		if (fdf->n[i][fdf->row_len - 1].value != 0)//check the last column->OK
-			return (false);
-		printf("first clm[%ld]: %ld\nlast clm[%ld]: %ld\n",i, fdf->n[i][0].value, i, fdf->n[i][fdf->row_len].value);
-	}
-	return (true);
-} */
-
 bool check_amount(t_fdf *fdf, long ret)
 {
 	if (fdf->is_first)// if this is the first row, record the number and then compare later
@@ -129,7 +103,7 @@ long	count_word(char *str, t_fdf *fdf)
 		while (str[i] == 32)
 			i++;
 	}
-	printf("count_number ret: %ld\n", ret);
+//	printf("count_number ret: %ld\n", ret);
 	if (!check_amount(fdf, ret))
 		exit(fdf_error(2, fdf));
 	return (ret);
