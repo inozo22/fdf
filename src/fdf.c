@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 10:04:31 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/16 11:17:12 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,16 +182,27 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 	return (fdf);
 }
 
+t_map	*init_map(t_map *map, t_fdf *fdf)
+{
+	map = (t_map *)malloc(sizeof(t_map));
+	if (!map)
+		exit (hollow_error(1));//error without memory
+	open_window(fdf, map);
+// koko made
+
+	return (map);
+}
+
 void	fdf(int fd)
 {
 	t_fdf	*fdf;
+	t_map	*map;
 
 	fdf = NULL;
 	fdf = init_fdf(fd, fdf);
-	open_window(fdf);
-	printf("calculate the map size according to the fdf->row_len and fdf->column\n");
-	printf("start the map\n");
-	draw_map(fdf);
+	map = init_map(map, fdf);
+
+//	draw_map(fdf);
 	printf("map made\n");
 	all_free (fdf);
 }

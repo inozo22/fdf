@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 09:37:40 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/16 11:19:05 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@
 # define INTMAX 2147483647
 # define INTMIN -2147483648
 
-typedef struct s_mlx
-{
-	void	*mlx;
-	void	*win;
-	/* data */
-}	t_mlx;
-
 typedef struct s_data
 {
 	void	*img;
@@ -43,6 +36,16 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 }	t_data;
+
+typedef struct s_vars
+{
+	void			*mlx;
+	void			*win;
+	/* data */
+//	struct s_data	*data;
+}	t_vars;
+
+
 
 typedef struct s_nmbs
 {
@@ -74,6 +77,14 @@ typedef struct s_fdf
 	long			is_first;//check norm
 }	t_fdf;
 
+typedef struct s_map
+{
+	t_vars	vars;
+	t_data	data;
+	/* data */
+}	t_map;
+
+
 void	fdf(int fd);
 int		main(int ac, char **av);
 //int main(void);
@@ -82,6 +93,6 @@ int		fdf_error(int type, t_fdf *fdf);
 void	all_free(t_fdf *fdf);
 char	**strs_clear(char **tab, long i);
 t_fdf	*init_fdf(int fd, t_fdf *fdf);
-void	open_window(t_fdf *fdf);
+void	open_window(t_fdf *fdf, t_map *map);
 
 #endif

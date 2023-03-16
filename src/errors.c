@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:36:39 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 09:43:09 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/16 10:22:27 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ int	hollow_error(int type)
 	if (type == 3)//error memory release unnecessary
 	{
 		ft_putstr_fd("no argment\n", STDERR);
+		return (1);
+	}
+	if (type == 4)//error memory release unnecessary
+	{
+		ft_putstr_fd("fail memory allocate\n", STDERR);
 		return (1);
 	}
 	return (0);
