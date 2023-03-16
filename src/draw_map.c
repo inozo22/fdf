@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:55:19 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 12:54:02 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/16 13:18:52 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+//May I bundle two functions below
 void	put_line_right(t_map *map, t_fdf *fdf, long y, long x)
 {
 	int	i;
@@ -33,7 +34,7 @@ void	put_line_right(t_map *map, t_fdf *fdf, long y, long x)
 	}
 }
 
-void	put_line_above(t_map *map, t_fdf *fdf, long y, long x)
+void	put_line_down(t_map *map, t_fdf *fdf, long y, long x)
 {
 	int	i;
 	int	j;
@@ -45,6 +46,7 @@ void	put_line_above(t_map *map, t_fdf *fdf, long y, long x)
 		my_mlx_pixel_put(&map->data, ((x * 10) + 5 + i), ((y * 10) + 5 + j), 0xfcbc48);
 	}
 }
+//May I bundle two functions above
 
 void	draw_map(t_map *map, t_fdf *fdf)//check all rows
 {
@@ -70,7 +72,7 @@ void	draw_map(t_map *map, t_fdf *fdf)//check all rows
 			if (j != fdf->column - 1)
 			{
 				if (fdf->n[j][i].value == fdf->n[j + 1][i].value)//order to draw the line
-					put_line_above(map, fdf, j, i);
+					put_line_down(map, fdf, j, i);
 				else
 					printf("calculate the slope\n");
 			}

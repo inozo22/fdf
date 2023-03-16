@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 12:56:10 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/16 16:12:13 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,12 @@ long	get_colour(char *str, long i, long row, t_fdf *fdf)
 	}
 	tmp[j] = '\0';
 	fdf->n[fdf->column][row].colour = tmp;
-	printf("print colour: %s\nprint counter i:%ld\n", fdf->n[fdf->column][row].colour, i);
 	return (i);
 }
 
 bool	check_amount(t_fdf *fdf, long ret)
 {
-	if (fdf->is_first)// if this is the first row, record the number and then compare later
+	if (fdf->is_first)
 	{
 		fdf->row_len = ret;
 		fdf->is_first = 0;
@@ -73,7 +72,6 @@ long	count_word(char *str, t_fdf *fdf)
 		while (str[i] == 32)
 			i++;
 	}
-//	printf("count_number ret: %ld\n", ret);
 	if (!check_amount(fdf, ret))
 		exit(fdf_error(2, fdf));
 	return (ret);
@@ -107,7 +105,7 @@ void	fill_data(int fd, t_fdf *fdf)
 
 	fdf->is_first = 1;
 	str = get_next_line(fd);
- 	fdf->column = 0;
+	fdf->column = 0;
 	while (str)
 	{
 		size = count_word(str, fdf);
