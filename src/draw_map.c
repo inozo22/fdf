@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:55:19 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 13:18:52 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/16 19:08:02 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ void	put_line_right(t_map *map, t_fdf *fdf, long y, long x)
 	i = -1;
 	j = 0;
 	while (++i < 10)
-	{
 		my_mlx_pixel_put(&map->data, ((x * 10) + 5 + i), ((y * 10) + 5 + j), 0xfcbc48);
-	}
 }
 
 void	put_line_down(t_map *map, t_fdf *fdf, long y, long x)
@@ -42,9 +40,7 @@ void	put_line_down(t_map *map, t_fdf *fdf, long y, long x)
 	i = 0;
 	j = -1;
 	while (++j < 10)
-	{
 		my_mlx_pixel_put(&map->data, ((x * 10) + 5 + i), ((y * 10) + 5 + j), 0xfcbc48);
-	}
 }
 //May I bundle two functions above
 
