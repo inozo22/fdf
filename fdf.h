@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 11:19:05 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/16 12:24:57 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ typedef struct s_vars
 	/* data */
 //	struct s_data	*data;
 }	t_vars;
-
-
 
 typedef struct s_nmbs
 {
@@ -94,5 +92,7 @@ void	all_free(t_fdf *fdf);
 char	**strs_clear(char **tab, long i);
 t_fdf	*init_fdf(int fd, t_fdf *fdf);
 void	open_window(t_fdf *fdf, t_map *map);
+void	draw_map(t_map *map, t_fdf *fdf);
+void	put_line_right(t_map *map, t_fdf *fdf, long y, long x);
 
 #endif

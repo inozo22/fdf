@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 11:17:12 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/16 12:38:48 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,37 +30,6 @@ long	get_colour(char *str, long i, long row, t_fdf *fdf)
 	fdf->n[fdf->column][row].colour = tmp;
 	printf("print colour: %s\nprint counter i:%ld\n", fdf->n[fdf->column][row].colour, i);
 	return (i);
-}
-
-void	draw_map(t_fdf *fdf)//check all rows
-{
-	long	i;
-	long	j;
-
-	i = -1;
-	j = -1;
-	while (++j < fdf->column)
-	{
-		while (++i < fdf->row_len)
-		{
-			if (fdf->n[j][i].value < INTMIN || fdf->n[j][i].value > INTMAX)//check the first row->OK
-				exit (fdf_error(4, fdf));
-			if (i != fdf->row_len - 1)
-			{
-				if (fdf->n[j][i].value == fdf->n[j][i + 1].value)//order to draw the line
-					printf("put a straight line to the right\n");
-				else
-					printf("calculate the slope\n");
-			}
-			if (i != fdf->column - 1)
-			{
-				if (fdf->n[j][i].value == fdf->n[j + 1][i].value)//order to draw the line
-					printf("put a straight line to the bottom\n");
-				else
-					printf("calculate the slope\n");
-			}
-		}
-	}
 }
 
 bool	check_amount(t_fdf *fdf, long ret)

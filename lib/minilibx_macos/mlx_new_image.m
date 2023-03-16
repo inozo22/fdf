@@ -19,10 +19,8 @@ void    *mlx_new_image(mlx_ptr_t *mlx_ptr, int width, int height)
   //  if (mlx_ptr->win_list == NULL)
   //    return (NULL);  // need at leat one window created to have openGL context and create texture
   if ((newimg = malloc(sizeof(*newimg))) == NULL)
-  {
-    printf("実行中の行数は%d\n", __LINE__);
     return ((void *)0);
-  }
+
 
   newimg->next = mlx_ptr->img_list;
   mlx_ptr->img_list = newimg;
@@ -34,7 +32,6 @@ void    *mlx_new_image(mlx_ptr_t *mlx_ptr, int width, int height)
   newimg->vertexes[6] = 0.0;  newimg->vertexes[7] = -height;
   newimg->buffer = malloc(UNIQ_BPP*width*height);
   bzero(newimg->buffer, UNIQ_BPP*width*height);
-  printf("実行中の行数は%d\n", __LINE__);
   return (newimg);
 }
 
