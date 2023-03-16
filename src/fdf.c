@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/15 11:50:31 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/16 10:04:31 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ long	get_colour(char *str, long i, long row, t_fdf *fdf)
 		tmp[j] = str[i];
 		j++;
 	}
+	tmp[j] = '\0';
 	fdf->n[fdf->column][row].colour = tmp;
-//	printf("print colour: %s\nprint counter i:%ld\n", fdf->n[fdf->column][row].colour, i);
+	printf("print colour: %s\nprint counter i:%ld\n", fdf->n[fdf->column][row].colour, i);
 	return (i);
 }
 
@@ -62,7 +63,7 @@ void	draw_map(t_fdf *fdf)//check all rows
 	}
 }
 
-bool check_amount(t_fdf *fdf, long ret)
+bool	check_amount(t_fdf *fdf, long ret)
 {
 	if (fdf->is_first)// if this is the first row, record the number and then compare later
 	{

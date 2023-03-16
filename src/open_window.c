@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 09:56:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/15 12:57:05 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/16 10:07:25 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	open_window(t_fdf *fdf)
 		height = fdf->column * 50;
 	printf("fdf->column: %ld\nfdf->row_len: %ld\n", fdf->column, fdf->row_len);
 	mlx->mlx = mlx_init();
+	printf("mlx->mlx: %p\n", mlx->mlx);
 	mlx->win = mlx_new_window(mlx->mlx, width, height, "fdf");
 	img.img = mlx_new_image(mlx->mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);

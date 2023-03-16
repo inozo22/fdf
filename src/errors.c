@@ -6,12 +6,11 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:36:39 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/15 11:50:26 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/16 09:43:09 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
 
 int	hollow_error(int type)
 {

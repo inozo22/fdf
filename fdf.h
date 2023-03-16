@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/15 17:36:02 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/16 09:37:40 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_mlx
 	void	*win;
 	/* data */
 }	t_mlx;
-
 
 typedef struct s_data
 {
@@ -72,7 +71,6 @@ typedef struct s_fdf
 	t_nmbs			n[ARGLIMIT][ARGLIMIT];
 	long			column;
 	char			**strs;
-
 	long			is_first;//check norm
 }	t_fdf;
 
