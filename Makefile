@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/16 12:24:33 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/16 13:01:29 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC			:=  \
 				all_free.c \
 				fdf.c \
 				open_window.c \
-				draw.c
+				draw_map.c
 
 				
 OBJDIR		:= ./obj/

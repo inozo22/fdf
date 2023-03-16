@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 12:38:48 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/16 12:56:10 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	fill_data(int fd, t_fdf *fdf)
 {
 	char	*str;
 	long	size;
-	
+
 	fdf->is_first = 1;
 	str = get_next_line(fd);
  	fdf->column = 0;
