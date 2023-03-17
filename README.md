@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1>
 	fdf
 </h1>
 
@@ -10,7 +10,6 @@
 	<img src="https://github.com/inozo22/fdf/blob/main/img/fdf_1.jpg" />
 </p>
 
-# fdf
 ## Table of contents (Índice)
 1. [Subject](#1-subject)
     - [1.1. The Instruction](#11-The-Instruction)
