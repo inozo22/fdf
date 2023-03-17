@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:55:19 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 19:08:02 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/17 14:24:26 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,15 @@ void	draw_map(t_map *map, t_fdf *fdf)//check all rows
 			{
 				if (fdf->n[j][i].value == fdf->n[j][i + 1].value)//order to draw the line
 					put_line_right(map, fdf, j, i);
-				else
-					printf("calculate the slope\n");
+/* 				else
+					printf("calculate the slope\n"); */
 			}
 			if (j != fdf->column - 1)
 			{
 				if (fdf->n[j][i].value == fdf->n[j + 1][i].value)//order to draw the line
 					put_line_down(map, fdf, j, i);
-				else
-					printf("calculate the slope\n");
+/* 				else
+					printf("calculate the slope\n"); */
 			}
 		}
 		i = -1;
