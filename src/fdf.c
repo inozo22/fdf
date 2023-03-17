@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 16:12:13 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/17 11:40:46 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,18 @@ void	fill_n(t_fdf *fdf, long size)
 {
 	long	i;
 
-	i = -1;
-	while (++i < size)
+	i = 0;
+	printf("I'm here: %d\n", __LINE__);
+	printf("size: %ld\n", size);
+	while (fdf->strs[i] && i < size)
 	{
 		fdf->n[fdf->column][i].value = ft_atoi(fdf->strs[i]);
 		fdf->n[fdf->column][i].id_x = i;
 		fdf->n[fdf->column][i].id_y = fdf->column;
+		i++;
+		printf("I'm here: %d\ni	:%ld\ncolumn	:%ld\n", __LINE__, i, fdf->column);
 	}
+	printf("I'm here: %d\n", __LINE__);
 	while (i < ARGLIMIT)//check if it's ok leave this as empty
 	{
 		fdf->n[fdf->column][i].value = 0;//you kentou
@@ -106,13 +111,20 @@ void	fill_data(int fd, t_fdf *fdf)
 	fdf->is_first = 1;
 	str = get_next_line(fd);
 	fdf->column = 0;
+	printf("I'm here: %d\n", __LINE__);
 	while (str)
 	{
+		printf("I'm here: %d\n", __LINE__);
+		printf("str: %s\n", str);
 		size = count_word(str, fdf);
+		printf("I'm here: %d\nsize: %ld\n", __LINE__, size);
 		fdf->strs = ft_split(str, 32);
-		fill_n(fdf, size);
+		printf("I'm here: %d\n", __LINE__);
+		fill_n(fdf, size); 
+		printf("I'm here: %d\nsize: %ld\n", __LINE__, size);
 		strs_clear(fdf->strs, size);
 		free (str);
+		printf("I'm here: %d\n", __LINE__);
 		str = get_next_line(fd);
 		fdf->column++;
 	}
@@ -132,7 +144,7 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 	fill_data(fd, fdf);
 // koko made
 
-
+	printf("where am i\n");
 	printf("fdf->column: %ld\n", fdf->column);	
 	i = 0;
 	j = -1;
@@ -149,7 +161,7 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 	return (fdf);
 }
 
-t_map	*init_map(t_map *map, t_fdf *fdf)
+/* t_map	*init_map(t_map *map, t_fdf *fdf)
 {
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
@@ -158,7 +170,7 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 // koko made
 
 	return (map);
-}
+} */
 
 void	fdf(int fd)
 {
@@ -167,7 +179,7 @@ void	fdf(int fd)
 
 	fdf = NULL;
 	fdf = init_fdf(fd, fdf);
-	map = init_map(map, fdf);
+//	map = init_map(map, fdf);
 
 //	draw_map(fdf);
 	printf("map made\n");
