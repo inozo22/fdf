@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/17 16:49:35 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/17 17:15:30 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ long	get_colour(char *str, long i, long row, t_fdf *fdf)
 	++i;
 	if (!(str[i] == '0' && (str[i + 1]  == 'x'|| str[i + 1] == 'X')))
 		exit (fdf_error(5, fdf));//koreha hexa janai error
-	i++;
-	while (str[++i] != 32 && row < fdf->row_len)
+	i = i + 2;
+	while ((str[i] != 32 || str[i] != 't') && row < fdf->row_len)
 	{
 		tmp[j] = str[i];
 		j++;
+		i++;
 	}
 	tmp[j] = '\0';
 	fdf->n[fdf->column][row].colour = tmp;
@@ -59,10 +60,10 @@ long	count_word(char *str, t_fdf *fdf)
 	if (!str)
 		exit (hollow_error(3));
 //	printf("I'm here: %d\n", __LINE__);
-	while (str[i] == 32 || str[i] == 't')
+	while (str[i] && (str[i] == 32 || str[i] == 't'))
 		i++;
 //	printf("I'm here: %d\n", __LINE__);
-	while (str[i] != '\0' && str[i] != 10)
+	while (str[i] && str[i] != 10)
 	{
 		if (str[i] == '-' || str[i] == '+')
 			i++;
@@ -71,14 +72,14 @@ long	count_word(char *str, t_fdf *fdf)
 		while (str[i] >= '0' && str[i] <= '9')
 			i++;
 		ret++;
+		printf("ret in while =%ld\ni in while =%ld\n", ret, i);
 		if (str[i] == ',')
 			i = get_colour(str, i, ret - 1, fdf);
-//		ret++;
-//		i++;
 		while (str[i] == 32 || str[i] == 't')
 			i++;
 	}
-	printf("I need retttttt =%ld\nstr= %s\nfdf->column= %ld\n", ret, str, fdf->column);
+	printf("I need retttttt =%ld\n", ret);
+//	printf("I need retttttt =%ld\nstr= %s\nfdf->column= %ld\n", ret, str, fdf->column);
 	if (!check_amount(fdf, ret))
 		exit(fdf_error(2, fdf));
 	printf("I'm here in c word: %d\nret: %ld\n", __LINE__, ret);
@@ -138,7 +139,6 @@ void	fill_data(int fd, t_fdf *fdf)
 		printf("I'm here: %d\n", __LINE__);
 		str = get_next_line(fd);
 		fdf->column++;
-		size = 0;
 	}
 //	strs_clear(fdf->strs, size);//kore ireru to double free
 	free (str);
@@ -190,7 +190,7 @@ void	fdf(int fd)
 
 	fdf = NULL;
 	fdf = init_fdf(fd, fdf);
-	map = init_map(map, fdf);
+//	map = init_map(map, fdf);
 
 	printf("map made\n");
 	all_free (fdf);
