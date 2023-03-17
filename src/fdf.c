@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/17 14:50:37 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/17 16:49:35 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ long	count_word(char *str, t_fdf *fdf)
 	long	ret;
 	long	i;
 
-	i = -1;
+	i = 0;
 	ret = 0;
 	if (!str)
 		exit (hollow_error(3));
-	printf("I'm here: %d\n", __LINE__);
-	while (str[++i] == 32|| str[i] == 't')
-		;
-	printf("I'm here: %d\n", __LINE__);
+//	printf("I'm here: %d\n", __LINE__);
+	while (str[i] == 32 || str[i] == 't')
+		i++;
+//	printf("I'm here: %d\n", __LINE__);
 	while (str[i] != '\0' && str[i] != 10)
 	{
 		if (str[i] == '-' || str[i] == '+')
@@ -70,10 +70,11 @@ long	count_word(char *str, t_fdf *fdf)
 			exit (hollow_error(2));
 		while (str[i] >= '0' && str[i] <= '9')
 			i++;
-		if (str[i] == ',')
-			i = get_colour(str, i, ret, fdf);
 		ret++;
-		i++;
+		if (str[i] == ',')
+			i = get_colour(str, i, ret - 1, fdf);
+//		ret++;
+//		i++;
 		while (str[i] == 32 || str[i] == 't')
 			i++;
 	}
@@ -191,7 +192,6 @@ void	fdf(int fd)
 	fdf = init_fdf(fd, fdf);
 	map = init_map(map, fdf);
 
-//	draw_map(fdf);
 	printf("map made\n");
 	all_free (fdf);
 }
