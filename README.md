@@ -1,9 +1,9 @@
 <h1 align="center">
-	FDF
+	fdf
 </h1>
 
-<p align="center">
-	<b><i>A simplified 3D graphic representation of a relief landscape.</i></b><br>
+<p>
+	<b>This project consists of representing a landscape as a three-dimensional object in which all surfaces are delineated.</b><br>
 </p>
 
 <p align="center">
