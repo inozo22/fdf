@@ -6,18 +6,45 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 09:56:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 19:28:04 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/17 10:44:00 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-int		close_win(int keycode, t_map *map)//if I don't have this, I will get segumentation fault
+int	terminate_fdf(void	*param)
+{
+	t_map	*meta;
+
+	meta = (t_map *)param;
+	mlx_destroy_window(meta->vars.mlx, meta->vars.win);
+//	free(meta->data.addr);
+	exit (0);
+}
+
+void	control_keys(int key, t_map *map)
+{
+	if (key == 53)
+	{
+		terminate_fdf(map);
+	}
+}
+
+int	key_press(int key, void *param)
+{
+	t_map	*map;
+
+	map = (t_map *)param;
+	control_keys(key, map);
+	return (0);
+}
+
+/* int		close_win(int keycode, t_map *map)//if I don't have this, I will get segumentation fault
 {
 	mlx_destroy_window(map->vars.mlx, map->vars.win);
 //	mlx_destroy_image(map->vars.mlx, map->data.img);
 	return (0);
-}
+} */
 //if I put this line instead of close_win, I will get segufault mlx_hook(mlx->win, 2, 1L<<0, mlx_destroy_window, mlx);//close the window with any key
 
 void	open_window(t_fdf *fdf, t_map *map)
@@ -42,7 +69,8 @@ void	open_window(t_fdf *fdf, t_map *map)
 	mlx_put_image_to_window(map->vars.mlx, map->vars.win, map->data.img, 0, 0);
 
 
-	mlx_hook(map->vars.win, 2, 1L<<0, close_win, map);
+//	mlx_hook(map->vars.win, 2, 1L<<0, close_win, map);
+	mlx_hook(map->vars.win, 2, 0, key_press, map);
 	mlx_loop(map->vars.mlx);
 //	free (map->vars.win);
 //	free (map->vars.mlx);
