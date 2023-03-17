@@ -47,13 +47,9 @@ $(OBJDIR):
 $(OBJDIR)%.o : $(SRCDIR)%.c
 	@$(CC) -c $(CFLAGS) -o $@ $<
 
-#$(NAME): $(OBJ)
-#	@ar -rc $(NAME) $^
-
 $(NAME): $(OBJ)
 	@echo "$(BLUE)--Compiling ${CLR_RMV} $(NAME) ${CLR_RMV}..."
 	@ar -rc $(NAME) $^
-# omw
 
 bonus: $(OBJ_BONUS) $(NAME)
 	@ar -rc $(NAME) $^

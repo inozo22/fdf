@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 09:56:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/17 10:44:00 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/17 11:24:59 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	terminate_fdf(void	*param)
 
 void	control_keys(int key, t_map *map)
 {
-	if (key == 53)
+	if (key == KEY_ESC)
 	{
 		terminate_fdf(map);
 	}
@@ -70,7 +70,7 @@ void	open_window(t_fdf *fdf, t_map *map)
 
 
 //	mlx_hook(map->vars.win, 2, 1L<<0, close_win, map);
-	mlx_hook(map->vars.win, 2, 0, key_press, map);
+	mlx_hook(map->vars.win, 2, 0, key_press, map);//20230317 It works exit with esc
 	mlx_loop(map->vars.mlx);
 //	free (map->vars.win);
 //	free (map->vars.mlx);

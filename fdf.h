@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 12:24:57 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/17 11:48:53 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@
 # include "./lib/minilibx_macos/mlx.h"
 
 # define STDERR 2
-# define ARGLIMIT 1024
+# define ARGLIMIT 4096
 # define INTMAX 2147483647
 # define INTMIN -2147483648
+
+//key control
+# define KEY_ESC 53
 
 typedef struct s_data
 {
