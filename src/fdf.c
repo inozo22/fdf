@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/17 17:15:30 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/18 12:37:01 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ long	get_colour(char *str, long i, long row, t_fdf *fdf)
 	j = 0;
 
 	++i;
-	if (!(str[i] == '0' && (str[i + 1]  == 'x'|| str[i + 1] == 'X')))
+	if (str[i] != '0' || (str[i + 1]  != 'x'/* || str[i + 1] != 'X' */))
 		exit (fdf_error(5, fdf));//koreha hexa janai error
 	i = i + 2;
-	while ((str[i] != 32 || str[i] != 't') && row < fdf->row_len)
+	printf("I'm here: %d\nstr[i]: %c\n", __LINE__, str[i]);
+//	while ((str[i] != 32/*  || str[i] != 't' */) && row < fdf->row_len)
+	while (str[i] && str[i] != 32)
 	{
 		tmp[j] = str[i];
 		j++;
@@ -31,7 +33,7 @@ long	get_colour(char *str, long i, long row, t_fdf *fdf)
 	}
 	tmp[j] = '\0';
 	fdf->n[fdf->column][row].colour = tmp;
-//	printf("I'm here: %d\ncolour: %s\nfdf->column: %ld\nrow: %ld\n", __LINE__, fdf->n[fdf->column][row].colour, fdf->column, row);
+	printf("I'm here: %d\ntmp: %s\nfdf->column: %ld\nrow: %ld\n", __LINE__, tmp, fdf->column, row);
 	return (i);
 }
 
