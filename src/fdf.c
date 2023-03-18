@@ -20,7 +20,7 @@ long	get_colour(char *str, long i, long row, t_fdf *fdf)
 	j = 0;
 
 	++i;
-	if (str[i] != '0' || (str[i + 1]  != 'x'/* || str[i + 1] != 'X' */))
+	if (str[i] != '0' || (str[i + 1]  != 'x'))
 		exit (fdf_error(5, fdf));//koreha hexa janai error
 	i = i + 2;
 	printf("I'm here: %d\nstr[i]: %c\n", __LINE__, str[i]);
