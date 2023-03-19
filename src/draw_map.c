@@ -35,15 +35,36 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 		j = 0;
 		while (j < fdf->row_len)
 		{
-			x_aux = sqrt(1.0 / 2) * (fdf->n[i][j] - fdf->n[i][j]);
-			y_aux = sqrt(1.0 / 6) * (fdf->n[i][j] + fdf->n[i][j] - 2 * fdf->n[i][j]);
-			fdf->n[i][j] = x_aux * 200;
-			fdf->n[i][j] = y_aux * 200;
-			j++;
+			x_aux = sqrt(1.0 / 2) * (fdf->n[i][j].id_x - fdf->n[i][j].id_y);
+			y_aux = sqrt(1.0 / 6) * (fdf->n[i][j].id_x + fdf->n[i][j].id_y - 2 * fdf->n[i][j].value);
+			fdf->n[i][j].id_x = x_aux * 200;
+			fdf->n[i][j].id_y = y_aux * 200;
+			j++; 
 		}
 		i++;
 	}
 	return ;
+} */
+
+/* void	ajust_screen(t_fdf *fdf)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < fdf->column)
+	{
+		j = 0;
+		while (j < fdf->row_len)
+		{
+			fdf->n[i][j].id_x = data->scale * 0.9 * (points[i][j].x
+					- data->map_center_x) + WIN_WIDTH / 2;
+			fdf->n[i][j].id_y = data->scale * 0.9 * (points[i][j].y
+					- data->map_center_y) + WIN_HEIGHT / 2;
+			j++;
+		}
+		i++;
+	}
 } */
 
 void	put_line_right(t_map *map, t_fdf *fdf, long y, long x)
