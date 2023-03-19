@@ -71,11 +71,14 @@ typedef struct s_fdf
 	struct s_line	*row;//kore de ii ki ga suru no se
 //	struct s_line	*column[ARGLIMIT];
     long			row_len;//length of the first row
-	long			clm_len;
+//	long			clm_len;
 	t_nmbs			n[ARGLIMIT][ARGLIMIT];
 	long			column;
 	char			**strs;
 	long			is_first;//check norm
+	long			height;
+	long			width;
+	long			w_cell;
 }	t_fdf;
 
 typedef struct s_map

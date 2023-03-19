@@ -21,6 +21,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 }
 
 //May I bundle two functions below
+
 void	put_line_right(t_map *map, t_fdf *fdf, long y, long x)
 {
 	int	i;
@@ -28,9 +29,11 @@ void	put_line_right(t_map *map, t_fdf *fdf, long y, long x)
 
 	i = -1;
 	j = 0;
-	while (++i < 10)
-		my_mlx_pixel_put(&map->data, ((x * 10) + 5 + i), ((y * 10) + 5 + j), 0xfcbc48);
+	while (++i < fdf->w_cell)//20230319
+		my_mlx_pixel_put(&map->data, ((x * fdf->w_cell) + (fdf->width * 0.125) + i), ((y * fdf->w_cell) + (fdf->height * 0.125) + j), 0xfcbc48);//20230319
 }
+//(fdf->width * 0.125), at this moment, set the first point of the map like that, because the map is 75% of image size and windows size, to array to the center, more or less 12.5 % of margin is fine, I think
+//test with MAC
 
 void	put_line_down(t_map *map, t_fdf *fdf, long y, long x)
 {
@@ -39,8 +42,8 @@ void	put_line_down(t_map *map, t_fdf *fdf, long y, long x)
 
 	i = 0;
 	j = -1;
-	while (++j < 10)
-		my_mlx_pixel_put(&map->data, ((x * 10) + 5 + i), ((y * 10) + 5 + j), 0xfcbc48);
+	while (++j < fdf->w_cell)//20230319, I have to adjust to the height, but after calculating 
+		my_mlx_pixel_put(&map->data, ((x * fdf->w_cell) + (fdf->width * 0.125) + i), ((y * fdf->w_cell) + (fdf->height * 0.125) + j), 0xfcbc48);//20230319
 }
 //May I bundle two functions above
 
