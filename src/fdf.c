@@ -190,7 +190,7 @@ void	fdf(int fd)
 
 	fdf = NULL;
 	fdf = init_fdf(fd, fdf);
-//	map = init_map(map, fdf);
+	map = init_map(map, fdf);
 
 	printf("map made\n");
 	all_free (fdf);
