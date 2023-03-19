@@ -52,6 +52,7 @@ void	open_window(t_fdf *fdf, t_map *map)
 //	long	width;
 //	long	height;
 
+//Move to get_size in fdf.c
 //check the map size
 /* 	if ((fdf->row_len * 50) > 1920)
 		width = 1920;

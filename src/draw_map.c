@@ -22,6 +22,30 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 //May I bundle two functions below
 
+/* void	convert_points_2d(t_fdf *fdf)
+{
+	long	x_aux;
+	long	y_aux;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < fdf->column)
+	{
+		j = 0;
+		while (j < fdf->row_len)
+		{
+			x_aux = sqrt(1.0 / 2) * (fdf->n[i][j] - fdf->n[i][j]);
+			y_aux = sqrt(1.0 / 6) * (fdf->n[i][j] + fdf->n[i][j] - 2 * fdf->n[i][j]);
+			fdf->n[i][j] = x_aux * 200;
+			fdf->n[i][j] = y_aux * 200;
+			j++;
+		}
+		i++;
+	}
+	return ;
+} */
+
 void	put_line_right(t_map *map, t_fdf *fdf, long y, long x)
 {
 	int	i;
@@ -54,26 +78,26 @@ void	draw_map(t_map *map, t_fdf *fdf)//check all rows
 
 	i = -1;
 	j = -1;
-	printf("column: %ld", fdf->column);
+//	printf("column: %ld", fdf->column);
 	while (++j < fdf->column)
 	{
 		while (++i < fdf->row_len)
 		{
-			if (fdf->n[j][i].value < INTMIN || fdf->n[j][i].value > INTMAX)//check the first row->OK
+			if (fdf->n[j][i].value < INTMIN || fdf->n[j][i].value > INTMAX)
 				exit (fdf_error(4, fdf));
 			if (i != fdf->row_len - 1)
 			{
 				if (fdf->n[j][i].value == fdf->n[j][i + 1].value)//order to draw the line
 					put_line_right(map, fdf, j, i);
 /* 				else
-					printf("calculate the slope\n"); */
+					put_line_right_dia(map, fdf, j, i); */
 			}
 			if (j != fdf->column - 1)
 			{
 				if (fdf->n[j][i].value == fdf->n[j + 1][i].value)//order to draw the line
 					put_line_down(map, fdf, j, i);
 /* 				else
-					printf("calculate the slope\n"); */
+					put_line_down_dia(map, fdf, j, i); */
 			}
 		}
 		i = -1;
