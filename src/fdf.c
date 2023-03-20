@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/17 17:15:30 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/18 12:37:01 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ long	get_colour(char *str, long i, long row, t_fdf *fdf)
 	j = 0;
 
 	++i;
-	if (!(str[i] == '0' && (str[i + 1]  == 'x'|| str[i + 1] == 'X')))
+	if (str[i] != '0' || (str[i + 1]  != 'x'))
 		exit (fdf_error(5, fdf));//koreha hexa janai error
 	i = i + 2;
-	while ((str[i] != 32 || str[i] != 't') && row < fdf->row_len)
+//	printf("I'm here: %d\nstr[i]: %c\n", __LINE__, str[i]);
+//	while ((str[i] != 32/*  || str[i] != 't' */) && row < fdf->row_len)//20230318 has been deleted
+	while (str[i] && str[i] != 32)
 	{
 		tmp[j] = str[i];
 		j++;
@@ -31,7 +33,7 @@ long	get_colour(char *str, long i, long row, t_fdf *fdf)
 	}
 	tmp[j] = '\0';
 	fdf->n[fdf->column][row].colour = tmp;
-//	printf("I'm here: %d\ncolour: %s\nfdf->column: %ld\nrow: %ld\n", __LINE__, fdf->n[fdf->column][row].colour, fdf->column, row);
+//	printf("I'm here: %d\nfdf->n[fdf->column][row].colour: %s\nfdf->column: %ld\nrow: %ld\n", __LINE__, fdf->n[fdf->column][row].colour, fdf->column, row);
 	return (i);
 }
 
@@ -72,17 +74,17 @@ long	count_word(char *str, t_fdf *fdf)
 		while (str[i] >= '0' && str[i] <= '9')
 			i++;
 		ret++;
-		printf("ret in while =%ld\ni in while =%ld\n", ret, i);
+//		printf("ret in while =%ld\ni in while =%ld\n", ret, i);
 		if (str[i] == ',')
 			i = get_colour(str, i, ret - 1, fdf);
 		while (str[i] == 32 || str[i] == 't')
 			i++;
 	}
-	printf("I need retttttt =%ld\n", ret);
+//	printf("I need retttttt =%ld\n", ret);
 //	printf("I need retttttt =%ld\nstr= %s\nfdf->column= %ld\n", ret, str, fdf->column);
 	if (!check_amount(fdf, ret))
 		exit(fdf_error(2, fdf));
-	printf("I'm here in c word: %d\nret: %ld\n", __LINE__, ret);
+//	printf("I'm here in c word: %d\nret: %ld\n", __LINE__, ret);
 	return (ret);
 }
 
@@ -93,7 +95,7 @@ void	fill_n(t_fdf *fdf, long size)
 
 	i = 0;
 //	printf("I'm here: %d\n", __LINE__);
-	printf("yahoooo size: %ld\n", size);
+//	printf("yahoooo size: %ld\n", size);
 	while (fdf->strs[i] && i < size)
 	{
 		fdf->n[fdf->column][i].value = ft_atoi(fdf->strs[i]);
@@ -102,7 +104,7 @@ void	fill_n(t_fdf *fdf, long size)
 		i++;
 	//	printf("I'm here: %d\ni	:%ld\ncolumn	:%ld\n", __LINE__, i, fdf->column);
 	}
-	printf("I'm here: %d\n", __LINE__);
+//	printf("I'm here: %d\n", __LINE__);
 /* 	while (i < ARGLIMIT)//check if it's ok leave this as empty
 	{
 		fdf->n[fdf->column][i].value = 0;//you kentou
@@ -124,19 +126,19 @@ void	fill_data(int fd, t_fdf *fdf)
 //	printf("I'm here: %d\n", __LINE__);
 	while (str)
 	{
-		printf("I'm here: %d\n", __LINE__);
+//		printf("I'm here: %d\n", __LINE__);
 	//	printf("str: %s\n", str);
 		size = count_word(str, fdf);
-		printf("I'm here after count: %d\nsize: %ld\n", __LINE__, size);
+//		printf("I'm here after count: %d\nsize: %ld\n", __LINE__, size);
 		fdf->strs = ft_split(str, 32);
-		printf("I'm here: %d\nsize: %ld\n", __LINE__, size);
+//		printf("I'm here: %d\nsize: %ld\n", __LINE__, size);
 		fill_n(fdf, size);
-		printf("I'm here: %d\nsize: %ld\n", __LINE__, size);
-		printf("pointer strs: %p\npointer str: %p\n", fdf->strs, str);
+//		printf("I'm here: %d\nsize: %ld\n", __LINE__, size);
+//		printf("pointer strs: %p\npointer str: %p\n", fdf->strs, str);
 		strs_clear(fdf->strs, size);
-		printf("I'm here: %d\n", __LINE__);
+//		printf("I'm here: %d\n", __LINE__);
 		free (str);
-		printf("I'm here: %d\n", __LINE__);
+//		printf("I'm here: %d\n", __LINE__);
 		str = get_next_line(fd);
 		fdf->column++;
 	}
@@ -156,7 +158,7 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 	fill_data(fd, fdf);
 // koko made
 
-	printf("fdf->column: %ld\n", fdf->column);	
+//printer
 	i = 0;
 	j = -1;
 	while (++j < fdf->column)
@@ -169,6 +171,8 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 		printf("\n");
 		i = 0;
 	}
+	printf("fdf->column: %ld\nfdf->row_len: %ld\n", fdf->column, fdf->row_len);
+//printer
 	return (fdf);
 }
 
@@ -177,7 +181,7 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		exit (hollow_error(1));//error without memory
-	open_window(fdf, map);
+//	open_window(fdf, map);
 // koko made
 
 	return (map);

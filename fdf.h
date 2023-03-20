@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/17 13:19:44 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/18 12:17:02 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdbool.h>
 # include "./lib/mlx_linux/mlx.h"
 
-# include "./lib/minilibx_macos/mlx.h"
+//# include "./lib/minilibx_macos/mlx.h"
 
 # define STDERR 2
 # define ARGLIMIT 1024
