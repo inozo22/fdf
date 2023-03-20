@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 09:56:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/20 12:38:29 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/20 14:35:29 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	terminate_fdf(void	*param)
 
 void	control_keys(int key, t_map *map)
 {
-	if (key == KEY_ESC)
+	if (key == KEY_ESC || key == KEY_Q)
 	{
 		terminate_fdf(map);
 	}

@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:55:19 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/20 13:43:00 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/20 14:04:28 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 //May I bundle two functions below
 
-void	convert_points_2d(t_fdf *fdf)
+void	convert_points_2d(t_fdf *fdf, t_data *data)
 {
 	long	x_aux;
 	long	y_aux;
 	int		i;
 	int		j;
 
+//	my_mlx_pixel_put(data, 5, 5, 0xfcbc48);	
 	i = 0;
 	while (i < fdf->column)
 	{
@@ -37,9 +38,10 @@ void	convert_points_2d(t_fdf *fdf)
 		{
 			x_aux = sqrt(1.0 / 2) * (fdf->n[i][j].id_x - fdf->n[i][j].id_y);
 			y_aux = sqrt(1.0 / 6) * (fdf->n[i][j].id_x + fdf->n[i][j].id_y - 2 * fdf->n[i][j].value);
-			fdf->n[i][j].id_x = x_aux * 200;
-			fdf->n[i][j].id_y = y_aux * 200;
-			j++; 
+			fdf->n[i][j].id_x = x_aux * 20;
+			fdf->n[i][j].id_y = y_aux * 20;
+			my_mlx_pixel_put(data, fdf->n[i][j].id_x, fdf->n[i][j].id_y, 0xfcbc48);
+			j++;
 		}
 		i++;
 	}
@@ -76,8 +78,8 @@ void	put_line_right(t_map *map, t_fdf *fdf, long y, long x)
 	j = 0;
 	while (++i < fdf->w_cell)//20230319
 	{
-//		convert_points_2d(fdf);
-		my_mlx_pixel_put(&map->data, ((x * fdf->w_cell) + (fdf->width * 0.125) + (convert_points_2d(fdf))), ((y * fdf->w_cell) + (fdf->height * 0.125) + j), 0xfcbc48);//20230319
+	//	convert_points_2d(fdf, data);
+		my_mlx_pixel_put(&map->data, ((x * fdf->w_cell) + (fdf->width * 0.125) + i), ((y * fdf->w_cell) + (fdf->height * 0.125) + j), 0xfcbc48);//20230319
 	}
 
 }
@@ -104,7 +106,8 @@ void	draw_map(t_map *map, t_fdf *fdf)//check all rows
 	i = -1;
 	j = -1;
 //	printf("column: %ld", fdf->column);
-	while (++j < fdf->column)
+	convert_points_2d(fdf, &map->data);
+	/* while (++j < fdf->column)
 	{
 		while (++i < fdf->row_len)
 		{
@@ -114,18 +117,18 @@ void	draw_map(t_map *map, t_fdf *fdf)//check all rows
 			{
 				if (fdf->n[j][i].value == fdf->n[j][i + 1].value)//order to draw the line
 					put_line_right(map, fdf, j, i);
-/* 				else
-					put_line_right_dia(map, fdf, j, i); */
+//				else
+//					put_line_right_dia(map, fdf, j, i);
 			}
 			if (j != fdf->column - 1)
 			{
 				if (fdf->n[j][i].value == fdf->n[j + 1][i].value)//order to draw the line
 					put_line_down(map, fdf, j, i);
-/* 				else
-					put_line_down_dia(map, fdf, j, i); */
+//				else
+//					put_line_down_dia(map, fdf, j, i);
 			}
 		}
 		i = -1;
-	}
+	} */
 }
 
