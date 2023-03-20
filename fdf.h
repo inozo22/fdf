@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/20 14:35:50 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/20 14:56:59 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_nmbs
 	char	*colour;
 	long	id_x;
 	long	id_y;
+	long	len_x;//length of x
+	long	len_y;//length of y
 }	t_nmbs;
 
 typedef struct s_line
@@ -101,5 +103,6 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf);
 void	open_window(t_fdf *fdf, t_map *map);
 void	draw_map(t_map *map, t_fdf *fdf);
 void	put_line_right(t_map *map, t_fdf *fdf, long y, long x);
+void	hold_window(t_fdf *fdf, t_map *map);
 
 #endif

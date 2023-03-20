@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/20 12:36:52 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/20 15:08:09 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,8 +198,22 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		exit (hollow_error(1));//error without memory
-	open_window(fdf, map);
+/* 	open_window(fdf, map); */
 // koko made
+	map->vars.mlx = mlx_init();
+	if (map->vars.mlx == NULL)
+	{
+		perror("Unable to create mlx pointer\n");
+		exit(2);//memory release?
+	}
+	map->vars.win = mlx_new_window(map->vars.mlx, fdf->width, fdf->height, "fdf");
+	if (map->vars.win == NULL)
+	{
+		perror("Unable to create window pointer\n");
+		exit(2);//memory release?
+	}
+	map->data.img = mlx_new_image(map->vars.mlx, fdf->width, fdf->height);
+	map->data.addr = mlx_get_data_addr(map->data.img, &map->data.bits_per_pixel, &map->data.line_length, &map->data.endian);
 
 	return (map);
 }
@@ -212,6 +226,8 @@ void	fdf(int fd)
 	fdf = NULL;
 	fdf = init_fdf(fd, fdf);
 	map = init_map(map, fdf);
+	open_window(fdf, map);
+	hold_window(fdf, map);
 
 	printf("map made\n");
 	all_free (fdf);
