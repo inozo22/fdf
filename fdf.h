@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/20 14:56:59 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/20 17:47:07 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@
 # include <stdio.h>
 # include <math.h>
 # include <stdbool.h>
+# include <errno.h>
 # include "./lib/mlx_linux/mlx.h"
 
 //# include "./lib/minilibx_macos/mlx.h"
 
 # define STDERR 2
 # define ARGLIMIT 1024
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 # define INTMAX 2147483647
 # define INTMIN -2147483648
 
@@ -39,39 +42,42 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		center_x;
+	int		center_y;
+	int		width;
+	int		height;
+	int		scale;
 }	t_data;
 
 typedef struct s_vars
 {
 	void			*mlx;
 	void			*win;
-	/* data */
-//	struct s_data	*data;
 }	t_vars;
 
 typedef struct s_nmbs
 {
 	long	value;
 	char	*colour;
-	long	id_x;
-	long	id_y;
-	long	len_x;//length of x
-	long	len_y;//length of y
+	long	x;
+	long	y;
+	long	z;
+	long	x_mod;
+	long	y_mod;
 }	t_nmbs;
 
 typedef struct s_line
 {
 	void			*content;
 	struct s_line	*next;
-//	struct s_line	*prev;
-	long				id_row[1024];
-	long				id_column[1024];
+	long			id_row[1024];
+	long			id_column[1024];
 }	t_line;
 
 typedef struct s_fdf
 {
 	void			*content;
-	struct s_line	*row;//kore de ii ki ga suru no se
+	struct s_line	*row;//kore de ii ki ga suru no se // kesu kamo
 //	struct s_line	*column[ARGLIMIT];
     long			row_len;//length of the first row
 //	long			clm_len;
@@ -88,9 +94,7 @@ typedef struct s_map
 {
 	t_vars	vars;
 	t_data	data;
-	/* data */
 }	t_map;
-
 
 void	fdf(int fd);
 int		main(int ac, char **av);
@@ -104,5 +108,13 @@ void	open_window(t_fdf *fdf, t_map *map);
 void	draw_map(t_map *map, t_fdf *fdf);
 void	put_line_right(t_map *map, t_fdf *fdf, long y, long x);
 void	hold_window(t_fdf *fdf, t_map *map);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	three_dimension(t_fdf *fdf, t_map *map);
+void	get_slope(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
+void	negative_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
+void	negative_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
+void	positive_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
+void	positive_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
+void	convert_points_2d(t_fdf *fdf, t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/20 15:08:09 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/20 16:18:57 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,9 @@ void	fill_n(t_fdf *fdf, long size)
 //	printf("yahoooo size: %ld\n", size);
 	while (fdf->strs[i] && i < size)
 	{
-		fdf->n[fdf->column][i].value = ft_atoi(fdf->strs[i]);
-		fdf->n[fdf->column][i].id_x = i;
-		fdf->n[fdf->column][i].id_y = fdf->column;
+		fdf->n[fdf->column][i].z = ft_atoi(fdf->strs[i]);
+		fdf->n[fdf->column][i].x = i;
+		fdf->n[fdf->column][i].y = fdf->column;
 		i++;
 	//	printf("I'm here: %d\ni	:%ld\ncolumn	:%ld\n", __LINE__, i, fdf->column);
 	}
@@ -182,7 +182,7 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 	{
 		while (i < fdf->row_len)
 		{
-			printf("%ld ", fdf->n[j][i].value);
+			printf("%ld ", fdf->n[j][i].z);
 			i++;
 		}
 		printf("\n");
@@ -226,7 +226,7 @@ void	fdf(int fd)
 	fdf = NULL;
 	fdf = init_fdf(fd, fdf);
 	map = init_map(map, fdf);
-	open_window(fdf, map);
+//	open_window(fdf, map);
 	hold_window(fdf, map);
 
 	printf("map made\n");
