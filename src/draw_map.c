@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:55:19 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/17 14:24:26 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/20 13:43:00 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 //May I bundle two functions below
 
-/* void	convert_points_2d(t_fdf *fdf)
+void	convert_points_2d(t_fdf *fdf)
 {
 	long	x_aux;
 	long	y_aux;
@@ -44,9 +44,9 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 		i++;
 	}
 	return ;
-} */
+}
 
-/* void	ajust_screen(t_fdf *fdf)
+/* void	adjust_screen(t_fdf *fdf)
 {
 	int	i;
 	int	j;
@@ -75,7 +75,11 @@ void	put_line_right(t_map *map, t_fdf *fdf, long y, long x)
 	i = -1;
 	j = 0;
 	while (++i < fdf->w_cell)//20230319
-		my_mlx_pixel_put(&map->data, ((x * fdf->w_cell) + (fdf->width * 0.125) + i), ((y * fdf->w_cell) + (fdf->height * 0.125) + j), 0xfcbc48);//20230319
+	{
+//		convert_points_2d(fdf);
+		my_mlx_pixel_put(&map->data, ((x * fdf->w_cell) + (fdf->width * 0.125) + (convert_points_2d(fdf))), ((y * fdf->w_cell) + (fdf->height * 0.125) + j), 0xfcbc48);//20230319
+	}
+
 }
 //(fdf->width * 0.125), at this moment, set the first point of the map like that, because the map is 75% of image size and windows size, to array to the center, more or less 12.5 % of margin is fine, I think
 //test with MAC

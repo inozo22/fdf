@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 09:56:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/17 11:24:59 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/20 12:38:29 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	open_window(t_fdf *fdf, t_map *map)
 		height = 1080;
 	else
 		height = fdf->column * 50; */
-	
+
 	map->vars.mlx = mlx_init();
 	map->vars.win = mlx_new_window(map->vars.mlx, fdf->width, fdf->height, "fdf");
 	map->data.img = mlx_new_image(map->vars.mlx, fdf->width, fdf->height);

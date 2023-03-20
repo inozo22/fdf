@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/18 12:37:01 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/20 12:36:52 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		exit (hollow_error(1));//error without memory
-//	open_window(fdf, map);
+	open_window(fdf, map);
 // koko made
 
 	return (map);
@@ -211,7 +211,7 @@ void	fdf(int fd)
 
 	fdf = NULL;
 	fdf = init_fdf(fd, fdf);
-//	map = init_map(map, fdf);
+	map = init_map(map, fdf);
 
 	printf("map made\n");
 	all_free (fdf);
