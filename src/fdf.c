@@ -6,11 +6,27 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/18 12:37:01 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/20 12:36:52 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+//20230319: get the width and height for both window and image
+//and then calculate the length of each cell width
+void	get_size(t_fdf *fdf)
+{
+	if ((fdf->row_len * 50) > 1920)
+		fdf->width = 1920;
+	else
+		fdf->width = fdf->row_len * 50;
+	if ((fdf->column * 50) > 1080)
+		fdf->height = 1080;
+	else
+		fdf->height = fdf->column * 50;
+	fdf->w_cell = fdf->width * 0.75 / fdf->row_len;
+
+}
 
 long	get_colour(char *str, long i, long row, t_fdf *fdf)
 {
@@ -142,6 +158,7 @@ void	fill_data(int fd, t_fdf *fdf)
 		str = get_next_line(fd);
 		fdf->column++;
 	}
+	get_size(fdf);
 //	strs_clear(fdf->strs, size);//kore ireru to double free
 	free (str);
 }
@@ -181,7 +198,7 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		exit (hollow_error(1));//error without memory
-//	open_window(fdf, map);
+	open_window(fdf, map);
 // koko made
 
 	return (map);

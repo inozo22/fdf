@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 09:56:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/17 11:24:59 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/20 12:38:29 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,23 @@ int	key_press(int key, void *param)
 
 void	open_window(t_fdf *fdf, t_map *map)
 {
-	long	width;
-	long	height;
+//	long	width;
+//	long	height;
 
+//Move to get_size in fdf.c
 //check the map size
-	if ((fdf->row_len * 50) > 1920)
+/* 	if ((fdf->row_len * 50) > 1920)
 		width = 1920;
 	else
 		width = fdf->row_len * 50;
 	if ((fdf->column * 50) > 1080)
 		height = 1080;
 	else
-		height = fdf->column * 50;
+		height = fdf->column * 50; */
+
 	map->vars.mlx = mlx_init();
-	map->vars.win = mlx_new_window(map->vars.mlx, width, height, "fdf");
-	map->data.img = mlx_new_image(map->vars.mlx, width, height);
+	map->vars.win = mlx_new_window(map->vars.mlx, fdf->width, fdf->height, "fdf");
+	map->data.img = mlx_new_image(map->vars.mlx, fdf->width, fdf->height);
 	map->data.addr = mlx_get_data_addr(map->data.img, &map->data.bits_per_pixel, &map->data.line_length, &map->data.endian);
 	draw_map(map, fdf);
 	mlx_put_image_to_window(map->vars.mlx, map->vars.win, map->data.img, 0, 0);
