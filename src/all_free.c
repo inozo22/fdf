@@ -6,13 +6,13 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/15 11:50:21 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 16:48:04 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-char	**strs_clear(char **tab, long i)
+char	**strs_clear(char **tab, int i)
 {
 	while (i > 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:45:20 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 15:16:27 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 16:46:13 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	key_press(int key, void *param)
 
 void	get_mid_x(t_fdf *fdf, t_map *map)
 {
-	long	i;
-	long	j;
+	int		i;
+	int		j;
 	double	x_max;
 	double	x_min;
 
@@ -66,8 +66,8 @@ void	get_mid_x(t_fdf *fdf, t_map *map)
 
 void	get_mid_y(t_fdf *fdf, t_map *map)
 {
-	long	i;
-	long	j;
+	int		i;
+	int		j;
 	double	y_max;
 	double	y_min;
 
@@ -126,10 +126,10 @@ void	adjust_screen(t_fdf *fdf, t_map *map)
 
 void	draw_map(t_map *map, t_fdf *fdf)//check all rows
 {
-	long	i;
-	long	j;
-	long	x;
-	long	y;
+	int	i;
+	int	j;
+	int	x;
+	int	y;
 
 	j = -1;
 	while (++j < fdf->column)

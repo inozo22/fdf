@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:25:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 16:30:33 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 16:47:05 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ static void	swap_nbr(t_fdf *fdf, t_map *map, t_nmbs *nbr1, t_nmbs *nbr2)
 
 void	get_slope(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 {
-	long	dx;
-	long	dy;
-	long	dd;
+	int	dx;
+	int	dy;
+	int	dd;
 
 	dx = nbr2.x_mod - nbr1.x_mod;
 	dy = nbr2.y_mod - nbr1.y_mod;
-	dd = labs(dx) - labs(dy);
+	dd = abs(dx) - abs(dy);
 	printf("where am I: %d, dx= %ld, dy= %ld, dd=%ld\nfile: %s\n", __LINE__, dx, dy, dd, __FILE__);
 	if (dx < 0)
 		swap_nbr(fdf, map, &nbr1, &nbr2);
@@ -57,8 +57,8 @@ void	get_slope(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 
 void	three_dimension(t_fdf *fdf, t_map *map)
 {
-	long	i;
-	long	j;
+	int	i;
+	int	j;
 
 	j = -1;
 	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);

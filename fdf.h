@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 16:32:01 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 16:47:49 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,21 @@ typedef struct s_vars
 
 typedef struct s_nmbs
 {
-	long	value;
+//	long	value;
 	char	*colour;
-	long	x;
-	long	y;
-	long	z;
-	long	x_mod;
-	long	y_mod;
+	int		x;
+	int		y;
+	int		z;
+	int		x_mod;
+	int		y_mod;
 }	t_nmbs;
 
 typedef struct s_line
 {
 	void			*content;
 	struct s_line	*next;
-	long			id_row[1024];
-	long			id_column[1024];
+//	long			id_row[1024];
+//	long			id_column[1024];
 }	t_line;
 
 typedef struct s_fdf
@@ -79,15 +79,15 @@ typedef struct s_fdf
 	void			*content;
 	struct s_line	*row;//kore de ii ki ga suru no se // kesu kamo
 //	struct s_line	*column[ARGLIMIT];
-    long			row_len;//length of the first row
+    int				row_len;//length of the first row
 //	long			clm_len;
 	t_nmbs			n[ARGLIMIT][ARGLIMIT];
-	long			column;
+	int				column;
 	char			**strs;
-	long			is_first;//check norm
-	long			height;
-	long			width;
-	long			w_cell;
+	int				is_first;
+	int				height;
+	int				width;
+	int				w_cell;
 }	t_fdf;
 
 typedef struct s_map
@@ -102,11 +102,11 @@ int		main(int ac, char **av);
 int		hollow_error(int type);
 int		fdf_error(int type, t_fdf *fdf);
 void	all_free(t_fdf *fdf);
-char	**strs_clear(char **tab, long i);
+char	**strs_clear(char **tab, int i);
 t_fdf	*init_fdf(int fd, t_fdf *fdf);
 //void	open_window(t_fdf *fdf, t_map *map);
 void	draw_map(t_map *map, t_fdf *fdf);
-void	put_line_right(t_map *map, t_fdf *fdf, long y, long x);
+void	put_line_right(t_map *map, t_fdf *fdf, int y, int x);
 void	hold_window(t_fdf *fdf, t_map *map);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	three_dimension(t_fdf *fdf, t_map *map);

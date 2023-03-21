@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:55:19 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 13:32:47 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 16:49:35 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	convert_points_2d(t_fdf *fdf, t_data *data)
 	}
 } */
 
-void	put_line_right(t_map *map, t_fdf *fdf, long y, long x)
+void	put_line_right(t_map *map, t_fdf *fdf, int y, int x)
 {
 	int	i;
 	int	j;
@@ -82,7 +82,7 @@ void	put_line_right(t_map *map, t_fdf *fdf, long y, long x)
 //(fdf->width * 0.125), at this moment, set the first point of the map like that, because the map is 75% of image size and windows size, to array to the center, more or less 12.5 % of margin is fine, I think
 //test with MAC
 
-void	put_line_down(t_map *map, t_fdf *fdf, long y, long x)
+void	put_line_down(t_map *map, t_fdf *fdf, int y, int x)
 {
 	int	i;
 	int	j;

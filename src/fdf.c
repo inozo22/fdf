@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 14:50:20 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 16:48:42 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	get_size(t_fdf *fdf)
 	fdf->w_cell = fdf->width * 0.75 / fdf->row_len;
 }
 
-long	get_colour(char *str, long i, long row, t_fdf *fdf)
+int	get_colour(char *str, int i, int row, t_fdf *fdf)
 {
 	char	tmp[20];
-	long	j;
+	int		j;
 
 	j = 0;
 
@@ -52,7 +52,7 @@ long	get_colour(char *str, long i, long row, t_fdf *fdf)
 	return (i);
 }
 
-bool	check_amount(t_fdf *fdf, long ret)
+bool	check_amount(t_fdf *fdf, int ret)
 {
 	if (fdf->is_first)
 	{
@@ -67,10 +67,10 @@ bool	check_amount(t_fdf *fdf, long ret)
 	return (true);
 }
 
-long	count_word(char *str, t_fdf *fdf)
+int	count_word(char *str, t_fdf *fdf)
 {
-	long	ret;
-	long	i;
+	int	ret;
+	int	i;
 
 	i = 0;
 	ret = 0;
@@ -98,9 +98,9 @@ long	count_word(char *str, t_fdf *fdf)
 }
 
 
-void	fill_n(t_fdf *fdf, long size)
+void	fill_n(t_fdf *fdf, int size)
 {
-	long	i;
+	int	i;
 
 	i = 0;
 	while (fdf->strs[i] && i < size)
@@ -124,7 +124,7 @@ void	fill_n(t_fdf *fdf, long size)
 void	fill_data(int fd, t_fdf *fdf)
 {
 	char	*str;
-	long	size;
+	int		size;
 
 	fdf->is_first = 1;
 	str = get_next_line(fd);
@@ -156,8 +156,8 @@ void	fill_data(int fd, t_fdf *fdf)
 //the fd already has been opened
 t_fdf	*init_fdf(int fd, t_fdf *fdf)
 {
-	long	i;
-	long	j;
+	int	i;
+	int	j;
 
 	fdf = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!fdf)
@@ -178,7 +178,7 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 		printf("\n");
 		i = 0;
 	}
-	printf("fdf->column: %ld\nfdf->row_len: %ld\n", fdf->column, fdf->row_len);
+	printf("fdf->column: %d\nfdf->row_len: %d\n", fdf->column, fdf->row_len);
 //printer
 	return (fdf);
 }
