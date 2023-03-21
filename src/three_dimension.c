@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:25:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 16:47:05 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 16:50:43 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	get_slope(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	dx = nbr2.x_mod - nbr1.x_mod;
 	dy = nbr2.y_mod - nbr1.y_mod;
 	dd = abs(dx) - abs(dy);
-	printf("where am I: %d, dx= %ld, dy= %ld, dd=%ld\nfile: %s\n", __LINE__, dx, dy, dd, __FILE__);
+	printf("where am I: %d, dx= %d, dy= %d, dd=%d\nfile: %s\n", __LINE__, dx, dy, dd, __FILE__);
 	if (dx < 0)
 		swap_nbr(fdf, map, &nbr1, &nbr2);
 	else if (dy < 0 && dd < 0)

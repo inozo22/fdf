@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 16:48:42 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 17:17:35 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 	{
 		while (i < fdf->row_len)
 		{
-			printf("%ld ", fdf->n[j][i].z);
+			printf("%d ", fdf->n[j][i].z);
 			i++;
 		}
 		printf("\n");
@@ -196,15 +196,14 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 		perror("Unable to create mlx pointer\n");
 		exit(2);//memory release?
 	}
-	map->vars.win = mlx_new_window(map->vars.mlx, fdf->width, fdf->height, "fdf");
+	map->vars.win = mlx_new_window(map->vars.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	if (map->vars.win == NULL)
 	{
 		perror("Unable to create window pointer\n");
 		exit(2);//memory release?
 	}
-	map->data.img = mlx_new_image(map->vars.mlx, fdf->width, fdf->height);
+	map->data.img = mlx_new_image(map->vars.mlx, WIN_WIDTH, WIN_HEIGHT);
 	map->data.addr = mlx_get_data_addr(map->data.img, &map->data.bits_per_pixel, &map->data.line_length, &map->data.endian);
-
 	return (map);
 }
 
@@ -225,7 +224,6 @@ void	fdf(int fd)
 //	adjust_screen(fdf, map);
 	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
 	hold_window(fdf, map);
-
 	printf("map made\n");
 	all_free (fdf);
 }

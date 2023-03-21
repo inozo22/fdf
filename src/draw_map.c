@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:55:19 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 16:49:35 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 17:11:33 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	convert_points_2d(t_fdf *fdf, t_data *data)
 			y_aux = sqrt(1.0 / 6) * (fdf->n[j][i].x + fdf->n[j][i].y - 2 * fdf->n[j][i].z);
 			fdf->n[j][i].x = x_aux * 200;
 			fdf->n[j][i].y = y_aux * 200;
+			printf("where am I: %d\nfile: %s\nfdf->[j][i].x: %d, fdf->[j][i].y: %d\n", __LINE__, __FILE__, fdf->n[j][i].x, fdf->n[j][i].y);//no llego
 		}
 	}
 //	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);//no llego
