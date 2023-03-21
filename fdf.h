@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/20 17:47:07 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 16:32:01 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 # define STDERR 2
 # define ARGLIMIT 1024
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
+# define WIN_WIDTH 2560
+# define WIN_HEIGHT 1390
 # define INTMAX 2147483647
 # define INTMIN -2147483648
 
@@ -37,16 +37,16 @@
 
 typedef struct s_data
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		center_x;
-	int		center_y;
-	int		width;
-	int		height;
-	int		scale;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			center_x;
+	int			center_y;
+	int			width;
+	int			height;
+	double		scale;
 }	t_data;
 
 typedef struct s_vars
@@ -104,7 +104,7 @@ int		fdf_error(int type, t_fdf *fdf);
 void	all_free(t_fdf *fdf);
 char	**strs_clear(char **tab, long i);
 t_fdf	*init_fdf(int fd, t_fdf *fdf);
-void	open_window(t_fdf *fdf, t_map *map);
+//void	open_window(t_fdf *fdf, t_map *map);
 void	draw_map(t_map *map, t_fdf *fdf);
 void	put_line_right(t_map *map, t_fdf *fdf, long y, long x);
 void	hold_window(t_fdf *fdf, t_map *map);
@@ -116,5 +116,11 @@ void	negative_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
 void	positive_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
 void	positive_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
 void	convert_points_2d(t_fdf *fdf, t_data *data);
+///
+void	get_scale(t_map *map);
+void	adjust_screen(t_fdf *fdf, t_map *map);
+void	get_mid_x(t_fdf *fdf, t_map *map);
+void	get_mid_y(t_fdf *fdf, t_map *map);
+
 
 #endif

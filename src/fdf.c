@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/20 16:18:57 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 14:50:20 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	get_size(t_fdf *fdf)
 	else
 		fdf->height = fdf->column * 50;
 	fdf->w_cell = fdf->width * 0.75 / fdf->row_len;
-
 }
 
 long	get_colour(char *str, long i, long row, t_fdf *fdf)
@@ -60,7 +59,7 @@ bool	check_amount(t_fdf *fdf, long ret)
 		fdf->row_len = ret;
 		fdf->is_first = 0;
 	}
-	else
+	else// I may have to omid this
 	{
 		if (ret != fdf->row_len)
 			return (false);
@@ -77,10 +76,8 @@ long	count_word(char *str, t_fdf *fdf)
 	ret = 0;
 	if (!str)
 		exit (hollow_error(3));
-//	printf("I'm here: %d\n", __LINE__);
 	while (str[i] && (str[i] == 32 || str[i] == 't'))
 		i++;
-//	printf("I'm here: %d\n", __LINE__);
 	while (str[i] && str[i] != 10)
 	{
 		if (str[i] == '-' || str[i] == '+')
@@ -90,17 +87,13 @@ long	count_word(char *str, t_fdf *fdf)
 		while (str[i] >= '0' && str[i] <= '9')
 			i++;
 		ret++;
-//		printf("ret in while =%ld\ni in while =%ld\n", ret, i);
 		if (str[i] == ',')
 			i = get_colour(str, i, ret - 1, fdf);
 		while (str[i] == 32 || str[i] == 't')
 			i++;
 	}
-//	printf("I need retttttt =%ld\n", ret);
-//	printf("I need retttttt =%ld\nstr= %s\nfdf->column= %ld\n", ret, str, fdf->column);
 	if (!check_amount(fdf, ret))
 		exit(fdf_error(2, fdf));
-//	printf("I'm here in c word: %d\nret: %ld\n", __LINE__, ret);
 	return (ret);
 }
 
@@ -110,15 +103,12 @@ void	fill_n(t_fdf *fdf, long size)
 	long	i;
 
 	i = 0;
-//	printf("I'm here: %d\n", __LINE__);
-//	printf("yahoooo size: %ld\n", size);
 	while (fdf->strs[i] && i < size)
 	{
 		fdf->n[fdf->column][i].z = ft_atoi(fdf->strs[i]);
 		fdf->n[fdf->column][i].x = i;
 		fdf->n[fdf->column][i].y = fdf->column;
 		i++;
-	//	printf("I'm here: %d\ni	:%ld\ncolumn	:%ld\n", __LINE__, i, fdf->column);
 	}
 //	printf("I'm here: %d\n", __LINE__);
 /* 	while (i < ARGLIMIT)//check if it's ok leave this as empty
@@ -227,6 +217,13 @@ void	fdf(int fd)
 	fdf = init_fdf(fd, fdf);
 	map = init_map(map, fdf);
 //	open_window(fdf, map);
+	convert_points_2d(fdf, &map->data);
+	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
+	get_mid_x(fdf, map);
+	get_mid_y(fdf, map);
+	get_scale(map);
+//	adjust_screen(fdf, map);
+	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
 	hold_window(fdf, map);
 
 	printf("map made\n");
