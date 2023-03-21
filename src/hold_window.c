@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:45:20 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 16:51:17 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 17:35:07 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	adjust_screen(t_fdf *fdf, t_map *map)
 		{
 			fdf->n[j][i].x_mod = map->data.scale * 0.9 * (fdf->n[j][i].x - map->data.center_x) + WIN_WIDTH / 2;
 			fdf->n[j][i].y_mod = map->data.scale * 0.9 * (fdf->n[j][i].y - map->data.center_y) + WIN_HEIGHT / 2;
-			printf("x_mod: %d\ny_mod: %d\n", fdf->n[j][i].x_mod, fdf->n[j][i].y_mod);
+//			printf("x_mod: %d\ny_mod: %d\n", fdf->n[j][i].x_mod, fdf->n[j][i].y_mod);
 			i++;
 		}
 		j++;
@@ -139,7 +139,7 @@ void	draw_map(t_map *map, t_fdf *fdf)//check all rows
 		{
 			x = fdf->n[j][i].x_mod;
 			y = fdf->n[j][i].y_mod;
-			printf("x: %ld\ny: %ld\n", x, y);
+//			printf("x: %d\ny: %d\n", x, y);
 			if (x > 0 && x < WIN_WIDTH && y > 0 && y < WIN_HEIGHT)
 				my_mlx_pixel_put(&map->data, x, y, 0xfcbc48);
 		}
@@ -156,11 +156,11 @@ void	hold_window(t_fdf *fdf, t_map *map)
 	get_mid_y(fdf, map);
 	get_scale(map);*/
 	adjust_screen(fdf, map);
-	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__); 
+//	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
 	three_dimension(fdf, map);
-	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
+//	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
 	draw_map(map, fdf);
-	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
+//	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
 	mlx_put_image_to_window(map->vars.mlx, map->vars.win, map->data.img, 0, 0);
 	mlx_hook(map->vars.win, 2, 0, key_press, map);
 	mlx_loop(map->vars.mlx);

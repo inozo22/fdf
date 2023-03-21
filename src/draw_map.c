@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:55:19 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 17:11:33 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 17:39:54 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,7 @@ void	convert_points_2d(t_fdf *fdf, t_data *data)
 	return ;
 }
 
-/* void	adjust_screen(t_fdf *fdf)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < fdf->column)
-	{
-		j = 0;
-		while (j < fdf->row_len)
-		{
-			fdf->n[i][j].id_x = data->scale * 0.9 * (points[i][j].x
-					- data->map_center_x) + WIN_WIDTH / 2;
-			fdf->n[i][j].id_y = data->scale * 0.9 * (points[i][j].y
-					- data->map_center_y) + WIN_HEIGHT / 2;
-			j++;
-		}
-		i++;
-	}
-} */
-
-void	put_line_right(t_map *map, t_fdf *fdf, int y, int x)
+/* void	put_line_right(t_map *map, t_fdf *fdf, int y, int x)
 {
 	int	i;
 	int	j;
@@ -92,40 +71,5 @@ void	put_line_down(t_map *map, t_fdf *fdf, int y, int x)
 	j = -1;
 	while (++j < fdf->w_cell)//20230319, I have to adjust to the height, but after calculating 
 		my_mlx_pixel_put(&map->data, ((x * fdf->w_cell) + (fdf->width * 0.125) + i), ((y * fdf->w_cell) + (fdf->height * 0.125) + j), 0xfcbc48);//20230319
-}
-//May I bundle two functions above
-
-/* void	draw_map(t_map *map, t_fdf *fdf)//check all rows
-{
-	long	i;
-	long	j;
-
-	i = -1;
-	j = -1;
-//	printf("column: %ld", fdf->column);
-	convert_points_2d(fdf, &map->data);
-	while (++j < fdf->column)
-	{
-		while (++i < fdf->row_len)
-		{
-			if (fdf->n[j][i].value < INTMIN || fdf->n[j][i].value > INTMAX)
-				exit (fdf_error(4, fdf));
-			if (i != fdf->row_len - 1)
-			{
-				if (fdf->n[j][i].value == fdf->n[j][i + 1].value)//order to draw the line
-					put_line_right(map, fdf, j, i);
-//				else
-//					put_line_right_dia(map, fdf, j, i);
-			}
-			if (j != fdf->column - 1)
-			{
-				if (fdf->n[j][i].value == fdf->n[j + 1][i].value)//order to draw the line
-					put_line_down(map, fdf, j, i);
-//				else
-//					put_line_down_dia(map, fdf, j, i);
-			}
-		}
-		i = -1;
-	}
 } */
-
+//May I bundle two functions above

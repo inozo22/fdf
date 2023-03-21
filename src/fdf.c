@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 17:17:35 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/21 17:44:15 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,20 +163,17 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 	if (!fdf)
 		exit (hollow_error(1));//error without memory
 	fill_data(fd, fdf);
-// koko made
 
 //printer
-	i = 0;
 	j = -1;
 	while (++j < fdf->column)
 	{
-		while (i < fdf->row_len)
+		i = -1;
+		while (++i < fdf->row_len)
 		{
 			printf("%d ", fdf->n[j][i].z);
-			i++;
 		}
 		printf("\n");
-		i = 0;
 	}
 	printf("fdf->column: %d\nfdf->row_len: %d\n", fdf->column, fdf->row_len);
 //printer
@@ -188,7 +185,6 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		exit (hollow_error(1));//error without memory
-/* 	open_window(fdf, map); */
 // koko made
 	map->vars.mlx = mlx_init();
 	if (map->vars.mlx == NULL)
