@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:09:34 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/22 12:07:56 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/22 12:09:55 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	positive_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	{
 		if (d[2] >= 0)
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xfcbc48);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
 			coord[1]++;
 			d[2] = d[2] + 2 * d[1] - 2 * d[0];
 		}
 		else
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xfcbc48);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
 			d[2] = d[2] + 2 * d[1];
 		}
 		coord[0]++;
@@ -53,13 +53,13 @@ void	positive_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	{
 		if (d[2] >= 0)
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xfcbc48);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
 			coord[0]++;
 			d[2] = d[2] + 2 * d[0] - 2 * d[1];
 		}
 		else
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xfcbc48);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
 			d[2] = d[2] + 2 * d[0];
 		}
 		coord[1]++;
@@ -80,13 +80,13 @@ void	negative_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	{
 		if (d[2] >= 0)
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xfcbc48);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
 			coord[1]--;
 			d[2] = d[2] - 2 * d[1] - 2 * d[0];
 		}
 		else
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xfcbc48);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
 			d[2] = d[2] - 2 * d[1];
 		}
 		coord[0]++;
@@ -107,13 +107,13 @@ void	negative_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	{
 		if (d[2] >= 0)
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xfcbc48);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
 			coord[0]--;
 			d[2] = d[2] + 2 * d[0] + 2 * d[1];
 		}
 		else
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xfcbc48);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
 			d[2] = d[2] + 2 * d[0];
 		}
 		coord[1]++;
