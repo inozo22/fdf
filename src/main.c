@@ -25,6 +25,6 @@ int	main(int ac, char **av)
 	if (fd < 1)
 		exit (hollow_error(1));
 	fdf(fd);
-	close(fd);
+//	close(fd);
 	return (0);
 }

@@ -148,7 +148,9 @@ void	fill_data(int fd, t_fdf *fdf)
 		str = get_next_line(fd);
 		fdf->column++;
 	}
-	get_size(fdf);
+//20230322 deleted get_size
+//	get_size(fdf);
+	close (fd);
 //	strs_clear(fdf->strs, size);//kore ireru to double free
 	free (str);
 }
