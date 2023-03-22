@@ -6,11 +6,39 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/22 12:54:32 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/22 14:35:58 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+int	atox(char	*str)
+{
+	int	ret;
+	int	i;
+	int	j;
+	int	k;
+	char	*base;
+
+	ret = 0;
+	j = -1;
+	base ="0123456789abcdef";
+	i = ft_strlen(str);
+	while (i > 0)
+	{
+		k = i - 1;
+		while (++j < 16)
+			if (str[i] == base[j])
+				while (k >= 0)
+				{
+					ret = ret + j * (pow(16, k));
+					k--;
+				}
+		i--;
+	}
+
+	return (ret);
+}
 
 //20230319: get the width and height for both window and image
 //and then calculate the length of each cell width
