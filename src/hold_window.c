@@ -92,15 +92,15 @@ void	get_mid_y(t_fdf *fdf, t_map *map)
 
 void	get_scale(t_map *map)
 {
-	double	ver;
-	double	hori;
+	double	vertical;
+	double	horizontal;
 
-	ver = (WIN_HEIGHT - 0.0) / map->data.height;
-	hori = (WIN_WIDTH - 0.0) / map->data.width;
-	if (ver > hori)
-		map->data.scale = hori;
+	vertical = (WIN_HEIGHT - 0.0) / map->data.height;
+	horizontal = (WIN_WIDTH - 0.0) / map->data.width;
+	if (vertical > horizontal)
+		map->data.scale = horizontal;
 	else
-		map->data.scale = ver;
+		map->data.scale = vertical;
 }
 
 void	adjust_screen(t_fdf *fdf, t_map *map)
@@ -124,7 +124,7 @@ void	adjust_screen(t_fdf *fdf, t_map *map)
 	printf("where am I: %d\nmap->data.scale: %f\n", __LINE__, map->data.scale);
 }
 
-void	draw_map(t_map *map, t_fdf *fdf)//check all rows
+void	draw_ver(t_map *map, t_fdf *fdf)//check all rows
 {
 	int	i;
 	int	j;
@@ -149,17 +149,17 @@ void	draw_map(t_map *map, t_fdf *fdf)//check all rows
 
 void	hold_window(t_fdf *fdf, t_map *map)
 {
-	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
-/* 	convert_points_2d(fdf, &map->data);
-	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
-	get_mid_x(fdf, map);
-	get_mid_y(fdf, map);
-	get_scale(map);*/
+//	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
+//	convert_points_2d(fdf, &map->data);
+//	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
+//	get_mid_x(fdf, map);
+//	get_mid_y(fdf, map);
+//	get_scale(map);
 	adjust_screen(fdf, map);
 //	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
 	three_dimension(fdf, map);
 //	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
-	draw_map(map, fdf);
+	draw_ver(map, fdf);
 //	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
 	mlx_put_image_to_window(map->vars.mlx, map->vars.win, map->data.img, 0, 0);
 	mlx_hook(map->vars.win, 2, 0, key_press, map);

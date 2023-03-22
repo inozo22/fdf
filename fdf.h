@@ -105,7 +105,7 @@ void	all_free(t_fdf *fdf);
 char	**strs_clear(char **tab, int i);
 t_fdf	*init_fdf(int fd, t_fdf *fdf);
 //void	open_window(t_fdf *fdf, t_map *map);
-void	draw_map(t_map *map, t_fdf *fdf);
+void	draw_ver(t_map *map, t_fdf *fdf);
 void	put_line_right(t_map *map, t_fdf *fdf, int y, int x);
 void	hold_window(t_fdf *fdf, t_map *map);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

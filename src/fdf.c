@@ -213,7 +213,7 @@ void	fdf(int fd)
 	map = init_map(map, fdf);
 //	open_window(fdf, map);
 	convert_points_2d(fdf, &map->data);
-	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
+//	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
 	get_mid_x(fdf, map);
 	get_mid_y(fdf, map);
 	get_scale(map);
