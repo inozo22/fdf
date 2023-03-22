@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 17:44:15 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/22 12:15:19 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	get_colour(char *str, int i, int row, t_fdf *fdf)
 	if (str[i] != '0' || (str[i + 1]  != 'x'))
 		exit (fdf_error(5, fdf));//koreha hexa janai error
 	i = i + 2;
-//	printf("I'm here: %d\nstr[i]: %c\n", __LINE__, str[i]);
-//	while ((str[i] != 32/*  || str[i] != 't' */) && row < fdf->row_len)//20230318 has been deleted
 	while (str[i] && str[i] != 32)
 	{
 		tmp[j] = str[i];
@@ -48,7 +46,6 @@ int	get_colour(char *str, int i, int row, t_fdf *fdf)
 	}
 	tmp[j] = '\0';
 	fdf->n[fdf->column][row].colour = tmp;
-//	printf("I'm here: %d\nfdf->n[fdf->column][row].colour: %s\nfdf->column: %ld\nrow: %ld\n", __LINE__, fdf->n[fdf->column][row].colour, fdf->column, row);
 	return (i);
 }
 
@@ -129,29 +126,17 @@ void	fill_data(int fd, t_fdf *fdf)
 	fdf->is_first = 1;
 	str = get_next_line(fd);
 	fdf->column = 0;
-//	printf("I'm here: %d\n", __LINE__);
 	while (str)
 	{
-//		printf("I'm here: %d\n", __LINE__);
-	//	printf("str: %s\n", str);
 		size = count_word(str, fdf);
-//		printf("I'm here after count: %d\nsize: %ld\n", __LINE__, size);
 		fdf->strs = ft_split(str, 32);
-//		printf("I'm here: %d\nsize: %ld\n", __LINE__, size);
 		fill_n(fdf, size);
-//		printf("I'm here: %d\nsize: %ld\n", __LINE__, size);
-//		printf("pointer strs: %p\npointer str: %p\n", fdf->strs, str);
 		strs_clear(fdf->strs, size);
-//		printf("I'm here: %d\n", __LINE__);
 		free (str);
-//		printf("I'm here: %d\n", __LINE__);
 		str = get_next_line(fd);
 		fdf->column++;
 	}
-//20230322 deleted get_size
-//	get_size(fdf);
 	close (fd);
-//	strs_clear(fdf->strs, size);//kore ireru to double free
 	free (str);
 }
 
