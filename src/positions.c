@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:09:34 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 17:37:17 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/22 10:10:07 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	positive_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	coord[0] = nbr1.x_mod;
 	coord[1] = nbr1.y_mod;
 	d[2] = 2 * d[0] - d[1];
-	while (coord[1] < nbr1.y_mod)
+	while (coord[1] < nbr2.y_mod)
 	{
 		if (d[2] >= 0)
 		{
@@ -116,12 +116,12 @@ void	negative_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 		{
 			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xfcbc48);
 			coord[0]--;
-			d[2] = d[2] + 2 * d[1] + 2 * d[0];
+			d[2] = d[2] + 2 * d[0] + 2 * d[1];
 		}
 		else
 		{
 			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xfcbc48);
-			d[2] = d[2] + 2 * d[1];
+			d[2] = d[2] + 2 * d[0];
 		}
 		coord[1]++;
 	}
