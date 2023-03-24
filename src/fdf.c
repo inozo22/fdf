@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/22 14:35:58 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/24 10:58:54 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,31 @@ int	atox(char	*str)
 	char	*base;
 
 	ret = 0;
-	j = -1;
 	base ="0123456789abcdef";
 	i = ft_strlen(str);
 	while (i > 0)
 	{
 		k = i - 1;
+		j = -1;
 		while (++j < 16)
+		{
 			if (str[i] == base[j])
+			{
 				while (k >= 0)
 				{
 					ret = ret + j * (pow(16, k));
 					k--;
 				}
+			}
+		}
 		i--;
 	}
-
 	return (ret);
 }
 
 //20230319: get the width and height for both window and image
 //and then calculate the length of each cell width
-void	get_size(t_fdf *fdf)
+/* void	get_size(t_fdf *fdf)
 {
 	if ((fdf->row_len * 50) > 1920)
 		fdf->width = 1920;
@@ -53,8 +56,29 @@ void	get_size(t_fdf *fdf)
 	else
 		fdf->height = fdf->column * 50;
 	fdf->w_cell = fdf->width * 0.75 / fdf->row_len;
-}
+} */
 
+/* int	get_colour(char *str, int i, int row, t_fdf *fdf)
+{
+	char	tmp[20];
+	int		j;
+
+	j = 0;
+
+	++i;
+	if (str[i] != '0' || (str[i + 1]  != 'x'))
+		exit (fdf_error(5, fdf));//koreha hexa janai error
+	i = i + 2;
+	while (str[i] && str[i] != 32)
+	{
+		tmp[j] = str[i];
+		j++;
+		i++;
+	}
+	tmp[j] = '\0';
+	fdf->n[fdf->column][row].colour = tmp;
+	return (i);
+} */
 int	get_colour(char *str, int i, int row, t_fdf *fdf)
 {
 	char	tmp[20];
@@ -74,6 +98,7 @@ int	get_colour(char *str, int i, int row, t_fdf *fdf)
 	}
 	tmp[j] = '\0';
 	fdf->n[fdf->column][row].colour = tmp;
+	printf("Line: %d, colour: %d\n", __LINE__, atox(tmp));
 	return (i);
 }
 

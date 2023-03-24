@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:09:34 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/22 12:09:55 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/24 12:56:20 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	negative_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
 			coord[0]--;
 			d[2] = d[2] + 2 * d[0] + 2 * d[1];
+	//		printf("%x\n", );
 		}
 		else
 		{
