@@ -8,6 +8,7 @@
 
 <p align="center">
 	<img src="https://github.com/inozo22/fdf/blob/main/img/fdf_1.jpg" />
+    <img src="https://github.com/inozo22/fdf/blob/main/img/fdf_2.jpeg" />
 </p>
 
 ## Table of contents (Índice)
