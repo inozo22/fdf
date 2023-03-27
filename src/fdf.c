@@ -17,28 +17,29 @@ int	atox(char	*str)
 	int	ret;
 	int	i;
 	int	j;
-	int	k;
-	char	*base;
+	int	len;
+	char	*base_l;
+	char	*base_u;
 
+	base_l = "0123456789abcdef";
+	base_u = "0123456789ABCDEF";
+
+	i = 0;
+	j = 0;
 	ret = 0;
-	base ="0123456789abcdef";
-	i = ft_strlen(str);
-	while (i > 0)
+	len = strlen(str) - 1;
+	while (str[i])
 	{
-		k = i - 1;
-		j = -1;
-		while (++j < 16)
+		while (j < 16)
 		{
-			if (str[i] == base[j])
+			if (str[i] == base_l[j] || str[i] == base_u[j])
 			{
-				while (k >= 0)
-				{
-					ret = ret + j * (pow(16, k));
-					k--;
-				}
+				ret = ret + j * pow(16, len);
+				len--;
 			}
+			j++;
 		}
-		i--;
+		i++;
 	}
 	return (ret);
 }

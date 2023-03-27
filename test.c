@@ -8,9 +8,11 @@ int	atox(char	*str)
 	int	i;
 	int	j;
 	int	len;
-	char	*base;
+	char	*base_l;
+	char	*base_u;
 
-	base = "0123456789abcdef";
+	base_l = "0123456789abcdef";
+	base_u = "0123456789ABCDEF";
 
 	i = 0;
 	j = 0;
@@ -20,7 +22,7 @@ int	atox(char	*str)
 	{
 		while (j < 16)
 		{
-			if (str[i] == base[j])
+			if (str[i] == base_l[j] || str[i] == base_u[j])
 			{
 				ret = ret + j * pow(16, len);
 				len--;
@@ -30,50 +32,20 @@ int	atox(char	*str)
 		i++;
 	}
 	return (ret);
-/* 	int	ret;
-	int	i;
-	int	j;
-	int	k;
-	char	*base;
-
-	ret = 0;
-	base ="0123456789abcdef";
-	i = strlen(str);
-	printf("Line: %d\ni: %d\n", __LINE__, i);
-	while (i > 0)
-	{
-		k = i - 1;
-		j = 0;
-		printf("Line: %d\nk: %d\n", __LINE__, k);
-		while (++j <= 16)
-		{
-			if (str[i] == base[j])
-			{
-				printf("Line: %d\nstr[%d]: %c\n", __LINE__, i, str[i]);
-				while (k >= 0)
-				{
-					ret = ret + j * (pow(16, k));
-					k--;
-				}
-			}
-		}
-		i--; 
-	}
-	return (ret);*/
 }
 
 
-int main() 
+int main(int ac, char **av) 
 {
   
-  char *str;
+  //char *str;
   int ret;
   char  r;
   char  b;
   char  g;
   
-  str = "d0";
-  ret = atox(str);
+  //str = "d0";
+  ret = atox(av[1]);
 
   printf("ret: %d\n", ret);
 /*   r = str >> 16;
