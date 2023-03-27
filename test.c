@@ -15,11 +15,11 @@ int	atox(char	*str)
 	base_u = "0123456789ABCDEF";
 
 	i = 0;
-	j = 0;
 	ret = 0;
 	len = strlen(str) - 1;
 	while (str[i])
 	{
+		j = 0;
 		while (j < 16)
 		{
 			if (str[i] == base_l[j] || str[i] == base_u[j])
