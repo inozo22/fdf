@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 16:47:49 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/22 13:21:51 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@
 # define WIN_HEIGHT 1390
 # define INTMAX 2147483647
 # define INTMIN -2147483648
+/* # define R(a) (a) >> 16
+# define G(a) ((a) >> 8) & 0xFF
+# define B(a) (a) & 0xFF
+# define RGB(a, b, c) ((a) << 16 + ((b) << 8) + (c)) */
 
 //key control
 # define KEY_ESC 53
@@ -58,7 +62,13 @@ typedef struct s_vars
 typedef struct s_nmbs
 {
 //	long	value;
-	char	*colour;
+//
+	int		colour;
+//
+/* 	int		rgb(R, G, B);
+	int		r;
+	int		g;
+	int		b; */
 	int		x;
 	int		y;
 	int		z;
@@ -116,7 +126,7 @@ void	negative_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
 void	positive_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
 void	positive_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
 void	convert_points_2d(t_fdf *fdf, t_data *data);
-///
+//
 void	get_scale(t_map *map);
 void	adjust_screen(t_fdf *fdf, t_map *map);
 void	get_mid_x(t_fdf *fdf, t_map *map);
