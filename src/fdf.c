@@ -17,28 +17,28 @@ int	atox(char	*str)
 	int	ret;
 	int	i;
 	int	j;
-	int	k;
-	char	*base;
+	int	len;
+	char	*base_l;
+	char	*base_u;
 
+	base_l = "0123456789abcdef";
+	base_u = "0123456789ABCDEF";
+
+	i = -1;
 	ret = 0;
-	base ="0123456789abcdef";
-	i = ft_strlen(str);
-	while (i > 0)
+	//switch from strlen to ft_strlen, not tested
+	len = ft_strlen(str) - 1;
+	while (str[++i])
 	{
-		k = i - 1;
 		j = -1;
 		while (++j < 16)
 		{
-			if (str[i] == base[j])
+			if (str[i] == base_l[j] || str[i] == base_u[j])
 			{
-				while (k >= 0)
-				{
-					ret = ret + j * (pow(16, k));
-					k--;
-				}
+				ret = ret + j * pow(16, len);
+				len--;
 			}
 		}
-		i--;
 	}
 	return (ret);
 }
@@ -58,27 +58,7 @@ int	atox(char	*str)
 	fdf->w_cell = fdf->width * 0.75 / fdf->row_len;
 } */
 
-/* int	get_colour(char *str, int i, int row, t_fdf *fdf)
-{
-	char	tmp[20];
-	int		j;
 
-	j = 0;
-
-	++i;
-	if (str[i] != '0' || (str[i + 1]  != 'x'))
-		exit (fdf_error(5, fdf));//koreha hexa janai error
-	i = i + 2;
-	while (str[i] && str[i] != 32)
-	{
-		tmp[j] = str[i];
-		j++;
-		i++;
-	}
-	tmp[j] = '\0';
-	fdf->n[fdf->column][row].colour = tmp;
-	return (i);
-} */
 int	get_colour(char *str, int i, int row, t_fdf *fdf)
 {
 	char	tmp[20];
@@ -97,8 +77,11 @@ int	get_colour(char *str, int i, int row, t_fdf *fdf)
 		i++;
 	}
 	tmp[j] = '\0';
-	fdf->n[fdf->column][row].colour = tmp;
-	printf("Line: %d, colour: %d\n", __LINE__, atox(tmp));
+	//
+	fdf->n[fdf->column][row].colour = atox(tmp);
+	//
+	//check in 42
+	printf("Line: %d, colour: %d\n", __LINE__, fdf->n[fdf->column][row].colour);
 	return (i);
 }
 
@@ -158,6 +141,9 @@ void	fill_n(t_fdf *fdf, int size)
 		fdf->n[fdf->column][i].z = ft_atoi(fdf->strs[i]);
 		fdf->n[fdf->column][i].x = i;
 		fdf->n[fdf->column][i].y = fdf->column;
+		//
+		fdf->n[fdf->column][i].colour = 0xffffff;
+		//
 		i++;
 	}
 //	printf("I'm here: %d\n", __LINE__);

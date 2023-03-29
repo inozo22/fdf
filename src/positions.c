@@ -26,13 +26,13 @@ void	positive_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	{
 		if (d[2] >= 0)
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1->colour);
 			coord[1]++;
 			d[2] = d[2] + 2 * d[1] - 2 * d[0];
 		}
 		else
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1->colour);
 			d[2] = d[2] + 2 * d[1];
 		}
 		coord[0]++;
@@ -53,13 +53,13 @@ void	positive_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	{
 		if (d[2] >= 0)
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1->colour);
 			coord[0]++;
 			d[2] = d[2] + 2 * d[0] - 2 * d[1];
 		}
 		else
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1->colour);
 			d[2] = d[2] + 2 * d[0];
 		}
 		coord[1]++;
@@ -80,13 +80,13 @@ void	negative_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	{
 		if (d[2] >= 0)
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1->colour);
 			coord[1]--;
 			d[2] = d[2] - 2 * d[1] - 2 * d[0];
 		}
 		else
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1->colour);
 			d[2] = d[2] - 2 * d[1];
 		}
 		coord[0]++;
@@ -107,14 +107,14 @@ void	negative_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	{
 		if (d[2] >= 0)
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1->colour);
 			coord[0]--;
 			d[2] = d[2] + 2 * d[0] + 2 * d[1];
 	//		printf("%x\n", );
 		}
 		else
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], 0xffffff);
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1->colour);
 			d[2] = d[2] + 2 * d[0];
 		}
 		coord[1]++;

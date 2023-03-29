@@ -62,7 +62,9 @@ typedef struct s_vars
 typedef struct s_nmbs
 {
 //	long	value;
-	char	*colour;
+//
+	int		colour;
+//
 /* 	int		rgb(R, G, B);
 	int		r;
 	int		g;

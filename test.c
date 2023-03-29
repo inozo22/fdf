@@ -7,50 +7,53 @@ int	atox(char	*str)
 	int	ret;
 	int	i;
 	int	j;
-	int	k;
-	char	*base;
+	int	len;
+	char	*base_l;
+	char	*base_u;
 
+	base_l = "0123456789abcdef";
+	base_u = "0123456789ABCDEF";
+
+	i = 0;
 	ret = 0;
-	base ="0123456789abcdef";
-	i = strlen(str);
-	while (i > 0)
+	len = strlen(str) - 1;
+	while (str[i])
 	{
-		k = i - 1;
-		j = -1;
-		while (++j < 16)
+		j = 0;
+		while (j < 16)
 		{
-			if (str[i] == base[j])
+			if (str[i] == base_l[j] || str[i] == base_u[j])
 			{
-				while (k >= 0)
-				{
-					ret = ret + j * (pow(16, k));
-					k--;
-				}
+				ret = ret + j * pow(16, len);
+				len--;
 			}
+			j++;
 		}
-		i--;
+		i++;
 	}
 	return (ret);
 }
 
 
-int main() 
+int main(int ac, char **av) 
 {
   
-  char *str;
+  //char *str;
   int ret;
   char  r;
   char  b;
   char  g;
   
-  str = "ff";
-  ret = atox(str);
-  r = str >> 16;
+  //str = "d0";
+  ret = atox(av[1]);
+
+  printf("ret: %d\n", ret);
+/*   r = str >> 16;
   g = str >> 8 & 0xFF;
   b = str & 0xFF;
 
 
-  printf("this is hex: %d\n", ret);
+  printf("this is hex: %d\n", ret); */
 
   return 0;
 }

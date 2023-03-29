@@ -118,7 +118,7 @@ void	adjust_screen(t_fdf *fdf, t_map *map)
 		}
 		j++;
 	}
-	printf("where am I: %d\nmap->data.scale: %f\n", __LINE__, map->data.scale);
+//	printf("where am I: %d\nmap->data.scale: %f\n", __LINE__, map->data.scale);
 }
 
 void	draw_ver(t_map *map, t_fdf *fdf)//check all rows
