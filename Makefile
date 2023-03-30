@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/03/20 17:28:06 by nimai            ###   ########.fr        #
+#    Updated: 2023/03/30 16:02:49 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC			:=  \
 				draw_map.c \
 				hold_window.c \
 				three_dimension.c \
-				positions.c
+				positions.c \
+				gradate_colour.c
 
 				
 OBJDIR		:= ./obj/

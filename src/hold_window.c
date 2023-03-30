@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:45:20 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/22 12:16:36 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/30 16:45:49 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	adjust_screen(t_fdf *fdf, t_map *map)
 		}
 		j++;
 	}
-	printf("where am I: %d\nmap->data.scale: %f\n", __LINE__, map->data.scale);
+	printf("Line: %d\nmap->data.scale: %f\n", __LINE__, map->data.scale);
 }
 
 void	draw_ver(t_map *map, t_fdf *fdf)//check all rows

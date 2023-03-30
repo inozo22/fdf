@@ -6,15 +6,46 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/22 12:54:32 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/30 16:43:59 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
+int	hexatoi(char	*str)
+{
+	int		ret;
+	int		i;
+	int		j;
+	int		len;
+	char	*base_l;
+	char	*base_u;
+
+	base_l = "0123456789abcdef";
+	base_u = "0123456789ABCDEF";
+
+	i = -1;
+	ret = 0;
+	//switch from strlen to ft_strlen, not tested
+	len = ft_strlen(str) - 1;
+	while (str[++i])
+	{
+		j = -1;
+		while (++j < 16)
+		{
+			if (str[i] == base_l[j] || str[i] == base_u[j])
+			{
+				ret = ret + j * pow(16, len);
+				len--;
+			}
+		}
+	}
+	return (ret);
+}
+
 //20230319: get the width and height for both window and image
 //and then calculate the length of each cell width
-void	get_size(t_fdf *fdf)
+/* void	get_size(t_fdf *fdf)
 {
 	if ((fdf->row_len * 50) > 1920)
 		fdf->width = 1920;
@@ -25,7 +56,7 @@ void	get_size(t_fdf *fdf)
 	else
 		fdf->height = fdf->column * 50;
 	fdf->w_cell = fdf->width * 0.75 / fdf->row_len;
-}
+} */
 
 int	get_colour(char *str, int i, int row, t_fdf *fdf)
 {
@@ -45,7 +76,7 @@ int	get_colour(char *str, int i, int row, t_fdf *fdf)
 		i++;
 	}
 	tmp[j] = '\0';
-	fdf->n[fdf->column][row].colour = tmp;
+	fdf->n[fdf->column][row].colour = hexatoi(tmp);
 	return (i);
 }
 
@@ -105,6 +136,8 @@ void	fill_n(t_fdf *fdf, int size)
 		fdf->n[fdf->column][i].z = ft_atoi(fdf->strs[i]);
 		fdf->n[fdf->column][i].x = i;
 		fdf->n[fdf->column][i].y = fdf->column;
+		if (!fdf->n[fdf->column][i].colour)
+			fdf->n[fdf->column][i].colour = 0xffffff;
 		i++;
 	}
 //	printf("I'm here: %d\n", __LINE__);
@@ -205,7 +238,7 @@ void	fdf(int fd)
 	get_mid_y(fdf, map);
 	get_scale(map);
 //	adjust_screen(fdf, map);
-	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
+//	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
 	hold_window(fdf, map);
 	printf("map made\n");
 	all_free (fdf);

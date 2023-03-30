@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:25:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/22 12:17:38 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/30 16:07:06 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	get_slope(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	dy = nbr2.y_mod - nbr1.y_mod;
 	dd = abs(dx) - abs(dy);
 	if (dx < 0)
+	{
 		swap_nbr(fdf, map, &nbr1, &nbr2);
+	}
 	else if (dy < 0 && dd < 0)
 	{
 		negative_high(fdf, map, nbr1, nbr2);
@@ -75,16 +77,37 @@ void	three_dimension(t_fdf *fdf, t_map *map)
 			if (i != (fdf->row_len - 1) && j != (fdf->column - 1))
 			{
 				get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i]);
+				if (fdf->n[j][i].colour != fdf->n[j + 1][i].colour)
+				{
+					printf("Line: %d, colour[%d][%d].colour: %x\n", __LINE__, j, i, fdf->n[j][i].colour);
+					u_gradate_colour(fdf, j, i, map);
+				}
 				get_slope(fdf, map, fdf->n[j][i], fdf->n[j][i + 1]);
+				if (fdf->n[j][i].colour != fdf->n[j][i + 1].colour)
+				{
+					printf("Line: %d, colour[%d][%d].colour: %x\n", __LINE__, j, i, fdf->n[j][i].colour);
+				}
 				get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i + 1]);
+				if (fdf->n[j][i].colour != fdf->n[j + 1][i + 1].colour)
+				{
+					printf("Line: %d, colour[%d][%d].colour: %x\n", __LINE__, j, i, fdf->n[j][i].colour);
+				}
 			}
 			else if (i == (fdf->row_len - 1) && j != (fdf->column - 1))
 			{
 				get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i]);
+				if (fdf->n[j][i].colour != fdf->n[j + 1][i].colour)
+				{
+					printf("Line: %d, colour[%d][%d].colour: %x\n", __LINE__, j, i, fdf->n[j][i].colour);
+				}
 			}
 			else if (i != (fdf->row_len - 1) && j == (fdf->column - 1))
 			{
 				get_slope(fdf, map, fdf->n[j][i], fdf->n[j][i + 1]);
+				if (fdf->n[j][i].colour != fdf->n[j][i + 1].colour)
+				{
+					printf("Line: %d, colour[%d][%d].colour: %x\n", __LINE__, j, i, fdf->n[j][i].colour);
+				}
 			}
 		}
 	}

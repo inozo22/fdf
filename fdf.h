@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/21 16:47:49 by nimai            ###   ########.fr       */
+/*   Updated: 2023/03/30 16:40:34 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@
 # define KEY_ESC 53
 # define KEY_Q 12
 
+//colour control
+# define R(a) (a) >> 16
+# define G(a) ((a) >> 8) & 0xFF
+# define B(a) (a) & 0xFF
+# define RGB(a, b, c) ((a) << 16) + ((b) << 8) + (c)
+
 typedef struct s_data
 {
 	void		*img;
@@ -57,13 +63,15 @@ typedef struct s_vars
 
 typedef struct s_nmbs
 {
+	int		len;
 //	long	value;
-	char	*colour;
+	int		colour;
 	int		x;
 	int		y;
 	int		z;
 	int		x_mod;
 	int		y_mod;
+	int		grd[ARGLIMIT];
 }	t_nmbs;
 
 typedef struct s_line
@@ -121,6 +129,9 @@ void	get_scale(t_map *map);
 void	adjust_screen(t_fdf *fdf, t_map *map);
 void	get_mid_x(t_fdf *fdf, t_map *map);
 void	get_mid_y(t_fdf *fdf, t_map *map);
+
+//
+void	u_gradate_colour(t_fdf *fdf, int j, int i, t_map *map);
 
 
 #endif
