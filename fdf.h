@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/30 16:40:34 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/06 16:23:28 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ typedef struct s_fdf
 	int				height;
 	int				width;
 	int				w_cell;
+	int				pwd_j;
+	int				pwd_i;
 }	t_fdf;
 
 typedef struct s_map
