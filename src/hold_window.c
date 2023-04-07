@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:45:20 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 11:32:38 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 14:07:49 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ int	terminate_fdf(void	*param)
 
 	meta = (t_map *)param;
 	mlx_destroy_window(meta->vars.mlx, meta->vars.win);
-//	free(meta->data.addr);
 	exit (0);
 }
 
-//If I want to put more function with key, here
 void	control_keys(int key, t_map *map)
 {
 	if (key == KEY_ESC || key == KEY_Q)
@@ -112,8 +110,10 @@ void	adjust_screen(t_fdf *fdf, t_map *map)
 		i = 0;
 		while (i < fdf->row_len)
 		{
-			fdf->n[j][i].x_mod = map->data.scale * 0.8 * (fdf->n[j][i].x - map->data.center_x) + WIN_WIDTH / 2;
-			fdf->n[j][i].y_mod = map->data.scale * 0.8 * (fdf->n[j][i].y - map->data.center_y) + WIN_HEIGHT / 2;
+			fdf->n[j][i].x_mod = map->data.scale * 0.8 * \
+			(fdf->n[j][i].x - map->data.center_x) + WIN_WIDTH / 2;
+			fdf->n[j][i].y_mod = map->data.scale * 0.8 * \
+			(fdf->n[j][i].y - map->data.center_y) + WIN_HEIGHT / 2;
 			i++;
 		}
 		j++;
@@ -145,13 +145,8 @@ void	draw_ver(t_map *map, t_fdf *fdf)//check all rows
 
 void	hold_window(t_fdf *fdf, t_map *map)
 {
-//	convert_points_2d(fdf, &map->data);
-//	get_mid_x(fdf, map);
-//	get_mid_y(fdf, map);
-//	get_scale(map);
 	adjust_screen(fdf, map);
 	three_dimension(fdf, map);
-//	draw_ver(map, fdf);
 	mlx_put_image_to_window(map->vars.mlx, map->vars.win, map->data.img, 0, 0);
 	mlx_hook(map->vars.win, 2, 0, key_press, map);
 	mlx_loop(map->vars.mlx);

@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:00:27 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 12:21:41 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 14:16:08 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,25 @@ int	round_nb(float nb)
 	return (ret);
 }
 
-void	gradiente(int start, int end, t_fdf *fdf, int j, int i)
+void	gradiente(int start, int end, t_fdf *fdf)
 {
 	float	increment[3];
 	int		tmp[3];
 	int		c;
 
 	c = 0;
-	increment[0] = (float)((R(end)) - (R(start))) / (float)fdf->n[j][i].len;
-	increment[1] = (float)((G(end)) - (G(start))) / (float)fdf->n[j][i].len;
-	increment[2] = (float)((B(end)) - (B(start))) / (float)fdf->n[j][i].len;
-	while (c < fdf->n[j][i].len)
+	increment[0] = (float)((R(end)) - (R(start))) / \
+	(float)fdf->n[fdf->pwd_j][fdf->pwd_i].len;
+	increment[1] = (float)((G(end)) - (G(start))) / \
+	(float)fdf->n[fdf->pwd_j][fdf->pwd_i].len;
+	increment[2] = (float)((B(end)) - (B(start))) / \
+	(float)fdf->n[fdf->pwd_j][fdf->pwd_i].len;
+	while (c < fdf->n[fdf->pwd_j][fdf->pwd_i].len)
 	{
 		tmp[0] = (R(start)) + round_nb(c * increment[0]);
 		tmp[1] = (G(start)) + round_nb(c * increment[1]);
 		tmp[2] = (B(start)) + round_nb(c * increment[2]);
-		fdf->n[j][i].grd[c] = RGB(tmp[0], tmp[1], tmp[2]);
+		fdf->n[fdf->pwd_j][fdf->pwd_i].grd[c] = RGB(tmp[0], tmp[1], tmp[2]);
 		c++;
 	}
 }
@@ -91,14 +94,14 @@ void	u_gradate_colour(t_fdf *fdf, int j, int i, t_map *map)
 	{
 		start = fdf->n[j + 1][i].colour;
 		end = fdf->n[j][i].colour;
-		gradiente(start, end, fdf, j, i);
+		gradiente(start, end, fdf);
 		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i]);
 	}
 	else
 	{
 		end = fdf->n[j + 1][i].colour;
 		start = fdf->n[j][i].colour;
-		gradiente(start, end, fdf, j, i);
+		gradiente(start, end, fdf);
 		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i]);
 	}
 }
@@ -112,14 +115,14 @@ void	r_gradate_colour(t_fdf *fdf, int j, int i, t_map *map)
 	{
 		start = fdf->n[j][i + 1].colour;
 		end = fdf->n[j][i].colour;
-		gradiente(start, end, fdf, j, i);
+		gradiente(start, end, fdf);
 		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j][i + 1]);
 	}
 	else
 	{
 		end = fdf->n[j][i + 1].colour;
 		start = fdf->n[j][i].colour;
-		gradiente(start, end, fdf, j, i);
+		gradiente(start, end, fdf);
 		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j][i + 1]);
 	}
 }
@@ -133,14 +136,14 @@ void	ur_gradate_colour(t_fdf *fdf, int j, int i, t_map *map)
 	{
 		start = fdf->n[j + 1][i + 1].colour;
 		end = fdf->n[j][i].colour;
-		gradiente(start, end, fdf, j, i);
+		gradiente(start, end, fdf);
 		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i + 1]);
 	}
 	else
 	{
 		end = fdf->n[j + 1][i + 1].colour;
 		start = fdf->n[j][i].colour;
-		gradiente(start, end, fdf, j, i);
+		gradiente(start, end, fdf);
 		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i + 1]);
 	}
 }
