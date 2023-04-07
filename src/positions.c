@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:09:34 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 11:33:25 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 14:06:01 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	positive_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 {
 	int	d[3];
 	int	coord[2];
-	int	len;
 
-	len = 0;
+	fdf->n[fdf->pwd_j][fdf->pwd_i].len = 0;
 	d[0] = nbr2.x_mod - nbr1.x_mod;
 	d[1] = nbr2.y_mod - nbr1.y_mod;
 	coord[0] = nbr1.x_mod;
@@ -28,28 +27,26 @@ void	positive_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	{
 		if (d[2] >= 0)
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);//kore ha heikou
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);
 			coord[1]++;
 			d[2] = d[2] + 2 * d[1] - 2 * d[0];
 		}
 		else
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);//kore ha heikou
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);
 			d[2] = d[2] + 2 * d[1];
 		}
 		coord[0]++;
-		len++;
+		fdf->n[fdf->pwd_j][fdf->pwd_i].len++;
 	}
-	fdf->n[fdf->pwd_j][fdf->pwd_i].len = len;
 }
 
 void	positive_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 {
 	int	d[3];
 	int	coord[2];
-	int	len;
 
-	len = 0;
+	fdf->n[fdf->pwd_j][fdf->pwd_i].len = 0;
 	d[0] = nbr2.x_mod - nbr1.x_mod;
 	d[1] = nbr2.y_mod - nbr1.y_mod;
 	coord[0] = nbr1.x_mod;
@@ -59,28 +56,26 @@ void	positive_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	{
 		if (d[2] >= 0)
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);//migi naname shita
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);
 			coord[0]++;
 			d[2] = d[2] + 2 * d[0] - 2 * d[1];
 		}
 		else
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);//migi naname shita
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);
 			d[2] = d[2] + 2 * d[0];
 		}
 		coord[1]++;
-		len++;
+		fdf->n[fdf->pwd_j][fdf->pwd_i].len++;
 	}
-	fdf->n[fdf->pwd_j][fdf->pwd_i].len = len;
 }
 
 void	negative_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 {
 	int	d[3];
 	int	coord[2];
-	int	len;
 
-	len = 0;
+	fdf->n[fdf->pwd_j][fdf->pwd_i].len = 0;
 	d[0] = nbr2.x_mod - nbr1.x_mod;
 	d[1] = nbr2.y_mod - nbr1.y_mod;
 	coord[0] = nbr1.x_mod;
@@ -90,29 +85,26 @@ void	negative_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	{
 		if (d[2] >= 0)
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);//heikou
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);
 			coord[1]--;
 			d[2] = d[2] - 2 * d[1] - 2 * d[0];
 		}
 		else
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);//heikou
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);
 			d[2] = d[2] - 2 * d[1];
 		}
 		coord[0]++;
-		len++;
-
+		fdf->n[fdf->pwd_j][fdf->pwd_i].len++;
 	}
-	fdf->n[fdf->pwd_j][fdf->pwd_i].len = len;
 }
 
 void	negative_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 {
 	int	d[3];
 	int	coord[2];
-	int	len;
 
-	len = 0;
+	fdf->n[fdf->pwd_j][fdf->pwd_i].len = 0;
 	d[0] = nbr2.x_mod - nbr1.x_mod;
 	d[1] = nbr2.y_mod - nbr1.y_mod;
 	coord[0] = nbr2.x_mod;
@@ -122,18 +114,16 @@ void	negative_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	{
 		if (d[2] >= 0)
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);//hidari naname shita
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);
 			coord[0]--;
 			d[2] = d[2] + 2 * d[0] + 2 * d[1];
-	//		printf("%x\n", );
 		}
 		else
 		{
-			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);//hidari naname shita
+			my_mlx_pixel_put(&map->data, coord[0], coord[1], nbr1.colour);
 			d[2] = d[2] + 2 * d[0];
 		}
 		coord[1]++;
-		len++;
+		fdf->n[fdf->pwd_j][fdf->pwd_i].len++;
 	}
-	fdf->n[fdf->pwd_j][fdf->pwd_i].len = len;
 }
