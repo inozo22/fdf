@@ -6,18 +6,18 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/24 10:58:54 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 11:32:12 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-int	atox(char	*str)
+int	hexatoi(char	*str)
 {
-	int	ret;
-	int	i;
-	int	j;
-	int	len;
+	int		ret;
+	int		i;
+	int		j;
+	int		len;
 	char	*base_l;
 	char	*base_u;
 
@@ -58,7 +58,6 @@ int	atox(char	*str)
 	fdf->w_cell = fdf->width * 0.75 / fdf->row_len;
 } */
 
-
 int	get_colour(char *str, int i, int row, t_fdf *fdf)
 {
 	char	tmp[20];
@@ -77,11 +76,7 @@ int	get_colour(char *str, int i, int row, t_fdf *fdf)
 		i++;
 	}
 	tmp[j] = '\0';
-	//
-	fdf->n[fdf->column][row].colour = atox(tmp);
-	//
-	//check in 42
-	printf("Line: %d, colour: %d\n", __LINE__, fdf->n[fdf->column][row].colour);
+	fdf->n[fdf->column][row].colour = hexatoi(tmp);
 	return (i);
 }
 
@@ -141,9 +136,8 @@ void	fill_n(t_fdf *fdf, int size)
 		fdf->n[fdf->column][i].z = ft_atoi(fdf->strs[i]);
 		fdf->n[fdf->column][i].x = i;
 		fdf->n[fdf->column][i].y = fdf->column;
-		//
-		fdf->n[fdf->column][i].colour = 0xffffff;
-		//
+		if (!fdf->n[fdf->column][i].colour)
+			fdf->n[fdf->column][i].colour = 0xffffff;
 		i++;
 	}
 //	printf("I'm here: %d\n", __LINE__);
@@ -244,7 +238,7 @@ void	fdf(int fd)
 	get_mid_y(fdf, map);
 	get_scale(map);
 //	adjust_screen(fdf, map);
-	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
+//	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
 	hold_window(fdf, map);
 	printf("map made\n");
 	all_free (fdf);

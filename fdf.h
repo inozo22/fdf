@@ -6,7 +6,11 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/22 13:21:51 by nimai            ###   ########.fr       */
+=======
+/*   Updated: 2023/04/07 11:26:27 by nimai            ###   ########.fr       */
+>>>>>>> branch_0330
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +43,12 @@
 # define KEY_ESC 53
 # define KEY_Q 12
 
+//colour control
+# define R(a) (a) >> 16
+# define G(a) ((a) >> 8) & 0xFF
+# define B(a) (a) & 0xFF
+# define RGB(a, b, c) ((a) << 16) + ((b) << 8) + (c)
+
 typedef struct s_data
 {
 	void		*img;
@@ -61,7 +71,9 @@ typedef struct s_vars
 
 typedef struct s_nmbs
 {
+	int		len;
 //	long	value;
+<<<<<<< HEAD
 //
 	int		colour;
 //
@@ -69,11 +81,15 @@ typedef struct s_nmbs
 	int		r;
 	int		g;
 	int		b; */
+=======
+	int		colour;
+>>>>>>> branch_0330
 	int		x;
 	int		y;
 	int		z;
 	int		x_mod;
 	int		y_mod;
+	int		grd[ARGLIMIT];
 }	t_nmbs;
 
 typedef struct s_line
@@ -98,6 +114,8 @@ typedef struct s_fdf
 	int				height;
 	int				width;
 	int				w_cell;
+	int				pwd_j;
+	int				pwd_i;
 }	t_fdf;
 
 typedef struct s_map
@@ -131,6 +149,16 @@ void	get_scale(t_map *map);
 void	adjust_screen(t_fdf *fdf, t_map *map);
 void	get_mid_x(t_fdf *fdf, t_map *map);
 void	get_mid_y(t_fdf *fdf, t_map *map);
+
+//
+void	u_gradate_colour(t_fdf *fdf, int j, int i, t_map *map);
+void	r_gradate_colour(t_fdf *fdf, int j, int i, t_map *map);
+void	ur_gradate_colour(t_fdf *fdf, int j, int i, t_map *map);
+void	g_negative_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
+void	g_negative_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
+void	g_positive_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
+void	g_positive_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
+void	g_get_slope(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
 
 
 #endif
