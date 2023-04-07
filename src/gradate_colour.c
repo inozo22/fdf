@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:00:27 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 11:26:52 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 12:21:41 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,34 +67,17 @@ void	gradiente(int start, int end, t_fdf *fdf, int j, int i)
 	float	increment[3];
 	int		tmp[3];
 	int		c;
-	int		newcolour;
 
 	c = 0;
-	printf("Line: %d, start: %x, end: %x\n", __LINE__, start, end);
-	printf("Line: %d, len: %d\n", __LINE__, fdf->n[j][i].len);
 	increment[0] = (float)((R(end)) - (R(start))) / (float)fdf->n[j][i].len;
 	increment[1] = (float)((G(end)) - (G(start))) / (float)fdf->n[j][i].len;
 	increment[2] = (float)((B(end)) - (B(start))) / (float)fdf->n[j][i].len;
-//	printf("Line: %d, increment[0]: %f\n", __LINE__, increment[0]);
-//	printf("Line: %d, increment[1]: %f\n", __LINE__, increment[1]);
-//	printf("iLine: %d, ncrement[2]: %f\n", __LINE__, increment[2]);
 	while (c < fdf->n[j][i].len)
 	{
-/* 		increment[0] = (float)((R(end)) - (R(start))) / (float)fdf->n[j][i].len;
-		increment[1] = (float)((G(end)) - (G(start))) / (float)fdf->n[j][i].len;
-		increment[2] = (float)((B(end)) - (B(start))) / (float)fdf->n[j][i].len;
-		printf("Line: %d, increment[0]: %f\n", __LINE__, increment[0]);
-		printf("Line: %d, increment[1]: %f\n", __LINE__, increment[1]);
-		printf("iLine: %d, ncrement[2]: %f\n", __LINE__, increment[2]); */
-
 		tmp[0] = (R(start)) + round_nb(c * increment[0]);
 		tmp[1] = (G(start)) + round_nb(c * increment[1]);
 		tmp[2] = (B(start)) + round_nb(c * increment[2]);
-
-		newcolour = RGB(tmp[0], tmp[1], tmp[2]);
-		fdf->n[j][i].grd[c] = newcolour;
-//		printf("0:%d, 1:%d, 2:%d\nnewcolour: %x\n", tmp[0], tmp[1], tmp[2], newcolour);
-//		printf("fdf->n[j][i].grd[%d]: %x\n", c, fdf->n[j][i].grd[c]);
+		fdf->n[j][i].grd[c] = RGB(tmp[0], tmp[1], tmp[2]);
 		c++;
 	}
 }
@@ -108,7 +91,6 @@ void	u_gradate_colour(t_fdf *fdf, int j, int i, t_map *map)
 	{
 		start = fdf->n[j + 1][i].colour;
 		end = fdf->n[j][i].colour;
-	//	printf("Line: %d, File: %s, fdf->n[j + 1][i].len: %d\n", __LINE__, __FILE__, fdf->n[j + 1][i].len);
 		gradiente(start, end, fdf, j, i);
 		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i]);
 	}
@@ -116,7 +98,6 @@ void	u_gradate_colour(t_fdf *fdf, int j, int i, t_map *map)
 	{
 		end = fdf->n[j + 1][i].colour;
 		start = fdf->n[j][i].colour;
-	//	printf("Line: %d, File: %s, fdf->n[j + 1][i].len: %d\n", __LINE__, __FILE__, fdf->n[j + 1][i].len);
 		gradiente(start, end, fdf, j, i);
 		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i]);
 	}
@@ -131,7 +112,6 @@ void	r_gradate_colour(t_fdf *fdf, int j, int i, t_map *map)
 	{
 		start = fdf->n[j][i + 1].colour;
 		end = fdf->n[j][i].colour;
-	//	printf("Line: %d, File: %s, fdf->n[j + 1][i].len: %d\n", __LINE__, __FILE__, fdf->n[j + 1][i].len);
 		gradiente(start, end, fdf, j, i);
 		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j][i + 1]);
 	}
@@ -139,7 +119,6 @@ void	r_gradate_colour(t_fdf *fdf, int j, int i, t_map *map)
 	{
 		end = fdf->n[j][i + 1].colour;
 		start = fdf->n[j][i].colour;
-	//	printf("Line: %d, File: %s, fdf->n[j + 1][i].len: %d\n", __LINE__, __FILE__, fdf->n[j + 1][i].len);
 		gradiente(start, end, fdf, j, i);
 		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j][i + 1]);
 	}
@@ -154,7 +133,6 @@ void	ur_gradate_colour(t_fdf *fdf, int j, int i, t_map *map)
 	{
 		start = fdf->n[j + 1][i + 1].colour;
 		end = fdf->n[j][i].colour;
-	//	printf("Line: %d, File: %s, fdf->n[j + 1][i].len: %d\n", __LINE__, __FILE__, fdf->n[j + 1][i].len);
 		gradiente(start, end, fdf, j, i);
 		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i + 1]);
 	}
@@ -162,7 +140,6 @@ void	ur_gradate_colour(t_fdf *fdf, int j, int i, t_map *map)
 	{
 		end = fdf->n[j + 1][i + 1].colour;
 		start = fdf->n[j][i].colour;
-	//	printf("Line: %d, File: %s, fdf->n[j + 1][i].len: %d\n", __LINE__, __FILE__, fdf->n[j + 1][i].len);
 		gradiente(start, end, fdf, j, i);
 		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i + 1]);
 	}

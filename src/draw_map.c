@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:55:19 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/22 12:13:54 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 11:45:21 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-//May I bundle two functions below
 void	convert_points_2d(t_fdf *fdf, t_data *data)
 {
 	double	x_aux;
@@ -35,7 +34,8 @@ void	convert_points_2d(t_fdf *fdf, t_data *data)
 		while (++i < fdf->row_len)
 		{
 			x_aux = sqrt(1.0 / 2) * (fdf->n[j][i].x - fdf->n[j][i].y);
-			y_aux = sqrt(1.0 / 6) * (fdf->n[j][i].x + fdf->n[j][i].y - 2 * fdf->n[j][i].z);
+			y_aux = sqrt(1.0 / 6) * (fdf->n[j][i].x + fdf->n[j][i].y \
+			- 2 * fdf->n[j][i].z);
 			fdf->n[j][i].x = x_aux * 200;
 			fdf->n[j][i].y = y_aux * 200;
 		}

@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 11:32:12 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 12:00:01 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	hexatoi(char	*str)
 {
 	int		ret;
 	int		i;
-	int		j;
 	int		len;
 	char	*base_l;
 	char	*base_u;
@@ -24,39 +23,23 @@ int	hexatoi(char	*str)
 	base_l = "0123456789abcdef";
 	base_u = "0123456789ABCDEF";
 
-	i = -1;
 	ret = 0;
-	//switch from strlen to ft_strlen, not tested
 	len = ft_strlen(str) - 1;
-	while (str[++i])
+	while (*str)
 	{
-		j = -1;
-		while (++j < 16)
+		i = -1;
+		while (++i < 16)
 		{
-			if (str[i] == base_l[j] || str[i] == base_u[j])
+			if (*str == base_l[i] || *str == base_u[i])
 			{
-				ret = ret + j * pow(16, len);
+				ret = ret + i * pow(16, len);
 				len--;
 			}
 		}
+		str++;
 	}
 	return (ret);
 }
-
-//20230319: get the width and height for both window and image
-//and then calculate the length of each cell width
-/* void	get_size(t_fdf *fdf)
-{
-	if ((fdf->row_len * 50) > 1920)
-		fdf->width = 1920;
-	else
-		fdf->width = fdf->row_len * 50;
-	if ((fdf->column * 50) > 1080)
-		fdf->height = 1080;
-	else
-		fdf->height = fdf->column * 50;
-	fdf->w_cell = fdf->width * 0.75 / fdf->row_len;
-} */
 
 int	get_colour(char *str, int i, int row, t_fdf *fdf)
 {
@@ -66,8 +49,8 @@ int	get_colour(char *str, int i, int row, t_fdf *fdf)
 	j = 0;
 
 	++i;
-	if (str[i] != '0' || (str[i + 1]  != 'x'))
-		exit (fdf_error(5, fdf));//koreha hexa janai error
+	if (str[i] != '0' || (str[i + 1] != 'x'))
+		exit (fdf_error(5, fdf));
 	i = i + 2;
 	while (str[i] && str[i] != 32)
 	{
@@ -87,7 +70,7 @@ bool	check_amount(t_fdf *fdf, int ret)
 		fdf->row_len = ret;
 		fdf->is_first = 0;
 	}
-	else// I may have to omid this
+	else
 	{
 		if (ret != fdf->row_len)
 			return (false);
@@ -205,7 +188,6 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		exit (hollow_error(1));//error without memory
-// koko made
 	map->vars.mlx = mlx_init();
 	if (map->vars.mlx == NULL)
 	{
@@ -219,7 +201,8 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 		exit(2);//memory release?
 	}
 	map->data.img = mlx_new_image(map->vars.mlx, WIN_WIDTH, WIN_HEIGHT);
-	map->data.addr = mlx_get_data_addr(map->data.img, &map->data.bits_per_pixel, &map->data.line_length, &map->data.endian);
+	map->data.addr = mlx_get_data_addr(map->data.img, \
+	&map->data.bits_per_pixel, &map->data.line_length, &map->data.endian);
 	return (map);
 }
 
@@ -231,14 +214,10 @@ void	fdf(int fd)
 	fdf = NULL;
 	fdf = init_fdf(fd, fdf);
 	map = init_map(map, fdf);
-//	open_window(fdf, map);
 	convert_points_2d(fdf, &map->data);
-//	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
 	get_mid_x(fdf, map);
 	get_mid_y(fdf, map);
 	get_scale(map);
-//	adjust_screen(fdf, map);
-//	printf("where am I: %d\nfile: %s\n", __LINE__, __FILE__);
 	hold_window(fdf, map);
 	printf("map made\n");
 	all_free (fdf);
