@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 12:00:01 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 14:37:59 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ int	count_word(char *str, t_fdf *fdf)
 
 	i = 0;
 	ret = 0;
-	if (!str)
-		exit (hollow_error(3));
 	while (str[i] && (str[i] == 32 || str[i] == 't'))
 		i++;
 	while (str[i] && str[i] != 10)
@@ -123,15 +121,6 @@ void	fill_n(t_fdf *fdf, int size)
 			fdf->n[fdf->column][i].colour = 0xffffff;
 		i++;
 	}
-//	printf("I'm here: %d\n", __LINE__);
-/* 	while (i < ARGLIMIT)//check if it's ok leave this as empty
-	{
-		fdf->n[fdf->column][i].value = 0;//you kentou
-		fdf->n[fdf->column][i].id_x = i;
-		fdf->n[fdf->column][i].id_y = fdf->column;
-		printf("I'm here: %d\ni	:%ld\ncolumn	:%ld\n", __LINE__, i, fdf->column);
-		i++;
-	} */
 }
 
 void	fill_data(int fd, t_fdf *fdf)
@@ -166,20 +155,6 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 	if (!fdf)
 		exit (hollow_error(1));//error without memory
 	fill_data(fd, fdf);
-
-//printer
-	j = -1;
-	while (++j < fdf->column)
-	{
-		i = -1;
-		while (++i < fdf->row_len)
-		{
-			printf("%d ", fdf->n[j][i].z);
-		}
-		printf("\n");
-	}
-	printf("fdf->column: %d\nfdf->row_len: %d\n", fdf->column, fdf->row_len);
-//printer
 	return (fdf);
 }
 
@@ -219,6 +194,5 @@ void	fdf(int fd)
 	get_mid_y(fdf, map);
 	get_scale(map);
 	hold_window(fdf, map);
-	printf("map made\n");
 	all_free (fdf);
 }

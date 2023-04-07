@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:00:27 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 14:16:08 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 14:59:48 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	gradiente(int start, int end, t_fdf *fdf)
 	}
 }
 
+//gradate_colour puede ser una function?
 void	u_gradate_colour(t_fdf *fdf, int j, int i, t_map *map)
 {
 	int	start;
