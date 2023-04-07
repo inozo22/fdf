@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:25:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 11:27:46 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 14:01:46 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,35 @@ void	get_slope(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 		positive_high(fdf, map, nbr1, nbr2);
 }
 
+void	check_slope_colour(t_fdf *fdf, t_map *map, int j, int i)
+{
+	get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i]);
+	if (fdf->n[j][i].colour != fdf->n[j + 1][i].colour)
+		u_gradate_colour(fdf, j, i, map);
+	get_slope(fdf, map, fdf->n[j][i], fdf->n[j][i + 1]);
+	if (fdf->n[j][i].colour != fdf->n[j][i + 1].colour)
+		r_gradate_colour(fdf, j, i, map);
+	get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i + 1]);
+	if (fdf->n[j][i].colour != fdf->n[j + 1][i + 1].colour)
+		ur_gradate_colour(fdf, j, i, map);
+}
+
+void	check_slope_colour_edge(t_fdf *fdf, t_map *map, int j, int i)
+{
+	if (i == (fdf->row_len - 1) && j != (fdf->column - 1))
+	{
+		get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i]);
+		if (fdf->n[j][i].colour != fdf->n[j + 1][i].colour)
+			u_gradate_colour(fdf, j, i, map);
+	}
+	else if (i != (fdf->row_len - 1) && j == (fdf->column - 1))
+	{
+		get_slope(fdf, map, fdf->n[j][i], fdf->n[j][i + 1]);
+		if (fdf->n[j][i].colour != fdf->n[j][i + 1].colour)
+			r_gradate_colour(fdf, j, i, map);
+	}
+}
+
 void	three_dimension(t_fdf *fdf, t_map *map)
 {
 	int	i;
@@ -63,52 +92,12 @@ void	three_dimension(t_fdf *fdf, t_map *map)
 		i = -1;
 		while (++i < fdf->row_len)
 		{
+			fdf->pwd_j = j;
+			fdf->pwd_i = i;
 			if (i != (fdf->row_len - 1) && j != (fdf->column - 1))
-			{
-				fdf->pwd_j = j;  
-				fdf->pwd_i = i;
-				get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i]);
-				if (fdf->n[j][i].colour != fdf->n[j + 1][i].colour)
-				{
-//					printf("fdf->n[j][i].len: %d\n", fdf->n[j][i].len);
-					u_gradate_colour(fdf, j, i, map);//iki
-				}
-				get_slope(fdf, map, fdf->n[j][i], fdf->n[j][i + 1]);
-				if (fdf->n[j][i].colour != fdf->n[j][i + 1].colour)
-				{
-//					printf("fdf->n[j][i].len: %d\n", fdf->n[j][i].len);
-//					u_gradate_colour(fdf, j, i, map);
-					r_gradate_colour(fdf, j, i, map);//iki
-				}
-				get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i + 1]);
-				if (fdf->n[j][i].colour != fdf->n[j + 1][i + 1].colour)
-				{
-//					printf("fdf->n[j + 1][i].len: %d\n", fdf->n[j + 1][i].len);
-//					printf("fdf->n[j][i].len: %d\n", fdf->n[j][i].len);
-//					u_gradate_colour(fdf, j, i, map);
-//					r_gradate_colour(fdf, j, i, map);
-					ur_gradate_colour(fdf, j, i, map);
-				}
-			}
-			else if (i == (fdf->row_len - 1) && j != (fdf->column - 1))
-			{
-				get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i]);
-				if (fdf->n[j][i].colour != fdf->n[j + 1][i].colour)
-				{
-					u_gradate_colour(fdf, j, i, map);
-//					printf("Line: %d, colour[%d][%d].colour: %x\n", __LINE__, j, i, fdf->n[j][i].colour);
-				}
-			}
-			else if (i != (fdf->row_len - 1) && j == (fdf->column - 1))
-			{
-				get_slope(fdf, map, fdf->n[j][i], fdf->n[j][i + 1]);
-				if (fdf->n[j][i].colour != fdf->n[j][i + 1].colour)
-				{
-//					u_gradate_colour(fdf, j, i, map);
-					r_gradate_colour(fdf, j, i, map);
-//					printf("Line: %d, colour[%d][%d].colour: %x\n", __LINE__, j, i, fdf->n[j][i].colour);
-				}
-			}
+				check_slope_colour(fdf, map, j, i);
+			else
+				check_slope_colour_edge(fdf, map, j, i);
 		}
 	}
 }
