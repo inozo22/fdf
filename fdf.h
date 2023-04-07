@@ -6,11 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/22 13:21:51 by nimai            ###   ########.fr       */
-=======
-/*   Updated: 2023/04/07 11:26:27 by nimai            ###   ########.fr       */
->>>>>>> branch_0330
+/*   Updated: 2023/04/07 11:34:31 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +69,7 @@ typedef struct s_nmbs
 {
 	int		len;
 //	long	value;
-<<<<<<< HEAD
-//
 	int		colour;
-//
-/* 	int		rgb(R, G, B);
-	int		r;
-	int		g;
-	int		b; */
-=======
-	int		colour;
->>>>>>> branch_0330
 	int		x;
 	int		y;
 	int		z;
