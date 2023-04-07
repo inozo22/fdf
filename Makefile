@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/04/07 14:40:51 by nimai            ###   ########.fr        #
+#    Updated: 2023/04/07 15:39:33 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,14 @@ SRC			:=  \
 				main.c \
 				errors.c \
 				all_free.c \
+				fdf_util.c \
 				fdf.c \
 				draw_map.c \
 				hold_window.c \
 				three_dimension.c \
 				positions.c \
 				gradate_colour.c \
+				gradiente.c \
 				g_positions.c
 
 				

@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 11:34:31 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 15:39:30 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,10 @@ void	adjust_screen(t_fdf *fdf, t_map *map);
 void	get_mid_x(t_fdf *fdf, t_map *map);
 void	get_mid_y(t_fdf *fdf, t_map *map);
 
+int		count_word(char *str, t_fdf *fdf);
+bool	check_amount(t_fdf *fdf, int ret);
+int		get_colour(char *str, int i, int row, t_fdf *fdf);
+int		hexatoi(char	*str);
 //
 void	u_gradate_colour(t_fdf *fdf, int j, int i, t_map *map);
 void	r_gradate_colour(t_fdf *fdf, int j, int i, t_map *map);
@@ -145,6 +149,8 @@ void	g_negative_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
 void	g_positive_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
 void	g_positive_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
 void	g_get_slope(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
+static void	g_swap_nbr(t_fdf *fdf, t_map *map, t_nmbs *nbr1, t_nmbs *nbr2);
+void	gradiente(int start, int end, t_fdf *fdf);
 
 
 #endif
