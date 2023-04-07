@@ -6,35 +6,11 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:45:20 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 14:07:49 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 15:44:00 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-int	terminate_fdf(void	*param)
-{
-	t_map	*meta;
-
-	meta = (t_map *)param;
-	mlx_destroy_window(meta->vars.mlx, meta->vars.win);
-	exit (0);
-}
-
-void	control_keys(int key, t_map *map)
-{
-	if (key == KEY_ESC || key == KEY_Q)
-		terminate_fdf(map);
-}
-
-int	key_press(int key, void *param)
-{
-	t_map	*map;
-
-	map = (t_map *)param;
-	control_keys(key, map);
-	return (0);
-}
 
 void	get_mid_x(t_fdf *fdf, t_map *map)
 {
@@ -119,28 +95,6 @@ void	adjust_screen(t_fdf *fdf, t_map *map)
 		j++;
 	}
 	printf("Line: %d\nmap->data.scale: %f\n", __LINE__, map->data.scale);
-}
-
-void	draw_ver(t_map *map, t_fdf *fdf)//check all rows
-{
-	int	i;
-	int	j;
-	int	x;
-	int	y;
-
-	j = -1;
-	while (++j < fdf->column)
-	{
-		i = -1;
-		while (++i < fdf->row_len)
-		{
-			x = fdf->n[j][i].x_mod;
-			y = fdf->n[j][i].y_mod;
-			if (x > 0 && x < WIN_WIDTH && y > 0 && y < WIN_HEIGHT)
-				my_mlx_pixel_put(&map->data, x, y, 0xfcbc48);
-		}
-	}
-	return ;
 }
 
 void	hold_window(t_fdf *fdf, t_map *map)

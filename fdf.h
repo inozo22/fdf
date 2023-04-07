@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 15:39:30 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 15:45:15 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,8 @@ void	g_get_slope(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
 static void	g_swap_nbr(t_fdf *fdf, t_map *map, t_nmbs *nbr1, t_nmbs *nbr2);
 void	gradiente(int start, int end, t_fdf *fdf);
 
+int		terminate_fdf(void	*param);
+void	control_keys(int key, t_map *map);
+int		key_press(int key, void *param);
 
 #endif

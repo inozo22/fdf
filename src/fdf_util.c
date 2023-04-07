@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:27:24 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 15:29:31 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 15:46:46 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	hexatoi(char	*str)
 
 	base_l = "0123456789abcdef";
 	base_u = "0123456789ABCDEF";
-
 	ret = 0;
 	len = ft_strlen(str) - 1;
 	while (*str)
@@ -47,7 +46,6 @@ int	get_colour(char *str, int i, int row, t_fdf *fdf)
 	int		j;
 
 	j = 0;
-
 	++i;
 	if (str[i] != '0' || (str[i + 1] != 'x'))
 		exit (fdf_error(5, fdf));

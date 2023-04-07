@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_free.c                                         :+:      :+:    :+:   */
+/*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 15:47:55 by nimai            ###   ########.fr       */
+/*   Created: 2023/03/20 14:45:20 by nimai             #+#    #+#             */
+/*   Updated: 2023/04/07 15:43:22 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-char	**strs_clear(char **tab, int i)
+int	terminate_fdf(void	*param)
 {
-	while (i > 0)
-	{
-		i--;
-		free (tab[i]);
-	}
-	free (tab);
-	return (NULL);
+	t_map	*meta;
+
+	meta = (t_map *)param;
+	mlx_destroy_window(meta->vars.mlx, meta->vars.win);
+	exit (0);
 }
 
-void	all_free(t_fdf *fdf)
+void	control_keys(int key, t_map *map)
 {
-	free (fdf);
+	if (key == KEY_ESC || key == KEY_Q)
+		terminate_fdf(map);
+}
+
+int	key_press(int key, void *param)
+{
+	t_map	*map;
+
+	map = (t_map *)param;
+	control_keys(key, map);
+	return (0);
 }

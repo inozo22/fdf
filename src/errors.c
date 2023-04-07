@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:36:39 by nimai             #+#    #+#             */
-/*   Updated: 2023/03/16 10:22:27 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 15:48:19 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 int	hollow_error(int type)
 {
-	if (type == 1)//error memory release unnecessary
+	if (type == 1)
 	{
 		ft_putstr_fd("error without memory\n", STDERR);
 		return (1);
 	}
-	if (type == 2)//error memory release unnecessary
+	if (type == 2)
 	{
 		ft_putstr_fd("count number error\n", STDERR);
 		return (1);
 	}
-	if (type == 3)//error memory release unnecessary
+	if (type == 3)
 	{
 		ft_putstr_fd("no argment\n", STDERR);
 		return (1);
 	}
-	if (type == 4)//error memory release unnecessary
+	if (type == 4)
 	{
 		ft_putstr_fd("fail memory allocate\n", STDERR);
 		return (1);
@@ -51,19 +51,19 @@ int	fdf_error(int type, t_fdf *fdf)
 		all_free(fdf);
 		return (1);
 	}
-	if (type == 3)//error memory release necessary
+	if (type == 3)
 	{
 		ft_putstr_fd("the map is not enclosed by 0\n", STDERR);
 		all_free(fdf);
 		return (1);
 	}
-	if (type == 4)//error memory release necessary
+	if (type == 4)
 	{
 		ft_putstr_fd("the number is out of int\n", STDERR);
 		all_free(fdf);
 		return (1);
 	}
-	if (type == 5)//error memory release necessary
+	if (type == 5)
 	{
 		ft_putstr_fd("the colour code is not hexa\n", STDERR);
 		all_free(fdf);

@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 10:21:26 by nimai             #+#    #+#              #
-#    Updated: 2023/04/07 15:39:33 by nimai            ###   ########.fr        #
+#    Updated: 2023/04/07 15:44:36 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME		:= fdf
 SRCDIR		:= ./src/
 SRC			:=  \
 				main.c \
+				control.c \
 				errors.c \
 				all_free.c \
 				fdf_util.c \

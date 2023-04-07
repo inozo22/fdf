@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 15:28:06 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/07 15:47:26 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 
 	fdf = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!fdf)
-		exit (hollow_error(1));//error without memory
+		exit (hollow_error(1));
 	fill_data(fd, fdf);
 	return (fdf);
 }
@@ -67,18 +67,18 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 {
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
-		exit (hollow_error(1));//error without memory
+		exit (hollow_error(1));
 	map->vars.mlx = mlx_init();
 	if (map->vars.mlx == NULL)
 	{
 		perror("Unable to create mlx pointer\n");
-		exit(2);//memory release?
+		exit(2);
 	}
 	map->vars.win = mlx_new_window(map->vars.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	if (map->vars.win == NULL)
 	{
 		perror("Unable to create window pointer\n");
-		exit(2);//memory release?
+		exit(2);
 	}
 	map->data.img = mlx_new_image(map->vars.mlx, WIN_WIDTH, WIN_HEIGHT);
 	map->data.addr = mlx_get_data_addr(map->data.img, \
