@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:45:20 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/10 09:37:04 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/10 11:07:39 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,20 @@ int	terminate_fdf(void	*param)
 	exit (0);
 }
 
+void	zoom(int key, t_map *map)
+{
+	if (key == 125)
+		map->mag++;
+	if (key == 126)
+		map->mag--;
+}
+
 void	control_keys(int key, t_map *map)
 {
 	if (key == KEY_ESC || key == KEY_Q)
 		terminate_fdf(map);
+	if (key == 126 || key == 125)
+		zoom(key, map);
 }
 
 int	key_press(int key, void *param)

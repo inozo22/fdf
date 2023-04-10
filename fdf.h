@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 15:45:15 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/10 11:01:28 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_map
 {
 	t_vars	vars;
 	t_data	data;
+	float	mag;
 }	t_map;
 
 void	fdf(int fd);

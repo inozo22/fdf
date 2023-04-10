@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:45:20 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 15:44:00 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/10 11:03:54 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,14 @@ void	adjust_screen(t_fdf *fdf, t_map *map)
 		i = 0;
 		while (i < fdf->row_len)
 		{
-			fdf->n[j][i].x_mod = map->data.scale * 0.8 * \
+			fdf->n[j][i].x_mod = map->data.scale * map->mag * \
 			(fdf->n[j][i].x - map->data.center_x) + WIN_WIDTH / 2;
-			fdf->n[j][i].y_mod = map->data.scale * 0.8 * \
+			fdf->n[j][i].y_mod = map->data.scale * map->mag * \
 			(fdf->n[j][i].y - map->data.center_y) + WIN_HEIGHT / 2;
 			i++;
 		}
 		j++;
 	}
-	printf("Line: %d\nmap->data.scale: %f\n", __LINE__, map->data.scale);
 }
 
 void	hold_window(t_fdf *fdf, t_map *map)

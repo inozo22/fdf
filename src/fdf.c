@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 15:47:26 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/10 11:14:57 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 	if (!map)
 		exit (hollow_error(1));
 	map->vars.mlx = mlx_init();
+	map->mag = 0.8;
 	if (map->vars.mlx == NULL)
 	{
 		perror("Unable to create mlx pointer\n");
