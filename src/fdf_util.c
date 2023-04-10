@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:27:24 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 15:46:46 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/10 12:11:52 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	get_colour(char *str, int i, int row, t_fdf *fdf)
 	j = 0;
 	++i;
 	if (str[i] != '0' || (str[i + 1] != 'x'))
-		exit (fdf_error(5, fdf));
+		exit (fdf_error(1, fdf));
 	i = i + 2;
 	while (str[i] && str[i] != 32)
 	{

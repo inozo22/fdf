@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:00:27 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 15:33:40 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/10 13:37:57 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,19 @@ void	gradiente(int start, int end, t_fdf *fdf)
 	int		c;
 
 	c = 0;
-	increment[0] = (float)((R(end)) - (R(start))) / \
+	increment[0] = (float)(((end >> 16)) - ((start >> 16))) / \
 	(float)fdf->n[fdf->pwd_j][fdf->pwd_i].len;
-	increment[1] = (float)((G(end)) - (G(start))) / \
+	increment[1] = (float)(((end >> 8) & 0xFF) - ((start >> 8) & 0xFF)) / \
 	(float)fdf->n[fdf->pwd_j][fdf->pwd_i].len;
-	increment[2] = (float)((B(end)) - (B(start))) / \
+	increment[2] = (float)(((end) & 0xFF) - ((start) & 0xFF)) / \
 	(float)fdf->n[fdf->pwd_j][fdf->pwd_i].len;
 	while (c < fdf->n[fdf->pwd_j][fdf->pwd_i].len)
 	{
-		tmp[0] = (R(start)) + round_nb(c * increment[0]);
-		tmp[1] = (G(start)) + round_nb(c * increment[1]);
-		tmp[2] = (B(start)) + round_nb(c * increment[2]);
-		fdf->n[fdf->pwd_j][fdf->pwd_i].grd[c] = RGB(tmp[0], tmp[1], tmp[2]);
+		tmp[0] = ((start >> 16)) + round_nb(c * increment[0]);
+		tmp[1] = ((start >> 8) & 0xFF) + round_nb(c * increment[1]);
+		tmp[2] = ((start) & 0xFF) + round_nb(c * increment[2]);
+		fdf->n[fdf->pwd_j][fdf->pwd_i].grd[c] = (tmp[0] << 16) + \
+		(tmp[1] << 8) + (tmp[2]);
 		c++;
 	}
 }

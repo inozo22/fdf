@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:36:39 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 15:48:19 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/10 12:11:48 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,6 @@ int	fdf_error(int type, t_fdf *fdf)
 	if (type == 4)
 	{
 		ft_putstr_fd("the number is out of int\n", STDERR);
-		all_free(fdf);
-		return (1);
-	}
-	if (type == 5)
-	{
-		ft_putstr_fd("the colour code is not hexa\n", STDERR);
 		all_free(fdf);
 		return (1);
 	}
