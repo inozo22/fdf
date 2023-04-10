@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:45:20 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 15:43:22 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/10 09:37:04 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	terminate_fdf(void	*param)
 
 	meta = (t_map *)param;
 	mlx_destroy_window(meta->vars.mlx, meta->vars.win);
+	free(meta->vars.mlx);
 	exit (0);
 }
 

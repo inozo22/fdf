@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 15:47:55 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/10 09:42:58 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ char	**strs_clear(char **tab, int i)
 
 void	all_free(t_fdf *fdf)
 {
+	if (fdf->strs)
+		strs_clear(fdf->strs, fdf->column);
 	free (fdf);
 }
