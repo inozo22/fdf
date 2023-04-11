@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:09:34 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/11 11:06:19 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/11 11:20:43 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	g_positive_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	fdf->dd = 2 * fdf->dy - fdf->dx;
 	coord[0] = nbr1.x_mod;
 	coord[1] = nbr1.y_mod;
-
 	while ((coord[0] < nbr2.x_mod) && nbr1.grd[++c])
 	{
 		if (fdf->dd >= 0)
@@ -108,7 +107,6 @@ void	g_negative_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2)
 	fdf->dd = 2 * fdf->dy - fdf->dx;
 	coord[0] = nbr2.x_mod;
 	coord[1] = nbr2.y_mod;
-
 	while ((coord[1] < nbr1.y_mod) && nbr1.grd[++c])
 	{
 		if (fdf->dd >= 0)
