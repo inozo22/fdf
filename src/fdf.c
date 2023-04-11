@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/10 11:14:57 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/11 18:35:23 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	fill_n(t_fdf *fdf, int size)
 		fdf->n[fdf->column][i].z = ft_atoi(fdf->strs[i]);
 		fdf->n[fdf->column][i].x = i;
 		fdf->n[fdf->column][i].y = fdf->column;
-		if (!fdf->n[fdf->column][i].colour)
-			fdf->n[fdf->column][i].colour = 0xffffff;
 		i++;
 	}
 }
@@ -50,7 +48,6 @@ void	fill_data(int fd, t_fdf *fdf)
 	free (str);
 }
 
-//the fd already has been opened
 t_fdf	*init_fdf(int fd, t_fdf *fdf)
 {
 	int	i;
@@ -59,6 +56,15 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 	fdf = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!fdf)
 		exit (hollow_error(1));
+	j = -1;
+	while (++j < ARGLIMIT)
+	{
+		i = -1;
+		while (++i < ARGLIMIT)
+		{
+			fdf->n[j][i].colour = 0xffffff;
+		}
+	}
 	fill_data(fd, fdf);
 	return (fdf);
 }
@@ -73,12 +79,14 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 	if (map->vars.mlx == NULL)
 	{
 		perror("Unable to create mlx pointer\n");
+		fdf_free(fdf);
 		exit(2);
 	}
 	map->vars.win = mlx_new_window(map->vars.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	if (map->vars.win == NULL)
 	{
 		perror("Unable to create window pointer\n");
+		fdf_free(fdf);
 		exit(2);
 	}
 	map->data.img = mlx_new_image(map->vars.mlx, WIN_WIDTH, WIN_HEIGHT);
@@ -100,5 +108,5 @@ void	fdf(int fd)
 	get_mid_y(fdf, map);
 	get_scale(map);
 	hold_window(fdf, map);
-	all_free (fdf);
+	all_free (fdf, map);
 }

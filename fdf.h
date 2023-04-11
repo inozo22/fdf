@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/11 10:49:43 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/11 18:24:47 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ int			main(int ac, char **av);
 //int main(void);
 int			hollow_error(int type);
 int			fdf_error(int type, t_fdf *fdf);
-void		all_free(t_fdf *fdf);
+void		fdf_free(t_fdf *fdf);
+void		all_free(t_fdf *fdf, t_map *map);
 char		**strs_clear(char **tab, int i);
 t_fdf		*init_fdf(int fd, t_fdf *fdf);
 //void	open_window(t_fdf *fdf, t_map *map);

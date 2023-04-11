@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:36:39 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/10 12:11:48 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/11 18:24:35 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,25 @@ int	fdf_error(int type, t_fdf *fdf)
 	if (type == 1)
 	{
 		ft_putstr_fd("error with memory\n", STDERR);
-		all_free(fdf);
+		fdf_free(fdf);
 		return (1);
 	}
 	if (type == 2)
 	{
 		ft_putstr_fd("map size error\n", STDERR);
-		all_free(fdf);
+		fdf_free(fdf);
 		return (1);
 	}
 	if (type == 3)
 	{
 		ft_putstr_fd("the map is not enclosed by 0\n", STDERR);
-		all_free(fdf);
+		fdf_free(fdf);
 		return (1);
 	}
 	if (type == 4)
 	{
 		ft_putstr_fd("the number is out of int\n", STDERR);
-		all_free(fdf);
+		fdf_free(fdf);
 		return (1);
 	}
 	return (0);
