@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/11 18:35:23 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/12 10:38:14 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ void	fill_n(t_fdf *fdf, int size)
 		fdf->n[fdf->column][i].y = fdf->column;
 		i++;
 	}
+	while (i < ARGLIMIT)
+	{
+		fdf->n[fdf->column][i].z = 0;
+		fdf->n[fdf->column][i].x = i;
+		fdf->n[fdf->column][i].y = fdf->column;
+		i++;
+	}	
 }
 
 void	fill_data(int fd, t_fdf *fdf)
@@ -73,7 +80,10 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 {
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
+	{
+		fdf_free(fdf);
 		exit (hollow_error(1));
+	}
 	map->vars.mlx = mlx_init();
 	map->mag = 0.8;
 	if (map->vars.mlx == NULL)

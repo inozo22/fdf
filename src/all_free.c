@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/11 18:24:10 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/12 09:55:03 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	fdf_free(t_fdf *fdf)
 
 void	all_free(t_fdf *fdf, t_map *map)
 {
-	if (fdf->strs)
-		strs_clear(fdf->strs, fdf->column);
-	free (fdf);
+	fdf_free(fdf);
 	free (map);
 }

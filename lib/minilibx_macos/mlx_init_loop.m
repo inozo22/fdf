@@ -53,9 +53,7 @@ void *mlx_init()
   new_mlx->loop_hook = NULL;
   new_mlx->loop_hook_data = NULL;
   new_mlx->main_loop_active = 0;
-
   new_mlx->appid = [NSApplication sharedApplication];
-
   // super magic trick to detach app from terminal, get menubar & key input events
   for (NSRunningApplication * app in [NSRunningApplication runningApplicationsWithBundleIdentifier:@"com.apple.finder"])
     {
@@ -67,7 +65,6 @@ void *mlx_init()
   (void) TransformProcessType(&psn, kProcessTransformToForegroundApplication);
   usleep(100000);
   [[NSRunningApplication currentApplication] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
-
   // load font
   new_mlx->font = mlx_new_image(new_mlx, (FONT_WIDTH+2)*95, FONT_HEIGHT);
   i = 0;
@@ -79,12 +76,10 @@ void *mlx_init()
       ((unsigned char *)new_mlx->font->buffer)[i+3] = 0xFF-font_atlas.pixel_data[i+3];
       i += 4;
     }
-
   new_mlx->font->vertexes[2] = FONT_WIDTH;
   new_mlx->font->vertexes[4] = FONT_WIDTH;
   new_mlx->font->vertexes[5] = -FONT_HEIGHT-1;
   new_mlx->font->vertexes[7] = -FONT_HEIGHT-1;
-
   return ((void *)new_mlx);
 }
 
