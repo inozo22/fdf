@@ -102,5 +102,6 @@ void	hold_window(t_fdf *fdf, t_map *map)
 	three_dimension(fdf, map);
 	mlx_put_image_to_window(map->vars.mlx, map->vars.win, map->data.img, 0, 0);
 	mlx_hook(map->vars.win, 2, 0, key_press, map);
+	mlx_hook(mao->vars.win, 17, 0, terminate_fdf, map);//230416 added(I haven't push from 42? (> <))
 	mlx_loop(map->vars.mlx);
 }

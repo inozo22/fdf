@@ -62,7 +62,7 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 
 	fdf = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!fdf)
-		exit (hollow_error(1));
+		exit (hollow_error(4));
 	j = -1;
 	while (++j < ARGLIMIT)
 	{
@@ -82,22 +82,22 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 	if (!map)
 	{
 		fdf_free(fdf);
-		exit (hollow_error(1));
+		exit (hollow_error(4));
 	}
 	map->vars.mlx = mlx_init();
 	map->mag = 0.8;
 	if (map->vars.mlx == NULL)
 	{
 		perror("Unable to create mlx pointer\n");
-		fdf_free(fdf);
-		exit(2);
+		all_free(fdf, map);//230416 change from fdf_free to all free 
+		exit(hollow_error(5));
 	}
 	map->vars.win = mlx_new_window(map->vars.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	if (map->vars.win == NULL)
 	{
 		perror("Unable to create window pointer\n");
-		fdf_free(fdf);
-		exit(2);
+		all_free(fdf, map);//230416 change from fdf_free to all free 
+		exit(hollow_error(5));
 	}
 	map->data.img = mlx_new_image(map->vars.mlx, WIN_WIDTH, WIN_HEIGHT);
 	map->data.addr = mlx_get_data_addr(map->data.img, \

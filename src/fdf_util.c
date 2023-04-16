@@ -90,7 +90,7 @@ int	count_word(char *str, t_fdf *fdf)
 		if (str[i] == '-' || str[i] == '+')
 			i++;
 		if (str[i] < '0' || str[i] > '9')
-			exit (hollow_error(2));
+			exit (fdf_error(1, fdf));//230416change from h_error to fdf_error
 		while (str[i] >= '0' && str[i] <= '9')
 			i++;
 		ret++;

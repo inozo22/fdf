@@ -18,8 +18,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		ft_putstr_fd("Usage : ./fdf <filename> [ case_size z_size ]", 1);
-		exit (hollow_error(1));
+		ft_putstr_fd("Usage : ./fdf <filename>", 1);
+		exit (hollow_error(5));
 	}
 	fd = open(av[1], O_RDONLY);
 	if (fd < 1)
