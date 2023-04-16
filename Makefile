@@ -41,7 +41,7 @@ LFLAGS		:= -L$(MLXDIR) -lmlx -L$(INCLIB) -I$(MLXDIR) -lXext -lX11 -lm -lz
 MFLAGS		:= -L$(MLXDIR) -lmlx -framework OpenGL -framework AppKit
 LMFLAGS		:= $(LFLAGS)#$(MFLAGS)
 #SANITFLAG	:= -fsanitize=address
-CC			:= gcc
+CC			:= cc
 CFLAGS		:= -g3 -Wall -Wextra -Werror
 
 # To use both of linux and MacOS, I have to switch MLXDIR and LMFLAGS
