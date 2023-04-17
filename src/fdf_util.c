@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:27:24 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/17 12:11:19 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/17 12:31:20 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	count_word(char *str, t_fdf *fdf)
 		if (str[i] == '-' || str[i] == '+')
 			i++;
 		if (str[i] < '0' || str[i] > '9')
-			exit (hollow_error(2));//230416change from h_error to fdf_error//230417 re-change
+			exit (hollow_error(2));
 		while (str[i] >= '0' && str[i] <= '9')
 			i++;
 		ret++;
@@ -100,6 +100,6 @@ int	count_word(char *str, t_fdf *fdf)
 			i++;
 	}
 	if (!check_amount(fdf, ret))
-		exit(hollow_error(2));//230417 change from f_error to h_error
+		exit(hollow_error(2));
 	return (ret);
 }

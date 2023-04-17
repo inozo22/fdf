@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:36:39 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/17 11:59:02 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/17 12:31:53 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ int	hollow_error(int type)
 	{
 		return (1);
 	}
-	if (type == 99)
-	{
-		ft_putstr_fd("test\n", STDERR);
-		return (1);
-	}
 	return (0);
 }
 
@@ -60,22 +55,9 @@ int	fdf_error(int type, t_fdf *fdf)
 		fdf_free(fdf);
 		return (1);
 	}
-//230416 is deleted
-/* 	if (type == 3)
-	{
-		ft_putstr_fd("the map is not enclosed by 0\n", STDERR);
-		fdf_free(fdf);
-		return (1);
-	} */
 	if (type == 4)
 	{
 		ft_putstr_fd("the number is out of int\n", STDERR);
-		fdf_free(fdf);
-		return (1);
-	}
-	if (type == 99)
-	{
-		ft_putstr_fd("Im here\n", STDERR);
 		fdf_free(fdf);
 		return (1);
 	}
