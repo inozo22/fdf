@@ -6,18 +6,10 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:30:54 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/17 13:57:27 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/17 15:22:55 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//delete before submit
-#include <libc.h>
-
-__attribute__((destructor))
-static void destructor() {
-    system("leaks -q fdf");
-}
-//
 #include "../fdf.h"
 
 int	main(int ac, char **av)

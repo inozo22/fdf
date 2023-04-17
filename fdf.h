@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/17 13:52:56 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/17 15:21:34 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 # include <math.h>
 # include <stdbool.h>
 # include <errno.h>
-# include "./lib/mlx_linux/mlx.h"
-
+//# include "./lib/mlx_linux/mlx.h"
 # include "./lib/minilibx_macos/mlx.h"
 
 # define STDERR 2
@@ -91,14 +90,12 @@ typedef struct s_map
 
 void		fdf(int fd);
 int			main(int ac, char **av);
-//int main(void);
 int			hollow_error(int type);
 int			fdf_error(int type, t_fdf *fdf);
 void		fdf_free(t_fdf *fdf);
 void		all_free(t_fdf *fdf, t_map *map);
 char		**strs_clear(char **tab, int i);
 t_fdf		*init_fdf(int fd, t_fdf *fdf);
-//void	open_window(t_fdf *fdf, t_map *map);
 void		draw_ver(t_map *map, t_fdf *fdf);
 void		put_line_right(t_map *map, t_fdf *fdf, int y, int x);
 void		hold_window(t_fdf *fdf, t_map *map);
