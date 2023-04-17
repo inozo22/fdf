@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:27:24 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/10 12:11:52 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/17 12:11:19 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	get_colour(char *str, int i, int row, t_fdf *fdf)
 	j = 0;
 	++i;
 	if (str[i] != '0' || (str[i + 1] != 'x'))
-		exit (fdf_error(1, fdf));
+		exit (hollow_error(2));
 	i = i + 2;
 	while (str[i] && str[i] != 32)
 	{
@@ -90,7 +90,7 @@ int	count_word(char *str, t_fdf *fdf)
 		if (str[i] == '-' || str[i] == '+')
 			i++;
 		if (str[i] < '0' || str[i] > '9')
-			exit (fdf_error(1, fdf));//230416change from h_error to fdf_error
+			exit (hollow_error(2));//230416change from h_error to fdf_error//230417 re-change
 		while (str[i] >= '0' && str[i] <= '9')
 			i++;
 		ret++;
@@ -100,6 +100,6 @@ int	count_word(char *str, t_fdf *fdf)
 			i++;
 	}
 	if (!check_amount(fdf, ret))
-		exit(fdf_error(2, fdf));
+		exit(hollow_error(2));//230417 change from f_error to h_error
 	return (ret);
 }

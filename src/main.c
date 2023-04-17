@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:30:54 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/12 09:47:33 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/17 11:59:14 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 	}
 	fd = open(av[1], O_RDONLY);
 	if (fd < 1)
-		exit (hollow_error(1));
+		exit (hollow_error(3));
 	fdf(fd);
 	return (0);
 }
