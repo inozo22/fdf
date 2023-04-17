@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/12 10:38:14 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/17 13:06:36 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,14 @@ t_map	*init_map(t_map *map, t_fdf *fdf)
 	if (map->vars.mlx == NULL)
 	{
 		perror("Unable to create mlx pointer\n");
-		all_free(fdf, map);//230416 change from fdf_free to all free 
+		all_free(fdf, map);
 		exit(hollow_error(5));
 	}
 	map->vars.win = mlx_new_window(map->vars.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	if (map->vars.win == NULL)
 	{
 		perror("Unable to create window pointer\n");
-		all_free(fdf, map);//230416 change from fdf_free to all free 
+		all_free(fdf, map);
 		exit(hollow_error(5));
 	}
 	map->data.img = mlx_new_image(map->vars.mlx, WIN_WIDTH, WIN_HEIGHT);

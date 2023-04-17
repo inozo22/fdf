@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:45:20 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/17 10:23:22 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/17 13:05:34 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ void	hold_window(t_fdf *fdf, t_map *map)
 	three_dimension(fdf, map);
 	mlx_put_image_to_window(map->vars.mlx, map->vars.win, map->data.img, 0, 0);
 	mlx_hook(map->vars.win, 2, 0, key_press, map);
-	mlx_hook(map->vars.win, 17, 0, terminate_fdf, map);//230416 added(I haven't push from 42? (> <))
+	mlx_hook(map->vars.win, 17, 0, terminate_fdf, map);
 	mlx_loop(map->vars.mlx);
 }
