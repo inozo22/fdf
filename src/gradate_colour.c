@@ -6,50 +6,50 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:00:27 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/17 15:23:56 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/18 12:41:22 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	u_gradate_colour(t_fdf *fdf, int j, int i, t_map *map)
+void	u_gradate_colour(t_f *f, int j, int i)
 {
-	if (fdf->n[j][i].colour > fdf->n[j + 1][i].colour)
+	if (f->n[j][i].colour > f->n[j + 1][i].colour)
 	{
-		gradiente(fdf->n[j + 1][i].colour, fdf->n[j][i].colour, fdf);
-		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i]);
+		gradiente(f->n[j + 1][i].colour, f->n[j][i].colour, f);
+		g_get_slope(f, f->n[j][i], f->n[j + 1][i]);
 	}
 	else
 	{
-		gradiente(fdf->n[j][i].colour, fdf->n[j + 1][i].colour, fdf);
-		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i]);
+		gradiente(f->n[j][i].colour, f->n[j + 1][i].colour, f);
+		g_get_slope(f, f->n[j][i], f->n[j + 1][i]);
 	}
 }
 
-void	r_gradate_colour(t_fdf *fdf, int j, int i, t_map *map)
+void	r_gradate_colour(t_f *f, int j, int i)
 {
-	if (fdf->n[j][i].colour > fdf->n[j][i + 1].colour)
+	if (f->n[j][i].colour > f->n[j][i + 1].colour)
 	{
-		gradiente(fdf->n[j][i + 1].colour, fdf->n[j][i].colour, fdf);
-		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j][i + 1]);
+		gradiente(f->n[j][i + 1].colour, f->n[j][i].colour, f);
+		g_get_slope(f, f->n[j][i], f->n[j][i + 1]);
 	}
 	else
 	{
-		gradiente(fdf->n[j][i].colour, fdf->n[j][i + 1].colour, fdf);
-		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j][i + 1]);
+		gradiente(f->n[j][i].colour, f->n[j][i + 1].colour, f);
+		g_get_slope(f, f->n[j][i], f->n[j][i + 1]);
 	}
 }
 
-void	ur_gradate_colour(t_fdf *fdf, int j, int i, t_map *map)
+void	ur_gradate_colour(t_f *f, int j, int i)
 {
-	if (fdf->n[j][i].colour > fdf->n[j + 1][i + 1].colour)
+	if (f->n[j][i].colour > f->n[j + 1][i + 1].colour)
 	{
-		gradiente(fdf->n[j + 1][i + 1].colour, fdf->n[j][i].colour, fdf);
-		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i + 1]);
+		gradiente(f->n[j + 1][i + 1].colour, f->n[j][i].colour, f);
+		g_get_slope(f, f->n[j][i], f->n[j + 1][i + 1]);
 	}
 	else
 	{
-		gradiente(fdf->n[j][i].colour, fdf->n[j + 1][i + 1].colour, fdf);
-		g_get_slope(fdf, map, fdf->n[j][i], fdf->n[j + 1][i + 1]);
+		gradiente(f->n[j][i].colour, f->n[j + 1][i + 1].colour, f);
+		g_get_slope(f, f->n[j][i], f->n[j + 1][i + 1]);
 	}
 }

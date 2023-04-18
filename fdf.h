@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/17 15:21:34 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/18 15:30:49 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,14 @@ typedef struct s_nmbs
 	int		grd[ARGLIMIT];
 }	t_nmbs;
 
-typedef struct s_fdf
+typedef struct s_map
+{
+	t_vars	vars;
+	t_data	data;
+	float	mag;
+}	t_map;
+
+typedef struct s_f
 {
 	int				row_len;
 	t_nmbs			n[ARGLIMIT][ARGLIMIT];
@@ -79,58 +86,53 @@ typedef struct s_fdf
 	int				dd;
 	int				dx;
 	int				dy;
-}	t_fdf;
+	t_map			*map;
+}	t_f;
 
-typedef struct s_map
-{
-	t_vars	vars;
-	t_data	data;
-	float	mag;
-}	t_map;
-
+//int main(void);
 void		fdf(int fd);
 int			main(int ac, char **av);
 int			hollow_error(int type);
-int			fdf_error(int type, t_fdf *fdf);
-void		fdf_free(t_fdf *fdf);
-void		all_free(t_fdf *fdf, t_map *map);
+int			f_error(int type, t_f *f);
+//void		f_free(t_f *f);
+void		all_free(t_f *f);
 char		**strs_clear(char **tab, int i);
-t_fdf		*init_fdf(int fd, t_fdf *fdf);
-void		draw_ver(t_map *map, t_fdf *fdf);
-void		put_line_right(t_map *map, t_fdf *fdf, int y, int x);
-void		hold_window(t_fdf *fdf, t_map *map);
+t_f			*init_f(int fd, t_f *f);
+void		draw_ver(t_f *f);
+void		put_line_right(t_f *f, int y, int x);
+void		hold_window(t_f *f);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void		three_dimension(t_fdf *fdf, t_map *map);
-void		get_slope(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
-void		negative_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
-void		negative_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
-void		positive_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
-void		positive_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
-void		convert_points_2d(t_fdf *fdf, t_data *data);
+void		three_dimension(t_f *f);
+void		get_slope(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
+void		negative_high(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
+void		negative_low(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
+void		positive_high(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
+void		positive_low(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
+void		convert_points_2d(t_f *f);
 //
-void		get_scale(t_map *map);
-void		adjust_screen(t_fdf *fdf, t_map *map);
-void		get_mid_x(t_fdf *fdf, t_map *map);
-void		get_mid_y(t_fdf *fdf, t_map *map);
+void		get_scale(t_f *f);
+void		adjust_screen(t_f *f);
+void		get_mid_x(t_f *f);
+void		get_mid_y(t_f *f);
 
-int			count_word(char *str, t_fdf *fdf);
-bool		check_amount(t_fdf *fdf, int ret);
-int			get_colour(char *str, int i, int row, t_fdf *fdf);
+int			count_word(char *str, t_f *f);
+bool		check_amount(t_f *f, int ret);
+int			get_colour(char *str, int i, int row, t_f *f);
 int			hexatoi(char	*str);
 //
-void		u_gradate_colour(t_fdf *fdf, int j, int i, t_map *map);
-void		r_gradate_colour(t_fdf *fdf, int j, int i, t_map *map);
-void		ur_gradate_colour(t_fdf *fdf, int j, int i, t_map *map);
-void		g_negative_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
-void		g_negative_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
-void		g_positive_high(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
-void		g_positive_low(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
-void		g_get_slope(t_fdf *fdf, t_map *map, t_nmbs nbr1, t_nmbs nbr2);
-static void	g_swap_nbr(t_fdf *fdf, t_map *map, t_nmbs *nbr1, t_nmbs *nbr2);
-void		gradiente(int start, int end, t_fdf *fdf);
+void		u_gradate_colour(t_f *f, int j, int i);
+void		r_gradate_colour(t_f *f, int j, int i);
+void		ur_gradate_colour(t_f *f, int j, int i);
+void		g_negative_high(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
+void		g_negative_low(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
+void		g_positive_high(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
+void		g_positive_low(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
+void		g_get_slope(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
+static void	g_swap_nbr(t_f *f, t_nmbs *nbr1, t_nmbs *nbr2);
+void		gradiente(int start, int end, t_f *f);
 
 int			terminate_fdf(void	*param);
-void		control_keys(int key, t_map *map);
+void		control_keys(int key, t_f *f);
 int			key_press(int key, void *param);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/12 09:55:03 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/18 15:58:55 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,20 @@ char	**strs_clear(char **tab, int i)
 	return (NULL);
 }
 
-void	fdf_free(t_fdf *fdf)
+/* void	f_free(t_f *f)
 {
-	if (fdf->strs)
-		strs_clear(fdf->strs, fdf->column);
-	free (fdf);
-}
+	if (f->strs)
+		strs_clear(f->strs, f->column);
+	free (f);
+} */
 
-void	all_free(t_fdf *fdf, t_map *map)
+void	all_free(t_f *f)
 {
-	fdf_free(fdf);
-	free (map);
+	if (&(f->map->vars))
+		free (&f->map->vars);
+/* 	if (f->map != (void *)0) */
+//	free (f->map);
+/* 	if (f->strs)
+		strs_clear(f->strs, f->column); */
+	free(f);
 }

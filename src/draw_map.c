@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:55:19 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/07 11:45:21 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/18 12:29:24 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	convert_points_2d(t_fdf *fdf, t_data *data)
+void	convert_points_2d(t_f *f)
 {
 	double	x_aux;
 	double	y_aux;
@@ -28,16 +28,16 @@ void	convert_points_2d(t_fdf *fdf, t_data *data)
 	int		j;
 
 	j = -1;
-	while (++j < fdf->column)
+	while (++j < f->column)
 	{
 		i = -1;
-		while (++i < fdf->row_len)
+		while (++i < f->row_len)
 		{
-			x_aux = sqrt(1.0 / 2) * (fdf->n[j][i].x - fdf->n[j][i].y);
-			y_aux = sqrt(1.0 / 6) * (fdf->n[j][i].x + fdf->n[j][i].y \
-			- 2 * fdf->n[j][i].z);
-			fdf->n[j][i].x = x_aux * 200;
-			fdf->n[j][i].y = y_aux * 200;
+			x_aux = sqrt(1.0 / 2) * (f->n[j][i].x - f->n[j][i].y);
+			y_aux = sqrt(1.0 / 6) * (f->n[j][i].x + f->n[j][i].y \
+			- 2 * f->n[j][i].z);
+			f->n[j][i].x = x_aux * 200;
+			f->n[j][i].y = y_aux * 200;
 		}
 	}
 	return ;

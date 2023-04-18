@@ -6,62 +6,62 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/17 14:47:28 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/18 15:51:13 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	fill_n(t_fdf *fdf, int size)
+void	fill_n(t_f *f, int size)
 {
 	int	i;
 
 	i = 0;
-	while (fdf->strs[i] && i < size)
+	while (f->strs[i] && i < size)
 	{
-		fdf->n[fdf->column][i].z = ft_atoi(fdf->strs[i]);
-		fdf->n[fdf->column][i].x = i;
-		fdf->n[fdf->column][i].y = fdf->column;
+		f->n[f->column][i].z = ft_atoi(f->strs[i]);
+		f->n[f->column][i].x = i;
+		f->n[f->column][i].y = f->column;
 		i++;
 	}
 	while (i < ARGLIMIT)
 	{
-		fdf->n[fdf->column][i].z = 0;
-		fdf->n[fdf->column][i].x = i;
-		fdf->n[fdf->column][i].y = fdf->column;
+		f->n[f->column][i].z = 0;
+		f->n[f->column][i].x = i;
+		f->n[f->column][i].y = f->column;
 		i++;
-	}	
+	}
 }
 
-void	fill_data(int fd, t_fdf *fdf)
+void	fill_data(int fd, t_f *f)
 {
 	char	*str;
 	int		size;
 
-	fdf->is_first = 1;
+	f->is_first = 1;
 	str = get_next_line(fd);
-	fdf->column = 0;
+	f->column = 0;
 	while (str)
 	{
-		size = count_word(str, fdf);
-		fdf->strs = ft_split(str, 32);
-		fill_n(fdf, size);
-		strs_clear(fdf->strs, size);
+		size = count_word(str, f);
+		f->strs = ft_split(str, 32);
+		fill_n(f, size);
+		strs_clear(f->strs, size);
 		free (str);
 		str = get_next_line(fd);
-		fdf->column++;
+		f->column++;
 	}
 	close (fd);
 	free (str);
 }
 
-t_fdf	*init_fdf(int fd, t_fdf *fdf)
+t_f	*init_f(int fd, t_f *f)
 {
 	int	i;
 	int	j;
 
-	fdf = (t_fdf *)malloc(sizeof(t_fdf));
-	if (!fdf)
+	f = (t_f *)malloc(sizeof(t_f));
+	if (!f)
 		exit (hollow_error(4));
 	j = -1;
 	while (++j < ARGLIMIT)
@@ -69,54 +69,52 @@ t_fdf	*init_fdf(int fd, t_fdf *fdf)
 		i = -1;
 		while (++i < ARGLIMIT)
 		{
-			fdf->n[j][i].colour = 0xffffff;
+			f->n[j][i].colour = 0xffffff;
 		}
 	}
-	fill_data(fd, fdf);
-	return (fdf);
+	fill_data(fd, f);
+	return (f);
 }
 
-t_map	*init_map(t_map *map, t_fdf *fdf)
+void	*init_map(t_f *f)
 {
-	map = (t_map *)malloc(sizeof(t_map));
-	if (!map)
+	f->map = (t_map *)malloc(sizeof(t_map));
+	if (!f->map)
 	{
-		fdf_free(fdf);
+		all_free(f);
 		exit (hollow_error(4));
 	}
-	map->vars.mlx = mlx_init();
-	map->mag = 0.8;
-	if (map->vars.mlx == NULL)
+	f->map->vars.mlx = mlx_init();
+	f->map->mag = 0.8;
+	if (f->map->vars.mlx == NULL)
 	{
 		perror("Unable to create mlx pointer\n");
-		all_free(fdf, map);
-		exit(hollow_error(5));
+		exit(f_error(5, f));
 	}
-	map->vars.win = mlx_new_window(map->vars.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
-	if (map->vars.win == NULL)
+	f->map->vars.win = mlx_new_window(f->map->vars.mlx, \
+	WIN_WIDTH, WIN_HEIGHT, "fdf");
+	if (f->map->vars.win == NULL)
 	{
 		perror("Unable to create window pointer\n");
-		all_free(fdf, map);
-		exit(hollow_error(5));
+		exit(f_error(5, f));
 	}
-	map->data.img = mlx_new_image(map->vars.mlx, WIN_WIDTH, WIN_HEIGHT);
-	map->data.addr = mlx_get_data_addr(map->data.img, \
-	&map->data.bits_per_pixel, &map->data.line_length, &map->data.endian);
-	return (map);
+	f->map->data.img = mlx_new_image(f->map->vars.mlx, WIN_WIDTH, WIN_HEIGHT);
+	f->map->data.addr = mlx_get_data_addr(f->map->data.img, \
+	&f->map->data.bits_per_pixel, &f->map->data.line_length, \
+	&f->map->data.endian);
 }
 
 void	fdf(int fd)
 {
-	t_fdf	*fdf;
-	t_map	*map;
+	t_f	*f;
 
-	fdf = NULL;
-	fdf = init_fdf(fd, fdf);
-	map = init_map(map, fdf);
-	convert_points_2d(fdf, &map->data);
-	get_mid_x(fdf, map);
-	get_mid_y(fdf, map);
-	get_scale(map);
-	hold_window(fdf, map);
-	all_free (fdf, map);
+	f = NULL;
+	f = init_f(fd, f);
+	init_map(f);
+	convert_points_2d(f);
+	get_mid_x(f);
+	get_mid_y(f);
+	get_scale(f);
+	hold_window(f);
+	all_free(f);
 }

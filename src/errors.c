@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:36:39 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/17 12:31:53 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/18 12:52:44 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,29 @@ int	hollow_error(int type)
 	return (0);
 }
 
-int	fdf_error(int type, t_fdf *fdf)
+int	f_error(int type, t_f *f)
 {
 	if (type == 1)
 	{
 		ft_putstr_fd("Map format error\n", STDERR);
-		fdf_free(fdf);
+		all_free(f);
 		return (1);
 	}
 	if (type == 2)
 	{
 		ft_putstr_fd("Map size error\n", STDERR);
-		fdf_free(fdf);
+		all_free(f);
 		return (1);
 	}
 	if (type == 4)
 	{
 		ft_putstr_fd("the number is out of int\n", STDERR);
-		fdf_free(fdf);
+		all_free(f);
+		return (1);
+	}
+	if (type == 5)
+	{
+		all_free(f);
 		return (1);
 	}
 	return (0);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_util.c                                         :+:      :+:    :+:   */
+/*   f_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:27:24 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/17 12:31:20 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/18 12:02:24 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	hexatoi(char	*str)
 	return (ret);
 }
 
-int	get_colour(char *str, int i, int row, t_fdf *fdf)
+int	get_colour(char *str, int i, int row, t_f *f)
 {
 	char	tmp[20];
 	int		j;
@@ -57,26 +57,26 @@ int	get_colour(char *str, int i, int row, t_fdf *fdf)
 		i++;
 	}
 	tmp[j] = '\0';
-	fdf->n[fdf->column][row].colour = hexatoi(tmp);
+	f->n[f->column][row].colour = hexatoi(tmp);
 	return (i);
 }
 
-bool	check_amount(t_fdf *fdf, int ret)
+bool	check_amount(t_f *f, int ret)
 {
-	if (fdf->is_first)
+	if (f->is_first)
 	{
-		fdf->row_len = ret;
-		fdf->is_first = 0;
+		f->row_len = ret;
+		f->is_first = 0;
 	}
 	else
 	{
-		if (ret != fdf->row_len)
+		if (ret != f->row_len)
 			return (false);
 	}
 	return (true);
 }
 
-int	count_word(char *str, t_fdf *fdf)
+int	count_word(char *str, t_f *f)
 {
 	int	ret;
 	int	i;
@@ -95,11 +95,11 @@ int	count_word(char *str, t_fdf *fdf)
 			i++;
 		ret++;
 		if (str[i] == ',')
-			i = get_colour(str, i, ret - 1, fdf);
+			i = get_colour(str, i, ret - 1, f);
 		while (str[i] == 32 || str[i] == 't')
 			i++;
 	}
-	if (!check_amount(fdf, ret))
+	if (!check_amount(f, ret))
 		exit(hollow_error(2));
 	return (ret);
 }
