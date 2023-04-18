@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/18 15:51:13 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/18 16:28:00 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_f	*init_f(int fd, t_f *f)
 	return (f);
 }
 
-void	*init_map(t_f *f)
+t_map	*init_map(t_f *f)
 {
 	f->map = (t_map *)malloc(sizeof(t_map));
 	if (!f->map)
@@ -102,6 +102,7 @@ void	*init_map(t_f *f)
 	f->map->data.addr = mlx_get_data_addr(f->map->data.img, \
 	&f->map->data.bits_per_pixel, &f->map->data.line_length, \
 	&f->map->data.endian);
+	return (f->map);
 }
 
 void	fdf(int fd)
@@ -110,7 +111,7 @@ void	fdf(int fd)
 
 	f = NULL;
 	f = init_f(fd, f);
-	init_map(f);
+	f->map = init_map(f);
 	convert_points_2d(f);
 	get_mid_x(f);
 	get_mid_y(f);
