@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>//kesu
 
 int	word_nbr(char const *str, char c)
 {
@@ -63,12 +62,11 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	tab = (char **) malloc(sizeof(char *) * (word_nbr(s, c) + 1));
-	printf("Line: %d, word_nbr: %d\n", __LINE__, word_nbr(s, c));
 	if (!tab)
 		return (NULL);
 	while (*s && *s == c)
 		s++;
-	while (*s)
+	while (*s && *s != 10)
 	{
 		len = word_len(s, c) + 1;
 		tab[i] = (char *)malloc(sizeof(char *) * len);
@@ -79,10 +77,8 @@ char	**ft_split(char const *s, char c)
 			s++;
 		while (*s == c && *s)
 			s++;
-		printf("Line: %d, tab[%zu]: %p, str: %s\n", __LINE__, i, tab[i], tab[i]);
 		i++;
 	}
 	tab[i] = NULL;
-	printf("Line: %d, tab[%zu]: %p\n", __LINE__, i, tab[i]);
 	return (tab);
 }
