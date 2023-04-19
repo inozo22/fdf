@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/18 15:30:49 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/19 15:00:54 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <errno.h>
 //# include "./lib/mlx_linux/mlx.h"
 # include "./lib/minilibx_macos/mlx.h"
+# include <stdio.h>//kesu
 
 # define STDERR 2
 # define ARGLIMIT 1024

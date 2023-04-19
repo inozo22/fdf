@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/19 13:02:16 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/19 15:01:15 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,14 @@ void	fill_data(int fd, t_f *f)
 	{
 		size = count_word(str, f);
 		f->strs = ft_split(str, 32);
+		printf("Line: %d, f->strs: %p\n", __LINE__, f->strs);
 		fill_n(f, size);
 		strs_clear(f->strs, size);
+		printf("Line: %d, f->strs: %p\n", __LINE__, f->strs);
+		printf("Line: %d, str: %p\n", __LINE__, str);
 		free (str);
+/* 		system ("leaks fdf");
+		exit(1); */
 		str = get_next_line(fd);
 		f->column++;
 	}
@@ -61,6 +66,7 @@ t_f	*init_f(int fd, t_f *f)
 	int	j;
 
 	f = (t_f *)malloc(sizeof(t_f));
+	printf("Line: %d, f: %p\n", __LINE__, f);
 	if (!f)
 		exit (hollow_error(4));
 	j = -1;
