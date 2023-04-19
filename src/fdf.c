@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/18 18:48:50 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/19 13:02:16 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void	fdf(int fd)
 	f = NULL;
 	f = init_f(fd, f);
 	f->map = init_map(f);
-	printf("Line: %d, f->map: %p\n", __LINE__, &(f->map));
 	convert_points_2d(f);
 	get_mid_x(f);
 	get_mid_y(f);
