@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/19 17:29:03 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/24 13:02:20 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,6 @@ void	fill_n(t_f *f, int size)
 	while (f->strs[i] && i < size)
 	{
 		f->n[f->column][i].z = ft_atoi(f->strs[i]);
-		f->n[f->column][i].x = i;
-		f->n[f->column][i].y = f->column;
-		i++;
-	}
-	while (i < ARGLIMIT)
-	{
-		f->n[f->column][i].z = 0;
 		f->n[f->column][i].x = i;
 		f->n[f->column][i].y = f->column;
 		i++;
