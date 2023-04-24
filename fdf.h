@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/19 17:35:22 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/24 18:10:40 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_f
 	int				dx;
 	int				dy;
 	t_map			*map;
+	int				flag;
 }	t_f;
 
 //int main(void);
