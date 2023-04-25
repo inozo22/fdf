@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:09:34 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/25 16:47:26 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/25 18:17:04 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,57 @@ void	g_positive_high(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 	f->dd = 2 * f->dx - f->dy;
 	coord[0] = nbr1.x_mod;
 	coord[1] = nbr1.y_mod;
-	if (nbr1.grd[0] > nbr1.grd[nbr1.len]&& nbr1.colour > nbr2.colour && f->flag == 0)//there is no swap
+	while ((coord[1] < nbr2.y_mod) && nbr1.len >= 0)
+	{
+		if (f->dd >= 0)
+		{
+			my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[nbr1.len]);
+			coord[0]++;
+			f->dd = f->dd + 2 * f->dx - 2 * f->dy;
+		}
+		else
+		{
+			my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[nbr1.len]);
+			f->dd = f->dd + 2 * f->dx;
+		}
+		coord[1]++;
+		nbr1.len--;
+	}
+/* 	while ((coord[1] < nbr2.y_mod) && nbr1.grd[++c])
+	{
+		if (f->dd >= 0)
+		{
+			my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[c]);
+			coord[0]++;
+			f->dd = f->dd + 2 * f->dx - 2 * f->dy;
+		}
+		else
+		{
+			my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[c]);
+			f->dd = f->dd + 2 * f->dx;
+		}
+		coord[1]++;
+	}	 */	
+/* 	if (nbr1.grd[0] != nbr1.grd[nbr1.len] && nbr1.colour > nbr2.colour && f->flag == 0)//there is no swap
+	{
+		while ((coord[1] < nbr2.y_mod) && nbr1.len >= 0)
+		{
+			if (f->dd >= 0)
+			{
+				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[nbr1.len]);
+				coord[0]++;
+				f->dd = f->dd + 2 * f->dx - 2 * f->dy;
+			}
+			else
+			{
+				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[nbr1.len]);
+				f->dd = f->dd + 2 * f->dx;
+			}
+			coord[1]++;
+			nbr1.len--;
+		}		
+	} */
+/* 	if (nbr1.grd[0] > nbr1.grd[nbr1.len]&& nbr1.colour > nbr2.colour && f->flag == 0)//there is no swap
 	{
 		while ((coord[1] < nbr2.y_mod) && nbr1.len >= 0)
 		{
@@ -105,7 +155,7 @@ void	g_positive_high(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 			}
 			coord[1]++;
 		}		
-	}
+	} */
 /* 	else
 	{
 		while ((coord[1] < nbr2.y_mod) && nbr1.len >= 0)
@@ -125,7 +175,6 @@ void	g_positive_high(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 			nbr1.len--;
 		}
 	} */
-
 }
 
 void	g_negative_low(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
