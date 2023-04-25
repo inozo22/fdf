@@ -6,30 +6,11 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:09:34 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/25 18:19:49 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/25 18:40:39 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-/* void	reverse_col(t_nmbs nbr1)
-{
-	int		c;
-	int		i;
-	t_nmbs	tmp;
-
-	tmp = nbr1;
-	i = nbr1.len;
-	c = 0;
-	while (i >= 0)
-	{
-		nbr1.grd[c] = tmp.grd[i];
-//	f->n[f->pwd_j][f->pwd_i].grd[c] = tmp.grd[i];
-		c++;
-		i--;
-	}
-}
- */
 
 void	g_positive_low_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 {
@@ -62,7 +43,8 @@ void	g_positive_high_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 	tmp = nbr1;
 	i = nbr1.len;
 	c = 0;
-	if (nbr1.grd[0] != nbr1.grd[i] && nbr1.colour > nbr2.colour && f->flag == 0)//there is no swap
+	if (nbr1.grd[0] != nbr1.grd[i] && nbr1.colour > \
+	nbr2.colour && f->flag == 0)
 	{
 		g_positive_high(f, nbr1, nbr2);
 	}
@@ -77,141 +59,54 @@ void	g_positive_high_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 		g_positive_high(f, nbr1, nbr2);
 	}
 }
-/*
-void	g_negative_low(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
-{
-	int	coord[2];
-	int	c;
 
-	c = -1;
-	f->dx = nbr2.x_mod - nbr1.x_mod;
-	f->dy = nbr2.y_mod - nbr1.y_mod;
-	f->dd = 2 * f->dy - f->dx;
-	coord[0] = nbr1.x_mod;
-	coord[1] = nbr1.y_mod;
-	if (nbr1.grd[0] > nbr1.grd[nbr1.len] && nbr1.colour > nbr2.colour && f->flag == 1)//ayashii hasta aqui, 0425 from here
+void	g_negative_low_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
+{
+	int		c;
+	int		i;
+	t_nmbs	tmp;
+
+	tmp = nbr1;
+	i = nbr1.len;
+	c = 0;
+	if (nbr1.grd[0] > nbr1.grd[nbr1.len] && f->flag == 1)
 	{
-		while ((coord[0] < nbr2.x_mod) && nbr1.len >= 0)
-		{
-			if (f->dd >= 0)
-			{
-				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[nbr1.len]);
-				coord[1]--;
-				f->dd = f->dd - 2 * f->dy - 2 * f->dx;
-			}
-			else
-			{
-				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[nbr1.len]);
-				f->dd = f->dd - 2 * f->dy;
-			}
-			coord[0]++;
-			nbr1.len--;
-		}		
-	}
-	else if (nbr1.grd[0] > nbr1.grd[nbr1.len] && nbr1.colour < nbr2.colour && f->flag == 1)//ayashii hasta aqui, 0425 from here
-	{
-		while ((coord[0] < nbr2.x_mod) && nbr1.len >= 0)
-		{
-			if (f->dd >= 0)
-			{
-				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[nbr1.len]);
-				coord[1]--;
-				f->dd = f->dd - 2 * f->dy - 2 * f->dx;
-			}
-			else
-			{
-				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[nbr1.len]);
-				f->dd = f->dd - 2 * f->dy;
-			}
-			coord[0]++;
-			nbr1.len--;
-		}		
+		g_negative_low(f, nbr1, nbr2);
 	}
 	else
 	{
-		while ((coord[0] < nbr2.x_mod) && nbr1.grd[++c])
+		while (i >= 0)
 		{
-			if (f->dd >= 0)
-			{
-				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[c]);
-				coord[1]--;
-				f->dd = f->dd - 2 * f->dy - 2 * f->dx;
-			}
-			else
-			{
-				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[c]);
-				f->dd = f->dd - 2 * f->dy;
-			}
-			coord[0]++;
-		}		
+			nbr1.grd[c] = tmp.grd[i];
+			c++;
+			i--;
+		}
+		g_negative_low(f, nbr1, nbr2);
 	}
 }
 
-void	g_negative_high(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
+void	g_negative_high_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 {
-	int	coord[2];
-	int	c;
+	int		c;
+	int		i;
+	t_nmbs	tmp;
 
-	c = -1;
-	f->dx = nbr2.x_mod - nbr1.x_mod;
-	f->dy = nbr2.y_mod - nbr1.y_mod;
-	f->dd = 2 * f->dy - f->dx;
-	coord[0] = nbr2.x_mod;
-	coord[1] = nbr2.y_mod;
-	if (nbr1.grd[0] > nbr1.grd[nbr1.len] && nbr1.colour > nbr2.colour && f->flag == 1)//ayashii
+	tmp = nbr1;
+	i = nbr1.len;
+	c = 0;
+	if (nbr1.grd[0] > nbr1.grd[nbr1.len] && nbr1.colour > \
+	nbr2.colour && f->flag == 1)
 	{
-		while ((coord[1] < nbr1.y_mod) && nbr1.len >= 0)
-		{
-			if (f->dd >= 0)
-			{
-				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[nbr1.len]);
-				coord[0]--;
-				f->dd = f->dd + 2 * f->dx + 2 * f->dy;
-			}
-			else
-			{
-				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[nbr1.len]);
-				f->dd = f->dd + 2 * f->dx;
-			}
-			coord[1]++;
-			nbr1.len--;
-		}
-	}
-	else if (nbr1.grd[0] > nbr1.grd[nbr1.len] && nbr1.colour < nbr2.colour && f->flag == 1)//koreha kann
-	{
-		while ((coord[1] < nbr1.y_mod) && nbr1.len >= 0)
-		{
-			if (f->dd >= 0)
-			{
-				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[nbr1.len]);
-				coord[0]--;
-				f->dd = f->dd + 2 * f->dx + 2 * f->dy;
-			}
-			else
-			{
-				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[nbr1.len]);
-				f->dd = f->dd + 2 * f->dx;
-			}
-			coord[1]++;
-			nbr1.len--;
-		}
+		g_negative_high(f, nbr1, nbr2);
 	}
 	else
 	{
-		while ((coord[1] < nbr1.y_mod) && nbr1.grd[++c])
+		while (i >= 0)
 		{
-			if (f->dd >= 0)
-			{
-				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[c]);
-				coord[0]--;
-				f->dd = f->dd + 2 * f->dx + 2 * f->dy;
-			}
-			else
-			{
-				my_mlx_pixel_put(&f->map->data, coord[0], coord[1], nbr1.grd[c]);
-				f->dd = f->dd + 2 * f->dx;
-			}
-			coord[1]++;
+			nbr1.grd[c] = tmp.grd[i];
+			c++;
+			i--;
 		}
+		g_negative_high(f, nbr1, nbr2);
 	}
-} */
+}

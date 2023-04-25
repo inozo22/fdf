@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/25 17:52:19 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/25 18:31:48 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,8 @@ int			terminate_fdf(void	*param);
 void		control_keys(int key, t_f *f);
 int			key_press(int key, void *param);
 
-//void		g_negative_high_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
-//void		g_negative_low_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
+void		g_negative_high_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
+void		g_negative_low_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
 void		g_positive_high_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
 void		g_positive_low_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
 
