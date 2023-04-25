@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:00:27 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/25 16:05:47 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/25 16:38:55 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	g_get_slope(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 	else if (dy < 0 && dd >= 0)
 		g_negative_low(f, nbr1, nbr2);
 	else if (dy >= 0 && dd >= 0)
-		g_positive_low(f, nbr1, nbr2);//it's not used?
+		g_positive_low_b(f, nbr1, nbr2);//it's not used?
 	else if (dy > 0 && dd < 0)
 		g_positive_high(f, nbr1, nbr2);
 }
