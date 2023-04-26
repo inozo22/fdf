@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:09:34 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/25 18:38:56 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/26 09:44:10 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	g_negative_high(t_f *f, t_nmbs n1, t_nmbs n2)
 	f->dd = 2 * f->dy - f->dx;
 	coord[0] = n2.x_mod;
 	coord[1] = n2.y_mod;
-
 	while ((coord[1] < n1.y_mod) && n1.len >= 0)
 	{
 		if (f->dd >= 0)
