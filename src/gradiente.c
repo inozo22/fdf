@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:00:27 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/18 12:42:49 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/26 09:39:50 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	g_swap_nbr(t_f *f, t_nmbs *nbr1, t_nmbs *nbr2)
 	nbr1->y_mod = nbr2->y_mod;
 	nbr2->x_mod = tmp.x_mod;
 	nbr2->y_mod = tmp.y_mod;
+	f->flag = 0;
 }
 
 void	g_get_slope(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
@@ -41,15 +42,18 @@ void	g_get_slope(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 	dy = nbr2.y_mod - nbr1.y_mod;
 	dd = abs(dx) - abs(dy);
 	if (dx < 0)
+	{
+		f->flag = 1;
 		g_swap_nbr(f, &nbr1, &nbr2);
+	}
 	else if (dy < 0 && dd < 0)
-		g_negative_high(f, nbr1, nbr2);
+		g_negative_high_b(f, nbr1, nbr2);
 	else if (dy < 0 && dd >= 0)
-		g_negative_low(f, nbr1, nbr2);
+		g_negative_low_b(f, nbr1, nbr2);
 	else if (dy >= 0 && dd >= 0)
-		g_positive_low(f, nbr1, nbr2);
+		g_positive_low_b(f, nbr1, nbr2);
 	else if (dy > 0 && dd < 0)
-		g_positive_high(f, nbr1, nbr2);
+		g_positive_high_b(f, nbr1, nbr2);
 }
 
 int	round_nb(float nb)
