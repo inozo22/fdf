@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_free.c                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 13:16:46 by nimai            ###   ########.fr       */
+/*   Created: 2022/12/14 11:26:23 by nimai             #+#    #+#             */
+/*   Updated: 2023/05/01 11:07:53 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-char	**strs_clear(char **tab, int i)
+void	*ft_calloc(size_t count, size_t size)
 {
-	while (i > 0)
-	{
-		i--;
-		free (tab[i]);
-	}
-	free (tab);
-	return (NULL);
-}
+	void	*pmem;
 
-void	all_free(t_f *f)
-{
-	if (&(f->map->vars))
-		free (&(f->map->vars));
-	free(f);
+	pmem = malloc(count * size);
+	if (pmem == NULL)
+		return (NULL);
+	ft_memset(pmem, '\0', (count * size));
+	return (pmem);
 }

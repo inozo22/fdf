@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_free.c                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 13:16:46 by nimai            ###   ########.fr       */
+/*   Created: 2022/12/14 11:30:41 by nimai             #+#    #+#             */
+/*   Updated: 2023/05/01 11:09:13 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-char	**strs_clear(char **tab, int i)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	while (i > 0)
+	char		*dtemp;
+	char		*stemp;
+	size_t		i;
+
+	dtemp = (char *)dst;
+	stemp = (char *)src;
+	if (dst == NULL && src == NULL)
+		return (dst);
+	i = 0;
+	while (i < n)
 	{
-		i--;
-		free (tab[i]);
+		dtemp[i] = stemp[i];
+		i++;
 	}
-	free (tab);
-	return (NULL);
-}
-
-void	all_free(t_f *f)
-{
-	if (&(f->map->vars))
-		free (&(f->map->vars));
-	free(f);
+	return (dst);
 }

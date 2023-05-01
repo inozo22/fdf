@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_free.c                                         :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 13:16:46 by nimai            ###   ########.fr       */
+/*   Created: 2022/12/14 11:35:30 by nimai             #+#    #+#             */
+/*   Updated: 2023/05/01 11:10:15 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-char	**strs_clear(char **tab, int i)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	while (i > 0)
+	unsigned long	i;
+	unsigned long	slen;
+
+	slen = 0;
+	while (src[slen])
+		slen++;
+	i = 0;
+	if (dstsize < 1)
 	{
-		i--;
-		free (tab[i]);
+		return (slen);
 	}
-	free (tab);
-	return (NULL);
-}
-
-void	all_free(t_f *f)
-{
-	if (&(f->map->vars))
-		free (&(f->map->vars));
-	free(f);
+	if ((dst < src) || (dst >= src + dstsize))
+	{
+		while (src[i] && i < (dstsize - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+	}
+	dst[i] = '\0';
+	return (slen);
 }

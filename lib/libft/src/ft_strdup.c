@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_free.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 13:16:46 by nimai            ###   ########.fr       */
+/*   Created: 2022/12/14 11:34:14 by nimai             #+#    #+#             */
+/*   Updated: 2023/05/01 11:09:49 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-char	**strs_clear(char **tab, int i)
+char	*ft_strdup(const char *s)
 {
-	while (i > 0)
+	char	*t;
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(s);
+	t = malloc(len + 1);
+	i = 0;
+	if (t == NULL)
+		return (NULL);
+	while (s[i])
 	{
-		i--;
-		free (tab[i]);
+		t[i] = s[i];
+		i++;
 	}
-	free (tab);
-	return (NULL);
-}
-
-void	all_free(t_f *f)
-{
-	if (&(f->map->vars))
-		free (&(f->map->vars));
-	free(f);
+	t[i] = '\0';
+	return (t);
 }

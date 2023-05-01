@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_free.c                                         :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 13:16:46 by nimai            ###   ########.fr       */
+/*   Created: 2023/02/18 19:00:38 by nimai             #+#    #+#             */
+/*   Updated: 2023/05/01 11:08:57 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-char	**strs_clear(char **tab, int i)
+t_list	*ft_lstnew(void *content)
 {
-	while (i > 0)
-	{
-		i--;
-		free (tab[i]);
-	}
-	free (tab);
-	return (NULL);
-}
+	t_list	*new_list;
 
-void	all_free(t_f *f)
-{
-	if (&(f->map->vars))
-		free (&(f->map->vars));
-	free(f);
+	new_list = malloc(sizeof (t_list));
+	if (!new_list)
+		return (NULL);
+	new_list -> content = content;
+	new_list -> next = NULL;
+	return (new_list);
 }

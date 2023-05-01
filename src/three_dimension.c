@@ -6,11 +6,11 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:25:38 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/18 16:33:04 by nimai            ###   ########.fr       */
+/*   Updated: 2023/05/01 13:17:31 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.h"
 
 static void	swap_nbr(t_f *f, t_nmbs *nbr1, t_nmbs *nbr2)
 {

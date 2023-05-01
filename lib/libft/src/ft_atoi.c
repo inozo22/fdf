@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_free.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 13:16:46 by nimai            ###   ########.fr       */
+/*   Created: 2022/12/14 11:25:34 by nimai             #+#    #+#             */
+/*   Updated: 2023/05/01 11:03:52 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-char	**strs_clear(char **tab, int i)
+int	ft_atoi(const char *str)
 {
-	while (i > 0)
+	int				nbr;
+	int				sign;
+	unsigned int	i;
+
+	i = 0;
+	sign = 1;
+	nbr = 0;
+	while ((str[i] <= 13 && str[i] >= 9) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		i--;
-		free (tab[i]);
+		if (str[i] == '-')
+			sign = -1;
+		i++;
 	}
-	free (tab);
-	return (NULL);
-}
-
-void	all_free(t_f *f)
-{
-	if (&(f->map->vars))
-		free (&(f->map->vars));
-	free(f);
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		nbr = (str[i] - 48) + (nbr * 10);
+		i++;
+	}
+	return (nbr * sign);
 }

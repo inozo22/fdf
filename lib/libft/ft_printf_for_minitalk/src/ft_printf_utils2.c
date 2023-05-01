@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_free.c                                         :+:      :+:    :+:   */
+/*   ft_printf_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 13:16:46 by nimai            ###   ########.fr       */
+/*   Created: 2023/04/26 13:38:55 by nimai             #+#    #+#             */
+/*   Updated: 2023/04/26 14:00:19 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "ft_printf.h"
 
-char	**strs_clear(char **tab, int i)
+void	ftp_putchar_fd(char c, int fd)
 {
-	while (i > 0)
-	{
-		i--;
-		free (tab[i]);
-	}
-	free (tab);
-	return (NULL);
+	write(fd, &c, 1);
 }
 
-void	all_free(t_f *f)
+void	ftp_putstr_fd(char *s, int fd)
 {
-	if (&(f->map->vars))
-		free (&(f->map->vars));
-	free(f);
+	write(fd, s, ftp_strlen(s));
 }
+
+size_t	ftp_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+

@@ -6,11 +6,11 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:09:34 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/26 09:44:10 by nimai            ###   ########.fr       */
+/*   Updated: 2023/05/01 13:17:11 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.h"
 
 void	g_positive_low(t_f *f, t_nmbs n1, t_nmbs n2)
 {

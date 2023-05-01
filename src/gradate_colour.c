@@ -6,11 +6,11 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:00:27 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/26 09:55:19 by nimai            ###   ########.fr       */
+/*   Updated: 2023/05/01 13:17:14 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.h"
 
 void	u_gradate_colour(t_f *f, int j, int i)
 {

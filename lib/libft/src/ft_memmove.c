@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_free.c                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 13:16:46 by nimai            ###   ########.fr       */
+/*   Created: 2022/12/14 11:30:56 by nimai             #+#    #+#             */
+/*   Updated: 2023/05/01 11:09:18 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-char	**strs_clear(char **tab, int i)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	while (i > 0)
+	char		*dtemp;
+	char		*stemp;
+
+	dtemp = (char *)dst;
+	stemp = (char *)src;
+	if (stemp < dtemp)
 	{
-		i--;
-		free (tab[i]);
+		dtemp += len;
+		stemp += len;
+		while (len--)
+			*--dtemp = *--stemp;
 	}
-	free (tab);
-	return (NULL);
-}
-
-void	all_free(t_f *f)
-{
-	if (&(f->map->vars))
-		free (&(f->map->vars));
-	free(f);
+	else
+		ft_memcpy(dst, src, len);
+	return (dst);
 }

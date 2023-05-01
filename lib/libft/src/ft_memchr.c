@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_free.c                                         :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 13:16:46 by nimai            ###   ########.fr       */
+/*   Created: 2022/12/14 11:29:08 by nimai             #+#    #+#             */
+/*   Updated: 2023/05/01 11:09:06 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-char	**strs_clear(char **tab, int i)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	while (i > 0)
-	{
-		i--;
-		free (tab[i]);
-	}
-	free (tab);
-	return (NULL);
-}
+	unsigned char	*str;
+	unsigned char	chr;
 
-void	all_free(t_f *f)
-{
-	if (&(f->map->vars))
-		free (&(f->map->vars));
-	free(f);
+	str = (unsigned char *)s;
+	chr = (unsigned char)c;
+	if (n == 0)
+		return (NULL);
+	while (*str != chr && n-- > 1)
+		str++;
+	if (n == 0)
+		return (NULL);
+	return (str);
 }

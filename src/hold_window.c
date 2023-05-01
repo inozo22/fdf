@@ -6,11 +6,11 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:45:20 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/18 15:38:43 by nimai            ###   ########.fr       */
+/*   Updated: 2023/05/01 13:17:20 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.h"
 
 void	get_mid_x(t_f *f)
 {

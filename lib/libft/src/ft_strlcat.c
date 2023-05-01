@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_free.c                                         :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 13:16:46 by nimai            ###   ########.fr       */
+/*   Created: 2022/12/14 11:35:14 by nimai             #+#    #+#             */
+/*   Updated: 2023/05/01 11:10:11 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-char	**strs_clear(char **tab, int i)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	while (i > 0)
+	size_t	i;
+	size_t	dlen;
+
+	i = 0;
+	dlen = ft_strlen(dst);
+	if (dlen >= dstsize)
+		return (dstsize + ft_strlen((char *)src));
+	while (src[i] && (i < (dstsize - dlen -1)))
 	{
-		i--;
-		free (tab[i]);
+		dst[dlen + i] = src[i];
+		i++;
 	}
-	free (tab);
-	return (NULL);
-}
-
-void	all_free(t_f *f)
-{
-	if (&(f->map->vars))
-		free (&(f->map->vars));
-	free(f);
+	dst[dlen + i] = '\0';
+	return (dlen + ft_strlen((char *)src));
 }

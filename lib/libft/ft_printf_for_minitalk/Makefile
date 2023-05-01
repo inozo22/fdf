@@ -5,59 +5,36 @@
 #                                                     +:+ +:+         +:+      #
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/16 18:53:13 by nimai             #+#    #+#              #
-#    Updated: 2023/05/01 14:01:59 by nimai            ###   ########.fr        #
+#    Created: 2023/04/21 11:12:31 by nimai             #+#    #+#              #
+#    Updated: 2023/05/01 11:22:29 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= fdf
+NAME        := ftprintf.a
 
+# add printf to libft re-make some functions
 #------------------------------------------------#
 #   INGREDIENTS                                  #
 #------------------------------------------------#
-# LIBS        libraries to be used
-# LIBS_TARGET libraries to be built
+# SRC_DIR   source directory
+# BUILD_DIR object directory
+# SRCS      source files
 #
-# INCS        header file locations
+# OBJS      object files
+# DEPS      dependency files
 #
-# SRC_DIR     source directory
-# SRCS        source files
-#
-# BUILD_DIR   build directory
-# OBJS        object files
-# DEPS        dependency files
-#
-# CC          compiler
-# CFLAGS      compiler flags
-# CPPFLAGS    preprocessor flags
-# LDFLAGS     linker flags
-# LDLIBS      libraries name
+# CC        compiler
+# CFLAGS    compiler flags
+# CPPFLAGS  preprocessor flags
 
-LIBS		:= ft mlx #mlx_linux
-LIBS_TARGET	:= \
-				lib/libft/libft.a \
-				lib/minilibx_macos/libmlx.a 
-
-INCS		:= \
-				inc \
-				lib/libft/inc \
+INCS		:= inc \
 
 SRC_DIR		:= src
+#put evrything I need to work printf here
 SRCS		:= \
-				main.c \
-				control.c \
-				errors.c \
-				all_free.c \
-				fdf_util.c \
-				fdf.c \
-				draw_map.c \
-				hold_window.c \
-				three_dimension.c \
-				positions.c \
-				gradate_colour.c \
-				gradiente.c \
-				g_positions.c \
-				g_positions_before.c
+				ft_printf.c \
+				ft_printf_utils.c \
+				ft_printf_utils2.c
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 
 BUILD_DIR	:= .build
@@ -65,11 +42,10 @@ OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(OBJS:.o=.d)
 
 CC			:= cc
-CFLAGS		:= -g3 -Wall -Wextra -Werror
-CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
-LDFLAGS		:= $(addprefix -L,$(dir $(LIBS_TARGET)))
-LDLIBS		:= $(addprefix -l,$(LIBS))
-MFLAGS		:= -framework OpenGL -framework AppKit
+CFLAGS		:= -Wall -Wextra -Werror
+CPPFLAGS    := -MMD -MP -I $(INCS)
+AR			:= ar
+ARFLAGS		:= -r -c -s
 
 #------------------------------------------------#
 #   UTENSILS                                     #
@@ -78,17 +54,16 @@ MFLAGS		:= -framework OpenGL -framework AppKit
 # MAKEFLAGS make flags
 # DIR_DUP   duplicate directory tree
 
-RM			:= rm -f
+RM          := rm -f
 RF			:= rm -rf
-MAKEFLAGS	+= --silent --no-print-directory
-DIR_DUP		= mkdir -p $(@D)
+MAKEFLAGS   += --silent --no-print-directory
+DIR_DUP     = mkdir -p $(@D)
 
 #------------------------------------------------#
 #   RECIPES                                      #
 #------------------------------------------------#
 # all       default goal
 # $(NAME)   link .o -> archive
-# $(LIBS)   build libraries
 # %.o       compilation .c -> .o
 # clean     remove .o
 # fclean    remove .o + binary
@@ -98,12 +73,9 @@ DIR_DUP		= mkdir -p $(@D)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBS_TARGET)
-	$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) $(MFLAGS) -o $(NAME)
+$(NAME): $(OBJS)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 	$(info CREATED $(NAME))
-
-$(LIBS_TARGET):
-	$(MAKE) -C $(@D)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(DIR_DUP)
@@ -113,19 +85,22 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 -include $(DEPS)
 
 clean:
-	for f in $(dir $(LIBS_TARGET)); do $(MAKE) -C $$f clean; done
 	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
+	$(RF) $(BUILD_DIR)
 	$(RM) $(NAME)
 
 re:
 	$(MAKE) fclean
 	$(MAKE) all
 
+info-%:
+	$(MAKE) --dry-run --always-make $* | grep -v "info"
+
 #------------------------------------------------#
 #   SPEC                                         #
 #------------------------------------------------#
 
-.PHONY: clean fclean re
+.PHONY: all clean fclean re
 .SILENT:

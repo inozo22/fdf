@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_free.c                                         :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 15:11:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 13:16:46 by nimai            ###   ########.fr       */
+/*   Created: 2022/12/14 11:33:56 by nimai             #+#    #+#             */
+/*   Updated: 2023/05/01 11:09:45 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-char	**strs_clear(char **tab, int i)
+char	*ft_strchr(const char *s, int c)
 {
-	while (i > 0)
+	int	i;
+	int	len;
+
+	i = 0;
+	len = ft_strlen((char *)s);
+	while (i <= len)
 	{
-		i--;
-		free (tab[i]);
+		if (s[i] == (unsigned char)c)
+			return ((char *)s + i);
+		i++;
 	}
-	free (tab);
+	if (!c && s[i] == '\0')
+		return ((char *)s + i);
 	return (NULL);
-}
-
-void	all_free(t_f *f)
-{
-	if (&(f->map->vars))
-		free (&(f->map->vars));
-	free(f);
 }

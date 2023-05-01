@@ -6,11 +6,11 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:52:18 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/24 13:02:20 by nimai            ###   ########.fr       */
+/*   Updated: 2023/05/01 13:17:04 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.h"
 
 void	fill_n(t_f *f, int size)
 {
@@ -32,7 +32,7 @@ void	fill_data(int fd, t_f *f)
 	int		size;
 
 	f->is_first = 1;
-	str = get_next_line(fd);
+	str = ft_get_next_line(fd);
 	f->column = 0;
 	while (str)
 	{
@@ -41,7 +41,7 @@ void	fill_data(int fd, t_f *f)
 		fill_n(f, size);
 		strs_clear(f->strs, size);
 		free (str);
-		str = get_next_line(fd);
+		str = ft_get_next_line(fd);
 		f->column++;
 	}
 	close (fd);
