@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 18:53:13 by nimai             #+#    #+#              #
-#    Updated: 2023/05/01 14:27:40 by nimai            ###   ########.fr        #
+#    Updated: 2023/05/01 15:44:55 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,6 +119,7 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) -C lib/libft fclean
+	$(RF) ./fdf.dSYM
 	$(RF) $(BUILD_DIR)
 
 re:
