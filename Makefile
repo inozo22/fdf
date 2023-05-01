@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 18:53:13 by nimai             #+#    #+#              #
-#    Updated: 2023/05/01 14:01:59 by nimai            ###   ########.fr        #
+#    Updated: 2023/05/01 14:27:40 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ NAME		:= fdf
 # LDFLAGS     linker flags
 # LDLIBS      libraries name
 
-LIBS		:= ft mlx #mlx_linux
+LIBS		:= ft mlx
 LIBS_TARGET	:= \
 				lib/libft/libft.a \
 				lib/minilibx_macos/libmlx.a 
@@ -118,6 +118,8 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	$(MAKE) -C lib/libft fclean
+	$(RF) $(BUILD_DIR)
 
 re:
 	$(MAKE) fclean
