@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:00:27 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/24 17:12:35 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/26 09:55:19 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 void	u_gradate_colour(t_f *f, int j, int i)
 {
-	if (f->n[j][i].colour > f->n[j + 1][i].colour && f->n[j][i].z > f->n[j + 1][i].z)
-	{
-		gradiente(f->n[j + 1][i].colour, f->n[j][i].colour, f);
-		g_get_slope(f, f->n[j][i], f->n[j + 1][i]);
-	}
-	else if (f->n[j][i].colour > f->n[j + 1][i].colour && f->n[j][i].z < f->n[j + 1][i].z)
+	if (f->n[j][i].colour > f->n[j + 1][i].colour)
 	{
 		gradiente(f->n[j + 1][i].colour, f->n[j][i].colour, f);
 		g_get_slope(f, f->n[j][i], f->n[j + 1][i]);

@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:09:34 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/26 09:43:28 by nimai            ###   ########.fr       */
+/*   Updated: 2023/04/26 11:20:39 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_nmbs	reverse_grd(t_nmbs nbr)
 
 void	g_positive_low_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 {
-	if (nbr1.grd[0] > nbr1.grd[nbr1.len] && nbr1.colour < \
-	nbr2.colour && f->flag == 0)
+	if (nbr1.grd[0] != nbr1.grd[nbr1.len] && nbr1.colour < nbr2.colour && \
+	f->flag == 0)
 	{
 		nbr1 = reverse_grd(nbr1);
 	}
@@ -42,8 +42,7 @@ void	g_positive_low_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 
 void	g_positive_high_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 {
-	if (nbr1.grd[0] == nbr1.grd[nbr1.len] || nbr1.colour < \
-	nbr2.colour || f->flag == 1)
+	if (nbr1.colour < nbr2.colour || f->flag == 1)
 	{
 		nbr1 = reverse_grd(nbr1);
 	}
@@ -52,7 +51,8 @@ void	g_positive_high_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 
 void	g_negative_low_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 {
-	if (nbr1.grd[0] < nbr1.grd[nbr1.len] || f->flag == 0)
+	if (nbr1.grd[0] < nbr1.grd[nbr1.len] || nbr1.colour > nbr2.colour || \
+	f->flag == 0)
 	{
 		nbr1 = reverse_grd(nbr1);
 	}
@@ -61,8 +61,11 @@ void	g_negative_low_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 
 void	g_negative_high_b(t_f *f, t_nmbs nbr1, t_nmbs nbr2)
 {
-	if (nbr1.grd[0] < nbr1.grd[nbr1.len] || nbr1.colour < \
-	nbr2.colour || f->flag == 0)
+	if (nbr1.colour > nbr2.colour && f->flag == 1)
+		;
+	else if (nbr1.colour < nbr2.colour && f->flag == 0)
+		;
+	else
 	{
 		nbr1 = reverse_grd(nbr1);
 	}
