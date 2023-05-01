@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:14 by nimai             #+#    #+#             */
-/*   Updated: 2023/04/26 14:00:03 by nimai            ###   ########.fr       */
+/*   Updated: 2023/05/01 14:33:27 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int				put_nbr(va_list ap);
 unsigned long	put_pointer(va_list ap);
 size_t			put_str(char *str);
 unsigned long	put_u_nbr(unsigned long nb, unsigned long base, int i);
-void	        ftp_putchar_fd(char c, int fd);
-void	        ftp_putstr_fd(char *s, int fd);
-size_t	        ftp_strlen(const char *s);
+void			ftp_putchar_fd(char c, int fd);
+void			ftp_putstr_fd(char *s, int fd);
+size_t			ftp_strlen(const char *s);
 
 #endif
