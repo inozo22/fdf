@@ -18,7 +18,7 @@
 
 Cloning the repo
 ```bash
-git clone --recursive https://github.com/inozo22/fdf.git
+$ git clone --recursive https://github.com/inozo22/fdf.git
 ```
 To compile fdf
 
