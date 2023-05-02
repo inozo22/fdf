@@ -36,16 +36,6 @@
 - If your project allows the use of libft, you should copy its source and its associated Makefile into a libft directory with a corresponding Makefile. Your project's Makefile of your project should first compile the library using its Makefile, and then compile the project.
 - It's recommended to create test programmes for your project, although this work will not be handed in or evaluated. It will give you the opportunity to verify that your software works correctly during your evaluation and that of your peers. And yes, you are allowed to use these tests during your evaluation or that of your peers.
 
-## 2. Error control
-- Number of argument is not 2 (ac != 2)
-- Different number of rows or columns
-- Does it have to be enclosed by 0
-    - No, it can be any numbers
-- Numbers are not int(IDK)
-- Shouldn't accept characters
-- (How many numbers of rows or columns I have to accept?)
-- 
-
 ## 3. Simple plan
 - Accept argument (ac, **av(fd)) I don't have to link to list, because it won't allocate any memory before enter main function
     - Error check(ac != 2)
