@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:33:35 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 11:09:41 by nimai            ###   ########.fr       */
+/*   Updated: 2023/05/02 16:46:22 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 int	word_nbr(char const *str, char c)
 {
+	int	ret;
 	int	i;
-	int	x;
 
+	ret = 0;
 	i = 0;
-	x = 0;
-	while (str[x])
+	while (str[i] == c)
+		i++;
+	while (str[i] && str[i] != 10)
 	{
-		if (str[x] != c)
+		if (str[i] && str[i] != c)
+			ret++;
+		while (str[i] && str[i] != c)
 			i++;
-		while (str[x] != c && str[x])
-			x++;
-		if (str[x])
-			x++;
+		if (str[i] == c)
+			i++;
 	}
-	return (i);
+	return (ret);
 }
 
 int	word_len(char const *s, char c)
@@ -64,7 +66,7 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	while (*s && *s == c)
 		s++;
-	while (*s)
+	while (*s && *s != 10)
 	{
 		len = word_len(s, c) + 1;
 		tab[i] = (char *)malloc(sizeof(char) * len);
