@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 13:16:31 by nimai            ###   ########.fr       */
+/*   Updated: 2023/05/02 18:06:51 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <math.h>
 # include <stdbool.h>
 # include <errno.h>
-//# include "./lib/mlx_linux/mlx.h"
 # include "../lib/minilibx_macos/mlx.h"
 
 # define STDERR 2
@@ -128,7 +127,6 @@ void		g_negative_low(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
 void		g_positive_high(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
 void		g_positive_low(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
 void		g_get_slope(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
-//static void	g_swap_nbr(t_f *f, t_nmbs *nbr1, t_nmbs *nbr2);
 void		gradiente(int start, int end, t_f *f);
 
 int			terminate_fdf(void	*param);
