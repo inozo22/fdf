@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:03:42 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/01 14:21:04 by nimai            ###   ########.fr       */
+/*   Updated: 2023/05/08 10:01:23 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "../ft_printf_for_fdf/inc/ft_printf.h"
+# include "../ft_mem_detect/inc/mem_detect.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
