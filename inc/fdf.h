@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/02 18:06:51 by nimai            ###   ########.fr       */
+/*   Updated: 2023/05/15 16:23:08 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,20 @@ typedef struct s_f
 	int				flag;
 }	t_f;
 
-//int main(void);
 void		fdf(int fd);
 int			main(int ac, char **av);
+
+//@brief put error message
+//@return 1 (type 1 - 5)
 int			hollow_error(int type);
+
+//@brief put error message and free f
+//@return 1 (type 1, 2, 4, 5)
 int			f_error(int type, t_f *f);
 void		all_free(t_f *f);
+
+//@brief free **tab with loop
+//@return NULL
 char		**strs_clear(char **tab, int i);
 t_f			*init_f(int fd, t_f *f);
 void		draw_ver(t_f *f);
@@ -114,7 +122,11 @@ void		adjust_screen(t_f *f);
 void		get_mid_x(t_f *f);
 void		get_mid_y(t_f *f);
 
+
+//@return  length of the str
 int			count_word(char *str, t_f *f);
+
+//@return  false if ret != f->row_len
 bool		check_amount(t_f *f, int ret);
 int			get_colour(char *str, int i, int row, t_f *f);
 int			hexatoi(char	*str);
@@ -129,6 +141,11 @@ void		g_positive_low(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
 void		g_get_slope(t_f *f, t_nmbs nbr1, t_nmbs nbr2);
 void		gradiente(int start, int end, t_f *f);
 
+//
+/**
+ * @brief  Terminate fdf only here, except having error
+ * @note  If use system function, put here
+ */
 int			terminate_fdf(void	*param);
 void		control_keys(int key, t_f *f);
 int			key_press(int key, void *param);
