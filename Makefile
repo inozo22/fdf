@@ -6,11 +6,12 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 18:53:13 by nimai             #+#    #+#              #
-#    Updated: 2023/05/08 09:53:52 by nimai            ###   ########.fr        #
+#    Updated: 2023/05/16 15:14:05 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= fdf
+OS			:= $(shell uname)
 
 #------------------------------------------------#
 #   INGREDIENTS                                  #
@@ -33,10 +34,19 @@ NAME		:= fdf
 # LDFLAGS     linker flags
 # LDLIBS      libraries name
 
+ifeq ($(OS), Linux)
+LIBS		:= ft mlx_Linux
+LIBS_TARGET	:= \
+				lib/libft/libft.a \
+				lib/minilibx_linux/mlx_Linux.a 
+MFLAGS		:= -X11 -Xent -mz
+else
 LIBS		:= ft mlx
 LIBS_TARGET	:= \
 				lib/libft/libft.a \
-				lib/minilibx_macos/libmlx.a 
+				lib/minilibx_macos/libmlx.a
+MFLAGS		:= -framework OpenGL -framework AppKit
+endif
 
 INCS		:= \
 				inc \
@@ -69,7 +79,7 @@ CFLAGS		:= -g3 -Wall -Wextra -Werror
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L,$(dir $(LIBS_TARGET)))
 LDLIBS		:= $(addprefix -l,$(LIBS))
-MFLAGS		:= -framework OpenGL -framework AppKit
+#MFLAGS		:= -framework OpenGL -framework AppKit
 
 #------------------------------------------------#
 #   UTENSILS                                     #

@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/15 16:23:08 by nimai            ###   ########.fr       */
+/*   Updated: 2023/05/16 09:36:25 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,16 @@ int			count_word(char *str, t_f *f);
 
 //@return  false if ret != f->row_len
 bool		check_amount(t_f *f, int ret);
+/**
+ * @fn
+ * To obtain colour, return the position where should be
+ * @brief log the colour to f, and move to the next
+ * @param (str) whole string
+ * @param (f) main structure
+ * @return i, moved at the end of colour
+ * @sa 参照すべき関数を書けばリンクが貼れる
+ * @detail 詳細な説明
+ */
 int			get_colour(char *str, int i, int row, t_f *f);
 int			hexatoi(char	*str);
 //
