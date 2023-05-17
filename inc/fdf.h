@@ -6,7 +6,7 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/17 12:32:10 by nimai            ###   ########.fr       */
+/*   Updated: 2023/05/17 12:47:06 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,18 @@ void		all_free(t_f *f);
 */
 char		**strs_clear(char **tab, int i);
 
+/**
+* @brief initialization of main structure
+* @return f->map
+* @note COULD BE BETTER
+*/
 t_f			*init_f(int fd, t_f *f);
+
+/**
+* @brief initialization of mlx map, also control map margin
+* @return f->map
+*/
+t_map		*init_map(t_f *f);
 void		draw_ver(t_f *f);
 void		put_line_right(t_f *f, int y, int x);
 void		hold_window(t_f *f);

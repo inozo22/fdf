@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 18:53:13 by nimai             #+#    #+#              #
-#    Updated: 2023/05/17 10:32:29 by nimai            ###   ########.fr        #
+#    Updated: 2023/05/17 12:49:58 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,10 @@ OS			:= $(shell uname)
 # LDLIBS      libraries name
 
 ifeq ($(OS), Linux)
-LIBS		:= ft mlx_Linux
+LIBS		:= ft mlx_Linux Xent X11 m z
 LIBS_TARGET	:= \
 				lib/libft/libft.a \
 				lib/minilibx_linux/libmlx_Linux.a 
-MFLAGS		:= -X11 -Xent -mz
 else
 LIBS		:= ft mlx
 LIBS_TARGET	:= \
