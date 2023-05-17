@@ -6,7 +6,7 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 18:53:13 by nimai             #+#    #+#              #
-#    Updated: 2023/05/16 15:14:05 by nimai            ###   ########.fr        #
+#    Updated: 2023/05/17 10:32:29 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ ifeq ($(OS), Linux)
 LIBS		:= ft mlx_Linux
 LIBS_TARGET	:= \
 				lib/libft/libft.a \
-				lib/minilibx_linux/mlx_Linux.a 
+				lib/minilibx_linux/libmlx_Linux.a 
 MFLAGS		:= -X11 -Xent -mz
 else
 LIBS		:= ft mlx
