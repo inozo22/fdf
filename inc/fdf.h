@@ -6,21 +6,21 @@
 /*   By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 20:54:56 by nimai             #+#    #+#             */
-/*   Updated: 2023/05/17 12:47:06 by nimai            ###   ########.fr       */
+/*   Updated: 2023/05/22 10:31:49 by nimai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "../lib/libft/inc/libft.h"
+# include "libft.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
 # include <stdbool.h>
 # include <errno.h>
-# include "../lib/minilibx_macos/mlx.h"
+# include "mlx.h"
 
 # define STDERR 2
 # define ARGLIMIT 1024
@@ -88,8 +88,8 @@ typedef struct s_map
 
 /**
 * @brief main structure.
-* @param pwd_j to pass where you are.
-* @param pwd_i to pass where you are.
+* @param pwd_j position of the column.
+* @param pwd_i position of the row.
 * @note it's necessary when terminate this program to free everything.
 */
 typedef struct s_f
@@ -144,14 +144,11 @@ char		**strs_clear(char **tab, int i);
 
 /**
 * @brief initialization of main structure
-* @return f->map
-* @note COULD BE BETTER
 */
 t_f			*init_f(int fd, t_f *f);
 
 /**
 * @brief initialization of mlx map, also control map margin
-* @return f->map
 */
 t_map		*init_map(t_f *f);
 void		draw_ver(t_f *f);
@@ -197,8 +194,8 @@ int			count_word(char *str, t_f *f);
 bool		check_amount(t_f *f, int ret);
 
 /**
-* @brief log the colour to f, and move to the next position.
-* @return i, moved at the end of colour.
+* @brief log the colour to f, and move to the next one.
+* @return i, moved to the end of colour.
 */
 int			get_colour(char *str, int i, int row, t_f *f);
 
@@ -225,7 +222,7 @@ void		gradiente(int start, int end, t_f *f);
 
 /**
 * @brief  Terminate fdf only here, except having error
-* @note  when use system function, put here
+* @note  when use system("leaks") function, put here
 */
 int			terminate_fdf(void	*param);
 void		control_keys(int key, t_f *f);

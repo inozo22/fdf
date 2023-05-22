@@ -6,12 +6,11 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 18:53:13 by nimai             #+#    #+#              #
-#    Updated: 2023/05/17 12:49:58 by nimai            ###   ########.fr        #
+#    Updated: 2023/05/22 10:23:39 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= fdf
-OS			:= $(shell uname)
 
 #------------------------------------------------#
 #   INGREDIENTS                                  #
@@ -34,22 +33,15 @@ OS			:= $(shell uname)
 # LDFLAGS     linker flags
 # LDLIBS      libraries name
 
-ifeq ($(OS), Linux)
-LIBS		:= ft mlx_Linux Xent X11 m z
-LIBS_TARGET	:= \
-				lib/libft/libft.a \
-				lib/minilibx_linux/libmlx_Linux.a 
-else
 LIBS		:= ft mlx
 LIBS_TARGET	:= \
 				lib/libft/libft.a \
 				lib/minilibx_macos/libmlx.a
-MFLAGS		:= -framework OpenGL -framework AppKit
-endif
 
 INCS		:= \
 				inc \
 				lib/libft/inc \
+				lib/minilibx_macos
 
 SRC_DIR		:= src
 SRCS		:= \
@@ -78,7 +70,7 @@ CFLAGS		:= -g3 -Wall -Wextra -Werror
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L,$(dir $(LIBS_TARGET)))
 LDLIBS		:= $(addprefix -l,$(LIBS))
-#MFLAGS		:= -framework OpenGL -framework AppKit
+MFLAGS		:= -framework OpenGL -framework AppKit
 
 #------------------------------------------------#
 #   UTENSILS                                     #
@@ -89,7 +81,6 @@ LDLIBS		:= $(addprefix -l,$(LIBS))
 
 RM			:= rm -f
 RF			:= rm -rf
-MAKEFLAGS	+= --silent --no-print-directory
 DIR_DUP		= mkdir -p $(@D)
 
 #------------------------------------------------#
