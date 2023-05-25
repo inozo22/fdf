@@ -6,11 +6,12 @@
 #    By: nimai <nimai@student.42urduliz.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 18:53:13 by nimai             #+#    #+#              #
-#    Updated: 2023/05/22 10:23:39 by nimai            ###   ########.fr        #
+#    Updated: 2023/05/25 09:24:53 by nimai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= fdf
+OS			:= $(shell uname -s)
 
 #------------------------------------------------#
 #   INGREDIENTS                                  #
@@ -33,15 +34,26 @@ NAME		:= fdf
 # LDFLAGS     linker flags
 # LDLIBS      libraries name
 
-LIBS		:= ft mlx
+#LIBS		:= ft mlx
 LIBS_TARGET	:= \
-				lib/libft/libft.a \
-				lib/minilibx_macos/libmlx.a
+				lib/libft/libft.a 
+#				lib/minilibx_macos/libmlx.a
 
 INCS		:= \
 				inc \
-				lib/libft/inc \
-				lib/minilibx_macos
+				lib/libft/inc 
+#				lib/minilibx_macos
+
+ifeq ($(OS), Linux)
+LIBS		:= ft mlx_Linux X11 Xext m z
+INCS		+= lib/minilibx_linux /usr/include
+LIBS_TARGET	+= lib/minilibx_linux/mlx_Linux.a
+else ifeq ($(OS), Darwin)
+LIBS		:= ft mlx
+INCS		+= lib/minilibx_macos
+LIBS_TARGET	+= lib/minilibx_macos/libmlx.a
+MFLAGS		:= -framework OpenGL -framework AppKit
+endif
 
 SRC_DIR		:= src
 SRCS		:= \
@@ -70,7 +82,7 @@ CFLAGS		:= -g3 -Wall -Wextra -Werror
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L,$(dir $(LIBS_TARGET)))
 LDLIBS		:= $(addprefix -l,$(LIBS))
-MFLAGS		:= -framework OpenGL -framework AppKit
+#MFLAGS		:= -framework OpenGL -framework AppKit
 
 #------------------------------------------------#
 #   UTENSILS                                     #
