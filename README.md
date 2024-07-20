@@ -1,5 +1,5 @@
 <h1>
-	fdf (Finished)
+	fdf (Final grade 100/100)
 </h1>
 
 <p align="center">
